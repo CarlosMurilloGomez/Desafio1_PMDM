@@ -76,11 +76,7 @@ fun Route.rutasMision() {
 
     route("/misiones") {
         get {
-            if (misionDAO.obtenerMisiones().isNotEmpty()) {
-                return@get call.respond(HttpStatusCode.OK, misionDAO.obtenerMisiones())
-            } else {
-                return@get call.respond(HttpStatusCode.NotFound, null)
-            }
+            return@get call.respond(HttpStatusCode.OK, misionDAO.obtenerMisiones())
         }
         get("{id?}") {
             val id = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
@@ -111,7 +107,7 @@ fun Route.rutasMision() {
         }
     }
 
-    route("/bombardeo") {
+    route("/caza") {
         get("{id?}") {
             val id = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
 
@@ -137,11 +133,7 @@ fun Route.rutasMision() {
         get("{id?}") {
             val id = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
 
-            if (misionDAO.obtenerAsignacionesPorIdUsuario(id.toInt()).isNotEmpty()) {
-                return@get call.respond(HttpStatusCode.OK, misionDAO.obtenerAsignacionesPorIdUsuario(id.toInt()))
-            } else {
-                return@get call.respond(HttpStatusCode.NotFound, null)
-            }
+            return@get call.respond(HttpStatusCode.OK, misionDAO.obtenerAsignacionesPorIdUsuario(id.toInt()))
         }
     }
     route("/asignacion") {

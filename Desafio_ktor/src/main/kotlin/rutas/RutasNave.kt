@@ -39,11 +39,7 @@ fun Route.rutasNave() {
 
     route("/naves") {
         get {
-            if (naveDAO.obtenerNaves().isNotEmpty()) {
-                return@get call.respond(HttpStatusCode.OK, naveDAO.obtenerNaves())
-            } else {
-                return@get call.respond(HttpStatusCode.NotFound, null)
-            }
+            return@get call.respond(HttpStatusCode.OK, naveDAO.obtenerNaves())
         }
         get("{matricula?}") {
             val matricula = call.parameters["matricula"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
@@ -58,11 +54,7 @@ fun Route.rutasNave() {
         get("{tipo?}") {
             val tipo = call.parameters["tipo"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
 
-            if (naveDAO.obtenerNavesPorTipo(tipo).isNotEmpty()) {
-                return@get call.respond(HttpStatusCode.OK, naveDAO.obtenerNavesPorTipo(tipo))
-            } else {
-                return@get call.respond(HttpStatusCode.NotFound, null)
-            }
+            return@get call.respond(HttpStatusCode.OK, naveDAO.obtenerNavesPorTipo(tipo))
         }
     }
 }

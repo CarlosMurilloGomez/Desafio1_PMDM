@@ -72,11 +72,7 @@ fun Route.rutasUsuario(){
     }
     route("/usuarios") {
         get {
-            if (usuarioDAO.obtenerUsuarios().isNotEmpty()) {
-                return@get call.respond(HttpStatusCode.OK, usuarioDAO.obtenerUsuarios())
-            } else {
-                return@get call.respond(HttpStatusCode.NotFound, null)
-            }
+            return@get call.respond(HttpStatusCode.OK, usuarioDAO.obtenerUsuarios())
         }
         get("{id?}") {
             val id = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
@@ -88,20 +84,12 @@ fun Route.rutasUsuario(){
     }
     route("/pilotos") {
         get {
-            if (usuarioDAO.obtenerPilotos().isNotEmpty()) {
-                return@get call.respond(HttpStatusCode.OK, usuarioDAO.obtenerPilotos())
-            } else {
-                return@get call.respond(HttpStatusCode.NotFound, null)
-            }
+            return@get call.respond(HttpStatusCode.OK, usuarioDAO.obtenerPilotos())
         }
     }
     route("/ranking") {
         get {
-            if (usuarioDAO.obtenerRankingPilotos().isNotEmpty()) {
-                return@get call.respond(HttpStatusCode.OK, usuarioDAO.obtenerRankingPilotos())
-            } else {
-                return@get call.respond(HttpStatusCode.NotFound, null)
-            }
+            return@get call.respond(HttpStatusCode.OK, usuarioDAO.obtenerRankingPilotos())
         }
     }
 
