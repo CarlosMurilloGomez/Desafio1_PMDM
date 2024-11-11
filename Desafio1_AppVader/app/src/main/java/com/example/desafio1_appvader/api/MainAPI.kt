@@ -6,9 +6,12 @@ import com.example.desafio1_appvader.modelo.MisionBombardeo
 import com.example.desafio1_appvader.modelo.MisionCaza
 import com.example.desafio1_appvader.modelo.MisionVuelo
 import com.example.desafio1_appvader.modelo.Nave
+import com.example.desafio1_appvader.modelo.Nivel
+import com.example.desafio1_appvader.modelo.Rol
 import com.example.desafio1_appvader.modelo.Usuario
 import com.example.desafio1_appvader.modelo.UsuarioLogIn
 import com.example.desafio1_appvader.modelo.UsuarioPerfil
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -50,10 +53,10 @@ interface MainAPI {
     suspend fun obtenerRanking(): Response<MutableList<Usuario>>
 
     @GET("rol/{id}")
-    suspend fun obtenerRolPorId(@Path("id") idUsuario:Int): Response<String?>
+    suspend fun obtenerRolPorId(@Path("id") idUsuario:Int): Response<Rol?>
 
     @GET("nivel/{id}")
-    suspend fun obtenerNivelPorId(@Path("id") idUsuario:Int): Response<String?>
+    suspend fun obtenerNivelPorId(@Path("id") idUsuario:Int): Response<Nivel?>
 
 
 

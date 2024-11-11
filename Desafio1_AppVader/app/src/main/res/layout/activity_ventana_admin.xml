@@ -16,7 +16,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:layout_marginTop="20dp"
-            android:title="Mi menú lateral"
+            android:title="Bienvenido"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
@@ -24,10 +24,9 @@
             android:id="@+id/frag_cont_admin"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:navGraph="@navigation/nav_menu_ham_admin"
+            android:layout_height="match_parent"
             app:defaultNavHost="true"
-            />
+            app:navGraph="@navigation/nav_menu_ham_admin" />
 
     </LinearLayout>
 
@@ -37,6 +36,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/menu_ham_admin"
+        app:headerLayout="@layout/nav_header"
+
         />
 
 </androidx.drawerlayout.widget.DrawerLayout>

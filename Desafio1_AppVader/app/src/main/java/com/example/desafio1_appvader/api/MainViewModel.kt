@@ -13,6 +13,8 @@ import com.example.desafio1_appvader.modelo.MisionBombardeo
 import com.example.desafio1_appvader.modelo.MisionCaza
 import com.example.desafio1_appvader.modelo.MisionVuelo
 import com.example.desafio1_appvader.modelo.Nave
+import com.example.desafio1_appvader.modelo.Nivel
+import com.example.desafio1_appvader.modelo.Rol
 import com.example.desafio1_appvader.modelo.Usuario
 import com.example.desafio1_appvader.modelo.UsuarioLogIn
 import com.example.desafio1_appvader.modelo.UsuarioPerfil
@@ -29,6 +31,12 @@ class MainViewModel : ViewModel() {
 
     fun restablecerCadena(){
         _cadena.value = null
+    }
+    private val _cadena2 = MutableLiveData<String?>()
+    val cadena2: LiveData<String?> get() = _cadena2
+
+    fun restablecerCadena2(){
+        _cadena2.value = null
     }
 
     private val _resOperacion = MutableLiveData<Boolean>()
@@ -54,12 +62,19 @@ class MainViewModel : ViewModel() {
     private val _usuarioLogeado = MutableLiveData<Int?>()
     val usuarioLogeado: LiveData<Int?> get() = _usuarioLogeado
 
+    fun iniciarSesionVM(id: Int){
+        _usuarioLogeado.value = id
+    }
     fun cerrarSesionVM(){
         _usuarioLogeado.value = null
-
     }
 
+    private val _urlfoto = MutableLiveData<String?>()
+    val urlfoto: LiveData<String?> get() = _urlfoto
 
+    fun restablecerUrlFoto(){
+        _urlfoto.value = null
+    }
     fun subirImgen(file: File){
         viewModelScope.launch {
             val config = mapOf(
@@ -72,7 +87,7 @@ class MainViewModel : ViewModel() {
             val uploadResult = withContext(Dispatchers.IO) {
                 cloudinary.uploader().upload(file, options)
             }
-            _cadena.value = uploadResult["url"].toString()
+            _urlfoto.value = uploadResult["url"].toString()
         }
 
     }
@@ -107,7 +122,10 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             val response: Response<Boolean> = UserNetwork.retrofit.activarCuenta(id)
             _resOperacion2.value = response.body()
-            _errorCode.value = response.code()
+            if (!response.isSuccessful) {
+                _errorCode.value = response.code()
+            }
+
         }
     }
     fun modificarExperienciaUsuarioVM(id: Int, experiencia: Int) {
@@ -123,6 +141,7 @@ class MainViewModel : ViewModel() {
             val response: Response<Boolean> = UserNetwork.retrofit.eliminarUsuario(id)
             _resOperacion.value = response.body()
             _errorCode.value = response.code()
+            obtenerPilotosVM()
         }
     }
 
@@ -166,16 +185,16 @@ class MainViewModel : ViewModel() {
 
     fun obtenerRolPorIdVM(idUsuario: Int) {
         viewModelScope.launch {
-            val response: Response<String?> = UserNetwork.retrofit.obtenerRolPorId(idUsuario)
-            _cadena.value = response.body()
+            val response: Response<Rol?> = UserNetwork.retrofit.obtenerRolPorId(idUsuario)
+            _cadena.value = response.body()?.nombreRol
             _errorCode.value = response.code()
         }
     }
 
     fun obtenerNivelPorIdVM(idUsuario: Int) {
         viewModelScope.launch {
-            val response: Response<String?> = UserNetwork.retrofit.obtenerNivelPorId(idUsuario)
-            _cadena.value = response.body()
+            val response: Response<Nivel?> = UserNetwork.retrofit.obtenerNivelPorId(idUsuario)
+            _cadena2.value = response.body()?.nivel
             _errorCode.value = response.code()
         }
     }
