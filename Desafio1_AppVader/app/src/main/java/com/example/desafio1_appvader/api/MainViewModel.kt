@@ -1,9 +1,12 @@
 package com.example.desafio1_appvader.api
 
+import android.graphics.Bitmap
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.cloudinary.Cloudinary
 import com.example.desafio1_appvader.modelo.Asignacion
 import com.example.desafio1_appvader.modelo.Mision
 import com.example.desafio1_appvader.modelo.MisionBombardeo
@@ -13,23 +16,74 @@ import com.example.desafio1_appvader.modelo.Nave
 import com.example.desafio1_appvader.modelo.Usuario
 import com.example.desafio1_appvader.modelo.UsuarioLogIn
 import com.example.desafio1_appvader.modelo.UsuarioPerfil
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Response
+import java.io.File
 
-class mainViewModel : ViewModel() {
+class MainViewModel : ViewModel() {
 
     private val _cadena = MutableLiveData<String?>()
     val cadena: LiveData<String?> get() = _cadena
 
+    fun restablecerCadena(){
+        _cadena.value = null
+    }
+
     private val _resOperacion = MutableLiveData<Boolean>()
     val resOperacion: LiveData<Boolean> get() = _resOperacion
+
+    fun restablecerResOperacion(){
+        _resOperacion.value = false
+    }
+    private val _resOperacion2 = MutableLiveData<Boolean>()
+    val resOperacion2: LiveData<Boolean> get() = _resOperacion2
+
+    fun restablecerResOperacion2(){
+        _resOperacion2.value = false
+    }
 
     private val _errorCode = MutableLiveData<Int?>()
     val errorCode: LiveData<Int?> get() = _errorCode
 
+    fun restablecerError(){
+        _errorCode.value = null
+    }
+
+    private val _usuarioLogeado = MutableLiveData<Int?>()
+    val usuarioLogeado: LiveData<Int?> get() = _usuarioLogeado
+
+    fun cerrarSesionVM(){
+        _usuarioLogeado.value = null
+
+    }
+
+
+    fun subirImgen(file: File){
+        viewModelScope.launch {
+            val config = mapOf(
+                "cloud_name" to "dxqrclhjs",
+                "api_key" to "788177537551218",
+                "api_secret" to "1tnhwEFuNOtg_5l_nIjOIw-WJGo"
+            )
+            val cloudinary = Cloudinary(config)
+            val options = mapOf("folder" to "Desafio1")
+            val uploadResult = withContext(Dispatchers.IO) {
+                cloudinary.uploader().upload(file, options)
+            }
+            _cadena.value = uploadResult["url"].toString()
+        }
+
+    }
+
     //USUARIO
     private val _usuario = MutableLiveData<Usuario?>()
     val usuario: LiveData<Usuario?> get() = _usuario
+
+    fun restablecerUsuario(){
+        _usuario.value = null
+    }
 
     private val _usuarios = MutableLiveData<List<Usuario>>()
     val usuarios: LiveData<List<Usuario>> get() = _usuarios
@@ -49,7 +103,13 @@ class mainViewModel : ViewModel() {
             _errorCode.value = response.code()
         }
     }
-
+    fun activarCuentaVM(id: Int) {
+        viewModelScope.launch {
+            val response: Response<Boolean> = UserNetwork.retrofit.activarCuenta(id)
+            _resOperacion2.value = response.body()
+            _errorCode.value = response.code()
+        }
+    }
     fun modificarExperienciaUsuarioVM(id: Int, experiencia: Int) {
         viewModelScope.launch {
             val response: Response<Boolean> = UserNetwork.retrofit.modificarExperienciaUsuario(id, experiencia)
@@ -70,9 +130,9 @@ class mainViewModel : ViewModel() {
         viewModelScope.launch {
             val response: Response<Usuario?> = UserNetwork.retrofit.login(datosLogIn)
             _usuario.value = response.body()
+            _usuarioLogeado.value = response.body()?.id
             _errorCode.value = response.code()
         }
-
     }
 
     fun obtenerUsuariosVM(){
@@ -296,5 +356,7 @@ class mainViewModel : ViewModel() {
             _errorCode.value = response.code()
         }
     }
+
+
 
 }

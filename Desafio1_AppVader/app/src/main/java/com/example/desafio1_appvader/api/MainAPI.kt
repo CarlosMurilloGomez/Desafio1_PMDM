@@ -17,7 +17,7 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
 
-interface mainAPI {
+interface MainAPI {
     //USUARIO
     @POST("registrarUsuario")
     suspend fun registrarUsuario(@Body usuario: Usuario): Response<Boolean>
@@ -25,13 +25,16 @@ interface mainAPI {
     @PUT("modificarPerfilUsuario")
     suspend fun modificarPerfilUsuario(@Body userData: UsuarioPerfil): Response<Boolean>
 
+    @PUT("activarCuenta/{id}")
+    suspend fun activarCuenta(@Path("id") id:Int): Response<Boolean>
+
     @PUT("modificarExperienciaUsuario/{id}")
     suspend fun modificarExperienciaUsuario(@Path("id") id:Int, @Body experiencia: Int): Response<Boolean>
 
     @DELETE("eliminarUsuario/{id}")
     suspend fun eliminarUsuario(@Path("id") id:Int): Response<Boolean>
 
-    @GET("login")
+    @POST("login")
     suspend fun login(@Body datosLogIn: UsuarioLogIn): Response<Usuario?>
 
     @GET("usuarios")
