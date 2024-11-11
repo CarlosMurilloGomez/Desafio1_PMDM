@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_menu_ham_admin"
+    app:startDestination="@id/nav_fragAltaPiloto">
+    <fragment
+        android:id="@+id/nav_fragPerfil"
+        android:name="com.example.desafio1_appvader.FragPerfil"
+        android:label="fragment_frag_perfil"
+        tools:layout="@layout/fragment_frag_perfil" />
+    <fragment
+        android:id="@+id/nav_fragAltaPiloto"
+        android:name="com.example.desafio1_appvader.FragAltaPiloto"
+        android:label="fragment_frag_alta_piloto"
+        tools:layout="@layout/fragment_frag_alta_piloto" />
+
+
+    <fragment
+        android:id="@+id/nav_fragBajaPiloto"
+        android:name="com.example.desafio1_appvader.FragBajaPiloto"
+        android:label="fragment_frag_baja_piloto"
+        tools:layout="@layout/fragment_frag_baja_piloto" />
+</navigation>
