@@ -74,18 +74,18 @@ class fragActivarCuenta : Fragment() {
         val root: View = binding.root
 
 
-        mainViewModel.cadena.observe(viewLifecycleOwner){ urlFoto ->
+        mainViewModel.urlfoto.observe(viewLifecycleOwner){ urlFoto ->
             if (urlFoto != null){
-                mainViewModel.modificarPerfilUsuarioVM(UsuarioPerfil(mainViewModel.usuarioLogeado.value!!, binding.etUsuarioActivar.text.toString(), binding.etPaswordActivar.text.toString(), urlFoto))
-                mainViewModel.restablecerCadena()
+                mainViewModel.modificarPerfilUsuarioVM(UsuarioPerfil(mainViewModel.usuarioLogeado.value!!, binding.etUsuarioActivar.text.toString(), binding.etPaswordActivar.text.toString(), urlFoto.replace("http://", "https://")))
+                mainViewModel.restablecerUrlFoto()
             }
         }
         mainViewModel.errorCode.observe(viewLifecycleOwner){ error ->
             if (error != null) {
                 when (error) {
                     409 -> Toast.makeText(requireContext(),"El nombre de usuario ya existe",Toast.LENGTH_SHORT).show()
-                    400 -> Toast.makeText(requireContext(), "Error 400", Toast.LENGTH_SHORT).show()
-                    else -> Toast.makeText(requireContext(),"Error desconocido" + error, Toast.LENGTH_SHORT).show()
+                    400 -> Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+                    202 -> Toast.makeText(requireContext(),"Perfil actualizado con exito", Toast.LENGTH_SHORT).show()
                 }
                 mainViewModel.restablecerError()
             }
@@ -98,7 +98,7 @@ class fragActivarCuenta : Fragment() {
         }
         mainViewModel.resOperacion2.observe(viewLifecycleOwner){
             if (it!=null && it==true) {
-                Navigation.findNavController(requireView()).popBackStack(R.id.fragLogin, false)
+                Navigation.findNavController(requireView()).popBackStack(R.id.nav_fragLogin, false)
                 mainViewModel.restablecerResOperacion2()
             }
         }
@@ -138,7 +138,7 @@ class fragActivarCuenta : Fragment() {
             }
         }
         binding.btnCancelarActivar.setOnClickListener {
-            Navigation.findNavController(view).popBackStack(R.id.fragLogin, false)
+            Navigation.findNavController(view).popBackStack(R.id.nav_fragLogin, false)
         }
 
     }

@@ -17,6 +17,10 @@ fun Route.rutasUsuario(){
     route("/registrarUsuario") {
         post{
             val user = call.receive<Usuario>()
+            val usuario = usuarioDAO.obtenerUsuarioPorNombre(user.nombre)
+            if (usuario !=null){
+                return@post call.respond(HttpStatusCode.BadRequest, false)
+            }
 
             if (!usuarioDAO.insertar(user)){
                 return@post call.respond(HttpStatusCode.Conflict, false)
@@ -123,7 +127,7 @@ fun Route.rutasUsuario(){
         get("{id?}") {
             val id = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
 
-            val nivel = usuarioDAO.obtenerRolPorId(id.toInt()) ?: return@get call.respond(HttpStatusCode.NotFound, null)
+            val nivel = usuarioDAO.obtenerNivelPorId(id.toInt()) ?: return@get call.respond(HttpStatusCode.NotFound, null)
 
             call.respond(HttpStatusCode.OK, nivel)
         }

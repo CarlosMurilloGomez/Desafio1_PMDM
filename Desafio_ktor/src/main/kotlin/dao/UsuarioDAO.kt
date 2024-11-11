@@ -1,5 +1,7 @@
 package dao
 
+import modelo.Nivel
+import modelo.Rol
 import modelo.Usuario
 import modelo.UsuarioPerfil
 
@@ -15,6 +17,6 @@ interface UsuarioDAO {
     fun obtenerRankingPilotos(): List<Usuario>
     fun obtenerUsuarioPorId(id: Int): Usuario?
     fun obtenerUsuarioPorNombre(nombre: String): Usuario?
-    fun obtenerRolPorId(id: Int): String?
-    fun obtenerNivelPorId(id: Int): String?
+    fun obtenerRolPorId(id: Int): Rol?
+    fun obtenerNivelPorId(id: Int): Nivel?
 }

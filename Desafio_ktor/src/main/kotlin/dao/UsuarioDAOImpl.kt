@@ -1,5 +1,7 @@
 package dao
 
+import modelo.Nivel
+import modelo.Rol
 import modelo.Usuario
 import modelo.UsuarioPerfil
 
@@ -194,7 +196,7 @@ class UsuarioDAOImpl:UsuarioDAO {
         return null
     }
 
-    override fun obtenerRolPorId(id: Int): String? {
+    override fun obtenerRolPorId(id: Int): Rol? {
         val sql = "SELECT LOWER(rol.descripcion) AS nombreRol FROM rol JOIN usuario ON rol.id=usuario.rol WHERE usuario.id=?"
         val connection = Database.getConnection()
         connection?.use {
@@ -203,13 +205,14 @@ class UsuarioDAOImpl:UsuarioDAO {
             val resultSet = statement.executeQuery()
 
             if (resultSet.next()) {
-                return resultSet.getString("nombreRol")
+                return Rol(resultSet.getString("nombreRol"))
+
             }
         }
         return null
     }
 
-    override fun obtenerNivelPorId(id: Int): String? {
+    override fun obtenerNivelPorId(id: Int): Nivel? {
         val sql = "SELECT LOWER(descripcion) AS nivel FROM experiencia WHERE limiteBajo<=(SELECT experiencia FROM usuario WHERE id = ?) AND limiteAlto>=(SELECT experiencia FROM usuario WHERE id = ?);"
         val connection = Database.getConnection()
         connection?.use {
@@ -219,7 +222,7 @@ class UsuarioDAOImpl:UsuarioDAO {
             val resultSet = statement.executeQuery()
 
             if (resultSet.next()) {
-                return resultSet.getString("nivel")
+                return Nivel(resultSet.getString("nivel"))
             }
         }
         return null

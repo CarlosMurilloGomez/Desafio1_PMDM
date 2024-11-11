@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -76,8 +77,6 @@ dependencies {
 //    implementation ("com.github.bumptech.glide:glide:4.14.2")
 
     //Cloudinary
-//  implementation 'com.cloudinary:kotlin-url-gen:1.7.0'
-
     implementation (libs.cloudinary.android.v302)
 //    implementation 'com.cloudinary:cloudinary-android:3.0.2'
 

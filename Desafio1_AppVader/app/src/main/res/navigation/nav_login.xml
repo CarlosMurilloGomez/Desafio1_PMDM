@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_login"
-    app:startDestination="@id/fragLogin">
+    app:startDestination="@id/nav_fragLogin">
     <fragment
-        android:id="@+id/fragLogin"
+        android:id="@+id/nav_fragLogin"
         android:name="com.example.desafio1_appvader.fragLogin"
         android:label="fragment_frag_login"
         tools:layout="@layout/fragment_frag_login" />
     <fragment
-        android:id="@+id/fragActivarCuenta"
+        android:id="@+id/nav_fragActivarCuenta"
         android:name="com.example.desafio1_appvader.fragActivarCuenta"
         android:label="fragment_frag_activar_cuenta"
         tools:layout="@layout/fragment_frag_activar_cuenta" />
