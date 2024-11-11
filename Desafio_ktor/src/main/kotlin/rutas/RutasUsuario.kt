@@ -29,7 +29,23 @@ fun Route.rutasUsuario(){
         put {
             val user = call.receive<UsuarioPerfil>()
             val usuario = usuarioDAO.obtenerUsuarioPorId(user.id) ?: return@put call.respond(HttpStatusCode.NotFound, false)
+            val usuario2 = usuarioDAO.obtenerUsuarioPorNombre(user.nombre)
+            if (usuario2 != null && usuario2.id != user.id){
+                return@put call.respond(HttpStatusCode.Conflict, false)
+            }
             if (!usuarioDAO.actualizarPerfil(user)) {
+                return@put call.respond(HttpStatusCode.BadRequest, false)
+            }
+            call.respond(HttpStatusCode.Accepted, true)
+        }
+    }
+
+    route("/activarCuenta") {
+        put ("{id?}"){
+            val id = call.parameters["id"] ?: return@put call.respond(HttpStatusCode.BadRequest, false)
+            val usuario = usuarioDAO.obtenerUsuarioPorId(id.toInt()) ?: return@put call.respond(HttpStatusCode.NotFound, false)
+
+            if (!usuarioDAO.activarCuenta(id.toInt())) {
                 return@put call.respond(HttpStatusCode.BadRequest, false)
             }
             call.respond(HttpStatusCode.Accepted, true)
@@ -61,11 +77,11 @@ fun Route.rutasUsuario(){
         }
     }
     route("/login") {
-        get{
+        post{
             val user = call.receive<UsuarioLogIn>()
-            val usuario = usuarioDAO.obtenerUsuarioPorNombre(user.nombre) ?: return@get call.respond(HttpStatusCode.NotFound, null)
+            val usuario = usuarioDAO.obtenerUsuarioPorNombre(user.nombre) ?: return@post call.respond(HttpStatusCode.NotFound, null)
             if (usuario.password != user.password){
-                return@get call.respond(HttpStatusCode.BadRequest, null)
+                return@post call.respond(HttpStatusCode.BadRequest, null)
             }
             call.respond(HttpStatusCode.OK, usuario)
         }

@@ -34,6 +34,17 @@ class UsuarioDAOImpl:UsuarioDAO {
         }
         return false
     }
+    override fun activarCuenta(id: Int): Boolean {
+        val sql = "UPDATE usuario SET activo=1 WHERE id=?"
+        val connection = Database.getConnection()
+        connection?.use {
+            val statement = it.prepareStatement(sql)
+            statement.setInt(1, id)
+
+            return statement.executeUpdate() > 0
+        }
+        return false
+    }
 
     override fun actualizarExperiencia(expGanada: Int, id:Int): Boolean {
         val sql = "UPDATE usuario SET experiencia=experiencia+? WHERE id=?"
@@ -50,7 +61,7 @@ class UsuarioDAOImpl:UsuarioDAO {
     }
 
     override fun eliminar(id: Int): Boolean {
-        val sql = "DELETE FROM usuarios WHERE id = ?"
+        val sql = "DELETE FROM usuario WHERE id = ?"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -63,7 +74,7 @@ class UsuarioDAOImpl:UsuarioDAO {
 
     override fun obtenerUsuarios(): List<Usuario> {
         val usuarios = mutableListOf<Usuario>()
-        val sql = "SELECT * FROM usuarios"
+        val sql = "SELECT * FROM usuario"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -88,7 +99,7 @@ class UsuarioDAOImpl:UsuarioDAO {
 
     override fun obtenerPilotos(): List<Usuario> {
         val usuarios = mutableListOf<Usuario>()
-        val sql = "SELECT * FROM usuarios WHERE rol=2"
+        val sql = "SELECT * FROM usuario WHERE rol=2"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -113,7 +124,7 @@ class UsuarioDAOImpl:UsuarioDAO {
 
     override fun obtenerRankingPilotos(): List<Usuario> {
         val usuarios = mutableListOf<Usuario>()
-        val sql = "SELECT * FROM usuarios WHERE rol=2 ORDER BY experiencia DESC"
+        val sql = "SELECT * FROM usuario WHERE rol=2 ORDER BY experiencia DESC"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -136,7 +147,7 @@ class UsuarioDAOImpl:UsuarioDAO {
         return usuarios
     }
     override fun obtenerUsuarioPorId(id: Int): Usuario? {
-        val sql = "SELECT * FROM usuarios WHERE id = ?"
+        val sql = "SELECT * FROM usuario WHERE id = ?"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -160,7 +171,7 @@ class UsuarioDAOImpl:UsuarioDAO {
     }
 
     override fun obtenerUsuarioPorNombre(nombre: String): Usuario? {
-        val sql = "SELECT * FROM usuarios WHERE LOWER(nombre) = LOWER(?)"
+        val sql = "SELECT * FROM usuario WHERE LOWER(nombre) = LOWER(?)"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)

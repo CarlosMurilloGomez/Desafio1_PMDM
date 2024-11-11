@@ -1,5 +1,6 @@
 package com.example.desafio1_appvader.api
 
+import com.example.desafio1_appvader.parametros.Parametros
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -9,6 +10,6 @@ object UserNetwork {
             .baseUrl(Parametros.url+":"+Parametros.puerto)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(mainAPI::class.java)
+            .create(MainAPI::class.java)
     }
 }
