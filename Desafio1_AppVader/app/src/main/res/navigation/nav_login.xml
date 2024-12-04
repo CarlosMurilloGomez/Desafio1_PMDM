@@ -6,12 +6,12 @@
     app:startDestination="@id/nav_fragLogin">
     <fragment
         android:id="@+id/nav_fragLogin"
-        android:name="com.example.desafio1_appvader.fragLogin"
+        android:name="com.example.desafio1_appvader.ventanas.login.fragLogin"
         android:label="fragment_frag_login"
         tools:layout="@layout/fragment_frag_login" />
     <fragment
         android:id="@+id/nav_fragActivarCuenta"
-        android:name="com.example.desafio1_appvader.fragActivarCuenta"
+        android:name="com.example.desafio1_appvader.ventanas.login.fragActivarCuenta"
         android:label="fragment_frag_activar_cuenta"
         tools:layout="@layout/fragment_frag_activar_cuenta" />
 </navigation>

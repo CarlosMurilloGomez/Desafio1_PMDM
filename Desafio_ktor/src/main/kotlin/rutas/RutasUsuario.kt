@@ -33,10 +33,7 @@ fun Route.rutasUsuario(){
         put {
             val user = call.receive<UsuarioPerfil>()
             val usuario = usuarioDAO.obtenerUsuarioPorId(user.id) ?: return@put call.respond(HttpStatusCode.NotFound, false)
-            val usuario2 = usuarioDAO.obtenerUsuarioPorNombre(user.nombre)
-            if (usuario2 != null && usuario2.id != user.id){
-                return@put call.respond(HttpStatusCode.Conflict, false)
-            }
+
             if (!usuarioDAO.actualizarPerfil(user)) {
                 return@put call.respond(HttpStatusCode.BadRequest, false)
             }

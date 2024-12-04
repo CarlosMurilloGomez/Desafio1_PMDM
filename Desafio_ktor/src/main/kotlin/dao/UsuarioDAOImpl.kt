@@ -7,7 +7,7 @@ import modelo.UsuarioPerfil
 
 class UsuarioDAOImpl:UsuarioDAO {
     override fun insertar(usuario: Usuario): Boolean {
-        val sql = "INSERT INTO usuario (nombre, password, activo, foto, edad, experiencia, rol) VALUES(?, ?, 0, NULL, ?, ?, ?)"
+        val sql = "INSERT INTO usuario (nombre, password, activo, foto, edad, experiencia, rol) VALUES(?, ?, 0, 'https://res.cloudinary.com/dxqrclhjs/image/upload/v1731946150/stormtrooperFotoPerfil_qv3hnw.jpg', ?, ?, ?)"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -23,14 +23,13 @@ class UsuarioDAOImpl:UsuarioDAO {
     }
 
     override fun actualizarPerfil(perfil: UsuarioPerfil): Boolean {
-        val sql = "UPDATE usuario SET nombre=?, password=?, foto=? WHERE id=?"
+        val sql = "UPDATE usuario SET password=?, foto=? WHERE id=?"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
-            statement.setString(1, perfil.nombre)
-            statement.setString(2, perfil.password)
-            statement.setString(3, perfil.foto)
-            statement.setInt(4, perfil.id)
+            statement.setString(1, perfil.password)
+            statement.setString(2, perfil.foto)
+            statement.setInt(3, perfil.id)
 
             return statement.executeUpdate() > 0
         }
