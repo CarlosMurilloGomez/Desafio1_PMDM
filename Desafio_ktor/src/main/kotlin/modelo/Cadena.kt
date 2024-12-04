@@ -3,4 +3,4 @@ package modelo
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Rol(val nombreRol:String)
+data class Cadena(val texto:String)

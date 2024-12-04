@@ -33,9 +33,6 @@ class FragBajaPiloto : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-
-
     }
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(

@@ -1,9 +1,6 @@
 package dao
 
-import modelo.Nivel
-import modelo.Rol
-import modelo.Usuario
-import modelo.UsuarioPerfil
+import modelo.*
 
 class UsuarioDAOImpl:UsuarioDAO {
     override fun insertar(usuario: Usuario): Boolean {
@@ -195,7 +192,7 @@ class UsuarioDAOImpl:UsuarioDAO {
         return null
     }
 
-    override fun obtenerRolPorId(id: Int): Rol? {
+    override fun obtenerRolPorId(id: Int): Cadena? {
         val sql = "SELECT LOWER(rol.descripcion) AS nombreRol FROM rol JOIN usuario ON rol.id=usuario.rol WHERE usuario.id=?"
         val connection = Database.getConnection()
         connection?.use {
@@ -204,14 +201,14 @@ class UsuarioDAOImpl:UsuarioDAO {
             val resultSet = statement.executeQuery()
 
             if (resultSet.next()) {
-                return Rol(resultSet.getString("nombreRol"))
+                return Cadena(resultSet.getString("nombreRol"))
 
             }
         }
         return null
     }
 
-    override fun obtenerNivelPorId(id: Int): Nivel? {
+    override fun obtenerNivelPorId(id: Int): Cadena? {
         val sql = "SELECT LOWER(descripcion) AS nivel FROM experiencia WHERE limiteBajo<=(SELECT experiencia FROM usuario WHERE id = ?) AND limiteAlto>=(SELECT experiencia FROM usuario WHERE id = ?);"
         val connection = Database.getConnection()
         connection?.use {
@@ -221,7 +218,7 @@ class UsuarioDAOImpl:UsuarioDAO {
             val resultSet = statement.executeQuery()
 
             if (resultSet.next()) {
-                return Nivel(resultSet.getString("nivel"))
+                return Cadena(resultSet.getString("nivel"))
             }
         }
         return null

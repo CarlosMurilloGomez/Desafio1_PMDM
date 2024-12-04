@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cloudinary.Cloudinary
 import com.example.desafio1_appvader.api.UsuarioNetwork
-import com.example.desafio1_appvader.modelo.usuario.Nivel
-import com.example.desafio1_appvader.modelo.usuario.Rol
+import com.example.desafio1_appvader.modelo.Cadena
 import com.example.desafio1_appvader.modelo.usuario.UsuarioPerfil
 import com.example.desafio1_appvader.parametros.Parametros
 import kotlinx.coroutines.Dispatchers
@@ -79,16 +78,16 @@ class FragPerfilViewModel : ViewModel() {
 
     fun obtenerRolPorIdVM(idUsuario: Int) {
         viewModelScope.launch {
-            val response: Response<Rol?> = UsuarioNetwork.retrofit.obtenerRolPorId(idUsuario)
-            _rol.value = response.body()?.nombreRol
+            val response: Response<Cadena?> = UsuarioNetwork.retrofit.obtenerRolPorId(idUsuario)
+            _rol.value = response.body()?.texto
             _errorCode.value = response.code()
         }
     }
 
     fun obtenerNivelPorIdVM(idUsuario: Int) {
         viewModelScope.launch {
-            val response: Response<Nivel?> = UsuarioNetwork.retrofit.obtenerNivelPorId(idUsuario)
-            _nivel.value = response.body()?.nivel
+            val response: Response<Cadena?> = UsuarioNetwork.retrofit.obtenerNivelPorId(idUsuario)
+            _nivel.value = response.body()?.texto
             _errorCode.value = response.code()
         }
     }

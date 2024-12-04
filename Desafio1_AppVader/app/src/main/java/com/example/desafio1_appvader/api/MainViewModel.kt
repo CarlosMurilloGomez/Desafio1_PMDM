@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cloudinary.Cloudinary
+import com.example.desafio1_appvader.modelo.Cadena
+import com.example.desafio1_appvader.modelo.Tipo
 import com.example.desafio1_appvader.modelo.mision.Asignacion
 import com.example.desafio1_appvader.modelo.mision.Mision
 import com.example.desafio1_appvader.modelo.mision.MisionBombardeo
@@ -36,6 +38,9 @@ class MainViewModel : ViewModel() {
         _resOperacion.value = false
     }
 
+    
+    private val _tipos = MutableLiveData<List<Tipo>>()
+    val tipos: LiveData<List<Tipo>> get() = _tipos
 
 
     private val _usuarioLogeado = MutableLiveData<Usuario?>()
@@ -141,21 +146,8 @@ class MainViewModel : ViewModel() {
     private val _naves = MutableLiveData<List<Nave>>()
     val naves: LiveData<List<Nave>> get() = _naves
 
-    fun registrarNaveVM(nave: Nave) {
-        viewModelScope.launch {
-            val response: Response<Boolean> = NaveNetwork.retrofit.registrarNave(nave)
-            _resOperacion.value = response.body()
-            _errorCode.value = response.code()
-        }
-    }
 
-    fun eliminarNaveVM(matricula: String) {
-        viewModelScope.launch {
-            val response: Response<Boolean> = NaveNetwork.retrofit.eliminarNave(matricula)
-            _resOperacion.value = response.body()
-            _errorCode.value = response.code()
-        }
-    }
+
 
     fun obtenerNavesVM(){
         viewModelScope.launch {
@@ -178,6 +170,15 @@ class MainViewModel : ViewModel() {
             _naves.value = response.body()
         }
     }
+
+    fun obtenerTiposNavesVM(){
+        viewModelScope.launch {
+            val response: Response<MutableList<Tipo>> = NaveNetwork.retrofit.obtenerTiposNaves()
+            _tipos.value = response.body()
+        }
+    }
+
+
 
     //MISION
     private val _mision = MutableLiveData<Mision?>()

@@ -1,5 +1,7 @@
 package com.example.desafio1_appvader.api
 
+import com.example.desafio1_appvader.modelo.Cadena
+import com.example.desafio1_appvader.modelo.Tipo
 import com.example.desafio1_appvader.modelo.nave.Nave
 import retrofit2.Response
 import retrofit2.http.Body
@@ -24,5 +26,11 @@ interface NaveAPI {
 
     @GET("navesPorTipo/{tipo}")
     suspend fun obtenerNavesPorTipo(@Path("tipo") tipo:String): Response<MutableList<Nave>>
+
+    @GET("tiposNaves")
+    suspend fun obtenerTiposNaves(): Response<MutableList<Tipo>>
+
+
+
 
 }

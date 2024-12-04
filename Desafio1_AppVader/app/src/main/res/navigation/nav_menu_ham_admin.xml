@@ -24,5 +24,16 @@
         android:name="com.example.desafio1_appvader.ventanas.FragRanking"
         android:label="fragment_frag_ranking"
         tools:layout="@layout/fragment_frag_ranking" />
+    <fragment
+        android:id="@+id/nav_fragBajaNave"
+        android:name="com.example.desafio1_appvader.ventanas.admin.FragBajaNave"
+        android:label="fragment_frag_baja_nave"
+        tools:layout="@layout/fragment_frag_baja_nave" />
+    <fragment
+        android:id="@+id/nav_fragAltaNave"
+        android:name="com.example.desafio1_appvader.ventanas.admin.FragAltaNave"
+        android:label="fragment_frag_alta_nave"
+        tools:layout="@layout/fragment_frag_alta_nave" />
+
 
 </navigation>

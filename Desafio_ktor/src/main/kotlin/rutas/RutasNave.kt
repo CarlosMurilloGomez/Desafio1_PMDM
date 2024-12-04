@@ -57,4 +57,9 @@ fun Route.rutasNave() {
             return@get call.respond(HttpStatusCode.OK, naveDAO.obtenerNavesPorTipo(tipo))
         }
     }
+    route("/tiposNaves") {
+        get {
+            return@get call.respond(HttpStatusCode.OK, naveDAO.obtenerTiposNaves())
+        }
+    }
 }

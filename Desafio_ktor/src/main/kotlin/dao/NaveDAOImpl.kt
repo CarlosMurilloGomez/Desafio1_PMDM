@@ -1,6 +1,8 @@
 package dao
 
+import modelo.Cadena
 import modelo.Nave
+import modelo.Tipo
 
 class NaveDAOImpl:NaveDAO {
     override fun insertar(nave: Nave): Boolean {
@@ -97,4 +99,23 @@ class NaveDAOImpl:NaveDAO {
         }
         return null
     }
+
+    override fun obtenerTiposNaves(): List<Tipo> {
+        val tipos = mutableListOf<Tipo>()
+        val sql = "SELECT * FROM tiponave"
+        val connection = Database.getConnection()
+        connection?.use {
+            val statement = it.prepareStatement(sql)
+            val resultSet = statement.executeQuery()
+
+            while (resultSet.next()) {
+                val tipo = Tipo(resultSet.getInt("id"), resultSet.getString("descripcion"))
+
+                tipos.add(tipo)
+            }
+        }
+        return tipos
+    }
+
+
 }

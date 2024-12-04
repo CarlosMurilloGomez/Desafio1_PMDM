@@ -54,15 +54,21 @@ class VentanaAdmin : AppCompatActivity() {
         val navView: NavigationView = binding.navigationView
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.nav_fragBajaPiloto -> {
-                    navController.navigate(R.id.nav_fragBajaPiloto)
-                    supportActionBar?.title = "LISTA DE PILOTOS"
-                }
-
                 R.id.nav_fragRanking -> {
                     navController.navigate(R.id.nav_fragRanking)
                     supportActionBar?.title = "RANKING"
                 }
+                R.id.nav_fragBajaPiloto -> {
+                    navController.navigate(R.id.nav_fragBajaPiloto)
+                    supportActionBar?.title = "LISTA DE PILOTOS"
+                }
+                R.id.nav_fragBajaNave -> {
+                    navController.navigate(R.id.nav_fragBajaNave)
+                    supportActionBar?.title = "LISTA DE NAVES"
+                }
+
+
+
 
             }
             drawerLayout.closeDrawer(GravityCompat.START)

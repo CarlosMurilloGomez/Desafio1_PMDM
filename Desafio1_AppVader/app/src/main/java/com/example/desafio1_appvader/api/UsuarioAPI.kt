@@ -1,13 +1,12 @@
 package com.example.desafio1_appvader.api
 
+import com.example.desafio1_appvader.modelo.Cadena
 import com.example.desafio1_appvader.modelo.mision.Asignacion
 import com.example.desafio1_appvader.modelo.mision.Mision
 import com.example.desafio1_appvader.modelo.mision.MisionBombardeo
 import com.example.desafio1_appvader.modelo.mision.MisionCaza
 import com.example.desafio1_appvader.modelo.mision.MisionVuelo
 import com.example.desafio1_appvader.modelo.nave.Nave
-import com.example.desafio1_appvader.modelo.usuario.Nivel
-import com.example.desafio1_appvader.modelo.usuario.Rol
 import com.example.desafio1_appvader.modelo.usuario.Usuario
 import com.example.desafio1_appvader.modelo.usuario.UsuarioLogIn
 import com.example.desafio1_appvader.modelo.usuario.UsuarioPerfil
@@ -52,10 +51,10 @@ interface UsuarioAPI {
     suspend fun obtenerRanking(): Response<MutableList<Usuario>>
 
     @GET("rol/{id}")
-    suspend fun obtenerRolPorId(@Path("id") idUsuario:Int): Response<Rol?>
+    suspend fun obtenerRolPorId(@Path("id") idUsuario:Int): Response<Cadena?>
 
     @GET("nivel/{id}")
-    suspend fun obtenerNivelPorId(@Path("id") idUsuario:Int): Response<Nivel?>
+    suspend fun obtenerNivelPorId(@Path("id") idUsuario:Int): Response<Cadena?>
 
 
 
