@@ -1,6 +1,5 @@
 package com.example.desafio1_appvader.adaptadores
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
@@ -13,15 +12,15 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.desafio1_appvader.ventanas.admin.FragBajaPilotoViewModel
 import com.example.desafio1_appvader.R
-import com.example.desafio1_appvader.api.MainViewModel
-import com.example.desafio1_appvader.modelo.Usuario
+import com.example.desafio1_appvader.modelo.usuario.Usuario
 
-class AdaptadorBajaPiloto (var usuarios: ArrayList<Usuario>, var context: Context, var mainViewModel: MainViewModel) : RecyclerView.Adapter<AdaptadorBajaPiloto.ViewHolder>(){
+class AdaptadorBajaPiloto (var usuarios: ArrayList<Usuario>, var context: Context, var fragBajaPilotoViewModel: FragBajaPilotoViewModel) : RecyclerView.Adapter<AdaptadorBajaPiloto.ViewHolder>(){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = usuarios.get(position)
-        holder.bind(item, context, position, this, mainViewModel)
+        holder.bind(item, context, position, this, fragBajaPilotoViewModel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,7 +40,7 @@ class AdaptadorBajaPiloto (var usuarios: ArrayList<Usuario>, var context: Contex
         val foto = view.findViewById(R.id.ivBajaUs) as ImageView
         val eliminar = view.findViewById(R.id.btnEliminarUsuario) as Button
 
-        fun bind(user: Usuario, context: Context, pos: Int, adaptadorBajaPiloto: AdaptadorBajaPiloto, mainViewModel: MainViewModel){
+        fun bind(user: Usuario, context: Context, pos: Int, adaptadorBajaPiloto: AdaptadorBajaPiloto, fragBajaPilotoViewModel: FragBajaPilotoViewModel){
             nombreUsuario.text = user.nombre
             edad.text = user.edad.toString()
             exp.text = user.experiencia.toString()
@@ -52,7 +51,7 @@ class AdaptadorBajaPiloto (var usuarios: ArrayList<Usuario>, var context: Contex
                     .setTitle("Eliminar usuario")
                     .setMessage("¿Deseas eliminar a ${user.nombre}?")
                     .setPositiveButton("Si", DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
-                        mainViewModel.eliminarUsuarioVM(user.id)
+                        fragBajaPilotoViewModel.eliminarUsuarioVM(user.id)
                     }))
                     .setNegativeButton("No", ({ dialog: DialogInterface, which: Int ->
                         Toast.makeText(context,"Eliminacion cancelada", Toast.LENGTH_SHORT).show()

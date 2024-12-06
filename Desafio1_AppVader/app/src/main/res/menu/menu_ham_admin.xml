@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/nav_fragAltaPiloto"
-        android:title="ALTA PILOTOS"
+    <item android:id="@+id/nav_fragRanking"
+        android:title="RANKING"
         />
     <item android:id="@+id/nav_fragBajaPiloto"
-        android:title="BAJA PILOTOS"
+        android:title="PILOTOS"
         />
+    <item android:id="@+id/nav_fragBajaNave"
+        android:title="NAVES"
+        />
+    <item android:id="@+id/nav_fragBajaMisiones"
+        android:title="MISIONES"
+        />
+
+
 </menu>

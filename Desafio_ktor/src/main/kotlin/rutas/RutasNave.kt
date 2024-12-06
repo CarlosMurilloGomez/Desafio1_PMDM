@@ -7,6 +7,7 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import modelo.Nave
+import modelo.TipoCargaPasajeros
 
 val naveDAO: NaveDAO = NaveDAOImpl()
 
@@ -50,11 +51,16 @@ fun Route.rutasNave() {
         }
     }
 
-    route("/navesPorTipo") {
-        get("{tipo?}") {
-            val tipo = call.parameters["tipo"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
+    route("/navesPorTipoCargaPasajeros") {
+        post {
+            val datos = call.receive<TipoCargaPasajeros>()
 
-            return@get call.respond(HttpStatusCode.OK, naveDAO.obtenerNavesPorTipo(tipo))
+            return@post call.respond(HttpStatusCode.OK, naveDAO.obtenerNavesPorTipoCargaPasajeros(datos))
+        }
+    }
+    route("/tiposNaves") {
+        get {
+            return@get call.respond(HttpStatusCode.OK, naveDAO.obtenerTiposNaves())
         }
     }
 }

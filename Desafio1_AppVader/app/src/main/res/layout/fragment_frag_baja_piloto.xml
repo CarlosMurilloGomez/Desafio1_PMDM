@@ -4,16 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragBajaPiloto" >
+    tools:context=".ventanas.admin.FragBajaPiloto" >
+
+    <TextView
+        android:id="@+id/lbNoHayUsuariosBajaPi"
+        android:layout_width="333dp"
+        android:layout_height="274dp"
+        android:text="TODAVIA NO HAY PILOTOS EN LA BASE DE DATOS"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.356" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyViewBajaPilotos"
-        android:layout_width="416dp"
-        android:layout_height="649dp"
+        android:layout_width="match_parent"
+        android:layout_height="560dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.012" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnRegistrarUsuario"
+        style="@style/Widget.Material3.Button.Icon"
+        android:layout_width="206dp"
+        android:layout_height="63dp"
+        android:text="Registrar"
+        android:textSize="25sp"
+        app:icon="@drawable/ic_registrar"
+        app:iconSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.952" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
