@@ -13,6 +13,7 @@ import com.example.desafio1_appvader.modelo.mision.MisionBombardeo
 import com.example.desafio1_appvader.modelo.mision.MisionCaza
 import com.example.desafio1_appvader.modelo.mision.MisionVuelo
 import com.example.desafio1_appvader.modelo.nave.Nave
+import com.example.desafio1_appvader.modelo.nave.TipoCargaPasajeros
 import com.example.desafio1_appvader.modelo.usuario.Usuario
 import com.example.desafio1_appvader.modelo.usuario.UsuarioLogIn
 import com.example.desafio1_appvader.parametros.Parametros
@@ -164,9 +165,9 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    fun obtenerNavesPorTipoVM(tipo: String) {
+    fun obtenerNavesPorTipoCargaPasajerosVM(datos: TipoCargaPasajeros) {
         viewModelScope.launch {
-            val response: Response<MutableList<Nave>> = NaveNetwork.retrofit.obtenerNavesPorTipo(tipo)
+            val response: Response<MutableList<Nave>> = NaveNetwork.retrofit.obtenerNavesPorTipoCargaPasajeros(datos)
             _naves.value = response.body()
         }
     }
@@ -183,6 +184,9 @@ class MainViewModel : ViewModel() {
     //MISION
     private val _mision = MutableLiveData<Mision?>()
     val mision: LiveData<Mision?> get() = _mision
+
+    private val _idMisionInsertada = MutableLiveData<Int?>()
+    val idMisionInsertada: LiveData<Int?> get() = _idMisionInsertada
 
     private val _misiones = MutableLiveData<List<Mision>>()
     val misiones: LiveData<List<Mision>> get() = _misiones
@@ -204,8 +208,8 @@ class MainViewModel : ViewModel() {
 
     fun registrarMisionVM(mision: Mision) {
         viewModelScope.launch {
-            val response: Response<Boolean> = MisionNetwork.retrofit.registrarMision(mision)
-            _resOperacion.value = response.body()
+            val response: Response<Int> = MisionNetwork.retrofit.registrarMision(mision)
+            _idMisionInsertada.value = response.body()
             _errorCode.value = response.code()
         }
     }
@@ -256,7 +260,12 @@ class MainViewModel : ViewModel() {
             _errorCode.value = response.code()
         }
     }
-
+    fun obtenerTiposMisionVM() {
+        viewModelScope.launch {
+            val response: Response<MutableList<Tipo>> = MisionNetwork.retrofit.obtenerTiposMision()
+            _tipos.value = response.body()
+        }
+    }
     fun obtenerVueloPorIdVM(idMision: Int) {
         viewModelScope.launch {
             val response: Response<MisionVuelo?> = MisionNetwork.retrofit.obtenerVueloPorId(idMision)

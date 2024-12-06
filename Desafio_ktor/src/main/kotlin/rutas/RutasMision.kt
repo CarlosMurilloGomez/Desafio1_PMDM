@@ -14,13 +14,12 @@ fun Route.rutasMision() {
     route("/registrarMision") {
         post {
             val misionBody = call.receive<Mision>()
-            val mision = misionDAO.obtenerMisionPorId(misionBody.id)
-            if (mision != null) return@post call.respond(HttpStatusCode.BadRequest, false)
-
-            if (!misionDAO.insertarMision(misionBody)) {
-                return@post call.respond(HttpStatusCode.Conflict, false)
+            val idMisionInsertada = misionDAO.insertarMision(misionBody)
+            if (idMisionInsertada == null) {
+                return@post call.respond(HttpStatusCode.BadRequest, false)
             }
-            call.respond(HttpStatusCode.Created, true)
+            call.respond(HttpStatusCode.OK, idMisionInsertada)
+
         }
     }
     route("/registrarVuelo") {
@@ -86,7 +85,11 @@ fun Route.rutasMision() {
             call.respond(HttpStatusCode.OK, mision)
         }
     }
-
+    route("/tiposMision") {
+        get {
+            return@get call.respond(HttpStatusCode.OK, misionDAO.obtenerTiposMision())
+        }
+    }
     route("/vuelo") {
         get("{id?}") {
             val id = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)

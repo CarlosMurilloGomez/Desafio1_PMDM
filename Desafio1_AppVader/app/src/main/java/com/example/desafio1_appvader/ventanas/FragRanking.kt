@@ -48,6 +48,12 @@ class FragRanking : Fragment() {
             datosRepresentar.clear()
             datosRepresentar.addAll(it)
             adaptador.notifyDataSetChanged()
+            if (datosRepresentar.isEmpty()){
+                binding.lbNoHayUsuariosRanking.visibility = View.VISIBLE
+            }
+            else{
+                binding.lbNoHayUsuariosRanking.visibility = View.GONE
+            }
         }
         return root
     }

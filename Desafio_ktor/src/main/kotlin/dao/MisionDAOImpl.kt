@@ -1,21 +1,28 @@
 package dao
 
 import modelo.*
+import java.sql.Statement
 
 class MisionDAOImpl:MisionDAO {
-    override fun insertarMision(mision: Mision): Boolean {
+    override fun insertarMision(mision: Mision): Int? {
         val sql = "INSERT INTO mision (nombre, exp, naveAsig, tipo) VALUES (?, ?, ?, ?)"
         val connection = Database.getConnection()
         connection?.use {
-            val statement = it.prepareStatement(sql)
+            val statement = it.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)
             statement.setString(1, mision.nombre)
             statement.setInt(2, mision.exp)
-            statement.setInt(3, mision.naveAsig)
+            statement.setString(3, mision.naveAsig)
             statement.setInt(4, mision.tipo)
 
-            return statement.executeUpdate() > 0
+            val affectedRows = statement.executeUpdate()
+            if (affectedRows > 0) {
+                val generatedKeys = statement.generatedKeys
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1)
+                }
+            }
         }
-        return false
+        return null
     }
 
     override fun insertarVuelo(vuelo: MisionVuelo): Boolean {
@@ -34,7 +41,7 @@ class MisionDAOImpl:MisionDAO {
     }
 
     override fun insertarBombardeo(bombardeo: MisionBombardeo): Boolean {
-        val sql = "INSERT INTO bomardeos VALUES (?, ?, ?, ?)"
+        val sql = "INSERT INTO bombardeos VALUES (?, ?, ?, ?)"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -86,7 +93,7 @@ class MisionDAOImpl:MisionDAO {
                     id = resultSet.getInt("id"),
                     nombre = resultSet.getString("nombre"),
                     exp = resultSet.getInt("exp"),
-                    naveAsig = resultSet.getInt("naveAsig"),
+                    naveAsig = resultSet.getString("naveAsig"),
                     tipo = resultSet.getInt("tipo")
                 )
                 misiones.add(mision)
@@ -108,7 +115,7 @@ class MisionDAOImpl:MisionDAO {
                     id = resultSet.getInt("id"),
                     nombre = resultSet.getString("nombre"),
                     exp = resultSet.getInt("exp"),
-                    naveAsig = resultSet.getInt("naveAsig"),
+                    naveAsig = resultSet.getString("naveAsig"),
                     tipo = resultSet.getInt("tipo")
                 )
                 return mision
@@ -116,7 +123,24 @@ class MisionDAOImpl:MisionDAO {
         }
         return null
     }
+    override fun obtenerTiposMision(): List<Tipo> {
+        val tipos = mutableListOf<Tipo>()
+        val sql = "SELECT * FROM tipomision"
+        val connection = Database.getConnection()
+        connection?.use {
+            val statement = it.prepareStatement(sql)
+            val resultSet = statement.executeQuery()
 
+            while (resultSet.next()) {
+                val tipo = Tipo(
+                    id = resultSet.getInt("id"),
+                    tipo = resultSet.getString("descripcion")
+                )
+                tipos.add(tipo)
+            }
+        }
+        return tipos
+    }
     override fun obtenerVueloPorId(idMision: Int): MisionVuelo? {
         val sql = "SELECT * FROM vuelo WHERE idMision=?"
         val connection = Database.getConnection()
@@ -179,7 +203,7 @@ class MisionDAOImpl:MisionDAO {
     }
 
     override fun asignarMision(asignacion: Asignacion): Boolean {
-        val sql = "INSERT INTO misionasignacion (idMision, idUsuario, estado) VALUES (?, ?, 0)"
+        val sql = "INSERT INTO misionasignacion (idMision, idUsuario, estado) VALUES (?, ?, 1)"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)

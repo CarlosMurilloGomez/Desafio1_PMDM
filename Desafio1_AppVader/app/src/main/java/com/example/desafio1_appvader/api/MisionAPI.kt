@@ -1,5 +1,6 @@
 package com.example.desafio1_appvader.api
 
+import com.example.desafio1_appvader.modelo.Tipo
 import com.example.desafio1_appvader.modelo.mision.Asignacion
 import com.example.desafio1_appvader.modelo.mision.Mision
 import com.example.desafio1_appvader.modelo.mision.MisionBombardeo
@@ -17,7 +18,7 @@ interface MisionAPI {
 
     //MISION
     @POST("registrarMision")
-    suspend fun registrarMision(@Body mision: Mision): Response<Boolean>
+    suspend fun registrarMision(@Body mision: Mision): Response<Int>
 
     @POST("registrarVuelo")
     suspend fun registrarVuelo(@Body mision: MisionVuelo): Response<Boolean>
@@ -36,6 +37,9 @@ interface MisionAPI {
 
     @GET("misiones/{id}")
     suspend fun obtenerMisionPorId(@Path("id") id:Int): Response<Mision?>
+
+    @GET("tiposMision")
+    suspend fun obtenerTiposMision(): Response<MutableList<Tipo>>
 
     @GET("vuelo/{id}")
     suspend fun obtenerVueloPorId(@Path("id") idMision:Int): Response<MisionVuelo?>

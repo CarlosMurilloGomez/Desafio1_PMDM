@@ -51,12 +51,15 @@ class fragLogin : Fragment() {
             if (it != null) {
                 if (it.activo == 0){
                     Navigation.findNavController(requireView()).navigate(R.id.nav_fragActivarCuenta)
+                    limpiarCampos()
                 }else if (it.rol == 1) {
                     val intent = Intent(requireContext(), VentanaAdmin::class.java)
                     intent.putExtra("idUsuario", it.id)
                     startActivity(intent)
+                    limpiarCampos()
                 }else if (it.rol == 2){
                     //Ir a la activity de piloto
+                    limpiarCampos()
                 }
                 mainViewModel.restablecerUsuario()
             }
@@ -89,5 +92,10 @@ class fragLogin : Fragment() {
             requireActivity().finish()
         }
 
+    }
+
+    fun limpiarCampos(){
+        binding.etUsuarioLogin.setText("")
+        binding.etPasswordLogin.setText("")
     }
 }

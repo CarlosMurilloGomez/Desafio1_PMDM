@@ -105,7 +105,8 @@
             android:id="@+id/etEdadPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false" />
+            android:enabled="false"
+            android:inputType="number" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

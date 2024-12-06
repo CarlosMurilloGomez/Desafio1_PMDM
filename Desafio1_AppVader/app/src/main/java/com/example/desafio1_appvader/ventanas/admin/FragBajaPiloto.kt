@@ -57,6 +57,12 @@ class FragBajaPiloto : Fragment() {
             datosRepresentar.clear()
             datosRepresentar.addAll(it)
             adaptador.notifyDataSetChanged()
+            if (datosRepresentar.isEmpty()){
+                binding.lbNoHayUsuariosBajaPi.visibility = View.VISIBLE
+            }
+            else{
+                binding.lbNoHayUsuariosBajaPi.visibility = View.GONE
+            }
         }
 
 

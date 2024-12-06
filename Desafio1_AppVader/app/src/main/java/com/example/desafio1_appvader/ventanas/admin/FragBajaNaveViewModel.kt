@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.desafio1_appvader.api.NaveNetwork
-import com.example.desafio1_appvader.modelo.Cadena
 import com.example.desafio1_appvader.modelo.Tipo
 import com.example.desafio1_appvader.modelo.nave.Nave
 import kotlinx.coroutines.launch

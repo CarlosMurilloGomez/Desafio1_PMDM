@@ -72,9 +72,6 @@ class FragAltaNave : Fragment() {
         val root: View = binding.root
 
         var tipos = ArrayList<Tipo>()
-        fragAltaNaveViewModel.tipos.observe(viewLifecycleOwner){
-            tipos = it as ArrayList<Tipo>
-        }
         fragAltaNaveViewModel.obtenerTiposNavesVM()
         fragAltaNaveViewModel.tipos.observe(viewLifecycleOwner){
             tipos = it as ArrayList<Tipo>

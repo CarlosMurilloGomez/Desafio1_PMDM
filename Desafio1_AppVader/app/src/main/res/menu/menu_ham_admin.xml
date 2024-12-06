@@ -9,5 +9,9 @@
     <item android:id="@+id/nav_fragBajaNave"
         android:title="NAVES"
         />
+    <item android:id="@+id/nav_fragBajaMisiones"
+        android:title="MISIONES"
+        />
+
 
 </menu>

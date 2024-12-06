@@ -11,7 +11,7 @@ data class Mision(
     @SerializedName("exp")
     val exp:Int,
     @SerializedName("naveAsig")
-    val naveAsig:Int,
+    val naveAsig:String,
     @SerializedName("tipo")
     val tipo:Int
 ): Serializable

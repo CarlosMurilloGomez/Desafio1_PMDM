@@ -66,9 +66,10 @@ class VentanaAdmin : AppCompatActivity() {
                     navController.navigate(R.id.nav_fragBajaNave)
                     supportActionBar?.title = "LISTA DE NAVES"
                 }
-
-
-
+                R.id.nav_fragBajaMisiones -> {
+                    navController.navigate(R.id.nav_fragBajaMisiones)
+                    supportActionBar?.title = "LISTA DE MISIONES"
+                }
 
             }
             drawerLayout.closeDrawer(GravityCompat.START)

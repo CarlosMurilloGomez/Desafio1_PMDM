@@ -4,51 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ventanas.admin.FragAltaNave">
+    tools:context=".ventanas.admin.FragAltaMisiones" >
 
-    <ImageView
-        android:id="@+id/ivFotoAltaNa"
-        android:layout_width="145dp"
-        android:layout_height="137dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.233"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.528" />
-
-    <Button
-        android:id="@+id/btnAbrirGaleriaAltaNa"
-        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+    <TextView
+        android:id="@+id/lbNaveAltaMi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Galeria"
-        android:visibility="visible"
-        app:icon="@drawable/ic_galeria"
+        android:text="Nave:"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.773"
+        app:layout_constraintHorizontal_bias="0.191"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.562" />
+        app:layout_constraintVertical_bias="0.611" />
 
-    <Button
-        android:id="@+id/btnAbrirCamaraAltaNa"
-        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+    <TextView
+        android:id="@+id/lbTipoAltaMi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cámara"
-        android:visibility="visible"
-        app:icon="@drawable/ic_camara"
+        android:text="Tipo:"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.783"
+        app:layout_constraintHorizontal_bias="0.188"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.475" />
+        app:layout_constraintVertical_bias="0.173" />
 
     <Button
-        android:id="@+id/btnRegistrarAltaNa"
+        android:id="@+id/btnRegistrarAltaMi"
         style="@style/Widget.Material3.Button.ElevatedButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,10 +44,10 @@
         app:layout_constraintHorizontal_bias="0.243"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.699" />
+        app:layout_constraintVertical_bias="0.77" />
 
     <Button
-        android:id="@+id/btnCancelarAltaNa"
+        android:id="@+id/btnCancelarAltaMi"
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,39 +58,46 @@
         app:layout_constraintHorizontal_bias="0.774"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.699" />
+        app:layout_constraintVertical_bias="0.77" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/textInputLayout2"
         android:layout_width="271dp"
         android:layout_height="58dp"
-        android:hint="Matrícula"
+        android:hint="Duración (Min)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06">
+        app:layout_constraintVertical_bias="0.426">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etMatriculaAltaNa"
+            android:id="@+id/etDuracionAltaMi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Spinner
-        android:id="@+id/spTipoAltaNa"
-        android:layout_width="270dp"
-        android:layout_height="30dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
+        android:layout_width="271dp"
+        android:layout_height="58dp"
+        android:hint="Nº objetivos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.225" />
+        app:layout_constraintVertical_bias="0.53">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etObjetivosAltaMi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <CheckBox
-        android:id="@+id/chBoxCargaAltaNa"
+        android:id="@+id/chBoxCargaAltaMi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Carga"
@@ -117,27 +109,54 @@
         app:layout_constraintVertical_bias="0.32" />
 
     <CheckBox
-        android:id="@+id/chBoxPasajerosAltaNa"
+        android:id="@+id/chBoxPasajerosAltaMi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pasajeros"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.773"
+        app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.32" />
 
-    <TextView
-        android:id="@+id/lbTipoAltaNa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tipo:"
-        android:textSize="18sp"
+    <Spinner
+        android:id="@+id/spTipoAltaMi"
+        android:layout_width="270dp"
+        android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.186" />
+        app:layout_constraintVertical_bias="0.221" />
+
+    <Spinner
+        android:id="@+id/spNaveAltaMi"
+        android:layout_width="270dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.66" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="271dp"
+        android:layout_height="58dp"
+        android:hint="Nombre"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etNombreAltaMi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

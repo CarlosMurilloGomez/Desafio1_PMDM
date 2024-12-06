@@ -46,9 +46,10 @@ class FragBajaNave : Fragment() {
         val root: View = binding.root
 
         var tipos = ArrayList<Tipo>()
-        fragBajaNaveViewModel.obtenerTiposNavesVM()
         fragBajaNaveViewModel.tipos.observe(viewLifecycleOwner){
             tipos = it as ArrayList<Tipo>
+            fragBajaNaveViewModel.obtenerNavesVM()
+
         }
         fragBajaNaveViewModel.errorCode.observe(viewLifecycleOwner){error ->
             if (error!=null) {
@@ -83,6 +84,12 @@ class FragBajaNave : Fragment() {
                 datosRepresentar.add(naveMostrar)
             }
             adaptador.notifyDataSetChanged()
+            if (datosRepresentar.isEmpty()){
+                binding.lbNoHayNavesBajaNa.visibility = View.VISIBLE
+            }
+            else{
+                binding.lbNoHayNavesBajaNa.visibility = View.GONE
+            }
         }
 
         return root
@@ -95,7 +102,8 @@ class FragBajaNave : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        fragBajaNaveViewModel.obtenerNavesVM()
+        fragBajaNaveViewModel.obtenerTiposNavesVM()
+
 
         binding.btnRegistrarNave.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.nav_fragAltaNave)
