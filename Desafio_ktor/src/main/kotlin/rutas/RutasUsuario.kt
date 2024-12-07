@@ -58,7 +58,7 @@ fun Route.rutasUsuario(){
             val experiencia = call.receive<Int>()
             val usuario = usuarioDAO.obtenerUsuarioPorId(id.toInt()) ?: return@put call.respond(HttpStatusCode.NotFound, false)
             if (!usuarioDAO.actualizarExperiencia(experiencia, id.toInt())) {
-                return@put call.respond(HttpStatusCode.Conflict, false)
+                return@put call.respond(HttpStatusCode.Conflict , false)
             }
             call.respond(HttpStatusCode.Accepted, true)
         }
@@ -88,9 +88,6 @@ fun Route.rutasUsuario(){
         }
     }
     route("/usuarios") {
-        get {
-            return@get call.respond(HttpStatusCode.OK, usuarioDAO.obtenerUsuarios())
-        }
         get("{id?}") {
             val id = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
 
@@ -127,6 +124,19 @@ fun Route.rutasUsuario(){
             val nivel = usuarioDAO.obtenerNivelPorId(id.toInt()) ?: return@get call.respond(HttpStatusCode.NotFound, null)
 
             call.respond(HttpStatusCode.OK, nivel)
+        }
+    }
+    route("estadisticas"){
+        get("{id?}") {
+            val id = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
+
+            val nivel = usuarioDAO.obtenerNivelPorId(id.toInt()) ?: return@get call.respond(HttpStatusCode.NotFound, null)
+
+            val estadisticas = usuarioDAO.obtenerEstadisticasPorId(id.toInt()) ?: return@get call.respond(HttpStatusCode.NotFound, null)
+
+            estadisticas.nivel = nivel.texto
+            call.respond(HttpStatusCode.OK, estadisticas)
+
         }
     }
 }

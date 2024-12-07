@@ -10,7 +10,7 @@
         android:id="@+id/lbNoHayMisionesBajaMi"
         android:layout_width="343dp"
         android:layout_height="269dp"
-        android:text="TODAVIA NO HAY MISIONES EN LA BASE DE DATOS"
+        android:text="TODAVÍA NO HAY MISIONES EN LA BASE DE DATOS"
         android:textAlignment="center"
         android:textSize="50sp"
         android:visibility="invisible"

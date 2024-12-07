@@ -132,14 +132,6 @@ fun Route.rutasMision() {
         }
     }
 
-    route("/asigancionesPorUsuario") {
-        get("{id?}") {
-            val id = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
-
-            return@get call.respond(HttpStatusCode.OK, misionDAO.obtenerAsignacionesPorIdUsuario(id.toInt()))
-        }
-    }
-
     route("/misionAsignacionesPorUsuario") {
         get("{id?}") {
             val id = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)

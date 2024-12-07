@@ -70,30 +70,6 @@ class UsuarioDAOImpl:UsuarioDAO {
         return false
     }
 
-    override fun obtenerUsuarios(): List<Usuario> {
-        val usuarios = mutableListOf<Usuario>()
-        val sql = "SELECT * FROM usuario"
-        val connection = Database.getConnection()
-        connection?.use {
-            val statement = it.prepareStatement(sql)
-            val resultSet = statement.executeQuery()
-
-            while (resultSet.next()) {
-                val usuario = Usuario(
-                    id = resultSet.getInt("id"),
-                    nombre = resultSet.getString("nombre"),
-                    password = resultSet.getString("password"),
-                    activo = resultSet.getInt("activo"),
-                    foto = resultSet.getString("foto"),
-                    edad = resultSet.getInt("edad"),
-                    experiencia = resultSet.getInt("experiencia"),
-                    rol = resultSet.getInt("rol")
-                )
-                usuarios.add(usuario)
-            }
-        }
-        return usuarios
-    }
 
     override fun obtenerPilotos(): List<Usuario> {
         val usuarios = mutableListOf<Usuario>()
@@ -222,5 +198,35 @@ class UsuarioDAOImpl:UsuarioDAO {
             }
         }
         return null
+    }
+
+    override fun obtenerEstadisticasPorId(id: Int): Estadisticas? {
+        val sql = "SELECT COALESCE(COUNT(CASE WHEN estado = 1 THEN 1 END), 0) AS misionesPendientes, " +
+                "COALESCE(COUNT(CASE WHEN estado = 2 THEN 1 END), 0) AS misionesCompletadas, " +
+                "COALESCE(COUNT(CASE WHEN estado = 3 THEN 1 END), 0) AS misionesFallidas " +
+                "FROM misionasignacion WHERE idUsuario = ? GROUP BY idUsuario;"
+        val connection = Database.getConnection()
+        connection?.use {
+            val statement = it.prepareStatement(sql)
+            statement.setInt(1, id)
+            val resultSet = statement.executeQuery()
+
+            if (resultSet.next()) {
+                return Estadisticas(
+                    idUsuario = id,
+                    nivel = "",
+                    misionesPendientes = resultSet.getInt("misionesPendientes"),
+                    misionesCompletadas = resultSet.getInt("misionesCompletadas"),
+                    misionesFallidas = resultSet.getInt("misionesFallidas")
+                )
+            }
+        }
+        return Estadisticas(
+            idUsuario = id,
+            nivel = "",
+            misionesPendientes = 0,
+            misionesCompletadas = 0,
+            misionesFallidas = 0
+        )
     }
 }

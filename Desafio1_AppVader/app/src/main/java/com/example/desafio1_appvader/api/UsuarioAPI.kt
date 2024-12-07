@@ -7,6 +7,7 @@ import com.example.desafio1_appvader.modelo.mision.MisionBombardeo
 import com.example.desafio1_appvader.modelo.mision.MisionCaza
 import com.example.desafio1_appvader.modelo.mision.MisionVuelo
 import com.example.desafio1_appvader.modelo.nave.Nave
+import com.example.desafio1_appvader.modelo.usuario.Estadisticas
 import com.example.desafio1_appvader.modelo.usuario.Usuario
 import com.example.desafio1_appvader.modelo.usuario.UsuarioLogIn
 import com.example.desafio1_appvader.modelo.usuario.UsuarioPerfil
@@ -38,9 +39,6 @@ interface UsuarioAPI {
     @POST("login")
     suspend fun login(@Body datosLogIn: UsuarioLogIn): Response<Usuario?>
 
-    @GET("usuarios")
-    suspend fun obtenerUsuarios(): Response<MutableList<Usuario>>
-
     @GET("usuarios/{id}")
     suspend fun obtenerUsuarioPorId(@Path("id") id:Int): Response<Usuario?>
 
@@ -55,6 +53,10 @@ interface UsuarioAPI {
 
     @GET("nivel/{id}")
     suspend fun obtenerNivelPorId(@Path("id") idUsuario:Int): Response<Cadena?>
+
+    @GET("estadisticas/{id}")
+    suspend fun obtenerEstadisticasPorId(@Path("id") idUsuario:Int): Response<Estadisticas?>
+
 
 
 

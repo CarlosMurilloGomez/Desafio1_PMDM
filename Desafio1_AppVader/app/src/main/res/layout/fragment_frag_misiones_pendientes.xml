@@ -10,7 +10,7 @@
         android:id="@+id/lbNoHayMisionesAsignadas"
         android:layout_width="334dp"
         android:layout_height="297dp"
-        android:text="TODAVIA NO TIENES ASAIGNADA NIGUNA MISIÓN"
+        android:text="TODAVÍA NO TIENES ASIGNADA NIGUNA MISIÓN"
         android:textAlignment="center"
         android:textSize="50sp"
         android:visibility="invisible"

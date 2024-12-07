@@ -215,28 +215,6 @@ class MisionDAOImpl:MisionDAO {
         return false
     }
 
-    override fun obtenerAsignacionesPorIdUsuario(idUsuario: Int): List<Asignacion> {
-        val asignaciones = mutableListOf<Asignacion>()
-        val sql = "SELECT * FROM misionasignacion WHERE idUsuario=?"
-        val connection = Database.getConnection()
-        connection?.use {
-            val statement = it.prepareStatement(sql)
-            statement.setInt(1, idUsuario)
-            val resultSet = statement.executeQuery()
-
-            while (resultSet.next()) {
-                val asignacion = Asignacion(
-                    id = resultSet.getInt("id"),
-                    idMision = resultSet.getInt("idMision"),
-                    idUsuario = resultSet.getInt("idUsuario"),
-                    estado = resultSet.getInt("estado")
-                )
-                asignaciones.add(asignacion)
-            }
-        }
-        return asignaciones
-    }
-
     override fun obtenerMisionAsignacionesPorIdUsuario(idUsuario: Int): List<MisionAsignacion> {
         val asignaciones = mutableListOf<MisionAsignacion>()
         val sql = "SELECT mision.id, mision.nombre, mision.exp, mision.naveAsig, tipomision.descripcion as tipo, misionasignacion.id as asig , misionasignacion.estado " +

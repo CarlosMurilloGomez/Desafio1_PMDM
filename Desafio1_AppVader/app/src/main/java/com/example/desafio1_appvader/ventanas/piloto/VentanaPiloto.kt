@@ -1,11 +1,14 @@
 package com.example.desafio1_appvader.ventanas.piloto
 
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.WindowInsets
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
@@ -33,6 +36,7 @@ class VentanaPiloto : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityVentanaPilotoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         mainViewModel.iniciarSesionVM(intent.getIntExtra("idUsuario", 0))
 
         setSupportActionBar(binding.toolbarPiloto)

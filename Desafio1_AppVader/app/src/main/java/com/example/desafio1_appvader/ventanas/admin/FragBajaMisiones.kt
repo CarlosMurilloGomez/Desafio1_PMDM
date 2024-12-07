@@ -103,7 +103,7 @@ class FragBajaMisiones : Fragment() {
                         dialog.dismiss()
                     }))
                     .show()
-
+                fragBajaMisionesViewModel.restablecerVuelo()
             }
         }
         fragBajaMisionesViewModel.bombardeo.observe(viewLifecycleOwner){
@@ -123,6 +123,7 @@ class FragBajaMisiones : Fragment() {
                         dialog.dismiss()
                     }))
                     .show()
+                fragBajaMisionesViewModel.restablecerBombardeo()
             }
         }
         fragBajaMisionesViewModel.caza.observe(viewLifecycleOwner){
@@ -134,6 +135,7 @@ class FragBajaMisiones : Fragment() {
                         dialog.dismiss()
                     }))
                     .show()
+                fragBajaMisionesViewModel.restablecerCaza()
             }
         }
 

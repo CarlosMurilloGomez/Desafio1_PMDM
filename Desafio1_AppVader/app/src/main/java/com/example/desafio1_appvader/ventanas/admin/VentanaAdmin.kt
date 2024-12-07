@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -37,12 +39,9 @@ class VentanaAdmin : AppCompatActivity() {
         setSupportActionBar(binding.toolbarAdmin)
         val drawerLayout: DrawerLayout = binding.drawerLayout
 
-
-
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.frag_cont_admin) as NavHostFragment
         navController = navHostFragment.navController
 
-        //=======================================================
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.nav_fragRanking),
             drawerLayout
@@ -50,7 +49,6 @@ class VentanaAdmin : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        //=======================================================
         val navView: NavigationView = binding.navigationView
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {

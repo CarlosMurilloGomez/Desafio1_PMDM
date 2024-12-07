@@ -10,7 +10,7 @@
         android:id="@+id/lbNoHayMisionesRealizadas"
         android:layout_width="334dp"
         android:layout_height="297dp"
-        android:text="TODAVIA NO HAS REALIZADO NIGUNA MISIÓN"
+        android:text="TODAVÍA NO HAS REALIZADO NIGUNA MISIÓN"
         android:textAlignment="center"
         android:textSize="50sp"
         android:visibility="invisible"

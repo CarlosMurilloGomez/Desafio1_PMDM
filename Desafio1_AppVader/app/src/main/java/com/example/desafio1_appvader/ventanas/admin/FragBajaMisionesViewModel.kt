@@ -29,11 +29,23 @@ class FragBajaMisionesViewModel : ViewModel() {
     private val _vuelo = MutableLiveData<MisionVuelo?>()
     val vuelo: LiveData<MisionVuelo?> get() = _vuelo
 
+    fun restablecerVuelo(){
+        _vuelo.value = null
+    }
+
     private val _bombardeo = MutableLiveData<MisionBombardeo?>()
     val bombardeo: LiveData<MisionBombardeo?> get() = _bombardeo
 
+    fun restablecerBombardeo(){
+        _bombardeo.value = null
+    }
+
     private val _caza = MutableLiveData<MisionCaza?>()
     val caza: LiveData<MisionCaza?> get() = _caza
+
+    fun restablecerCaza(){
+        _caza.value = null
+    }
 
     fun obtenerTiposMisionVM() {
         viewModelScope.launch {

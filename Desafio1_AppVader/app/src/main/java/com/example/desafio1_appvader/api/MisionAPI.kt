@@ -54,9 +54,6 @@ interface MisionAPI {
     @POST("asignarMision")
     suspend fun asignarMision(@Body asignacion: Asignacion): Response<Boolean>
 
-    @GET("asignacionesPorUsuario/{id}")
-    suspend fun obtenerAsignacionesPorUsuario(@Path("id") idUsuario:Int): Response<MutableList<Asignacion>>
-
     @GET("misionAsignacionesPorUsuario/{id}")
     suspend fun obtenerMisionAsignacionesPorUsuario(@Path("id") idUsuario:Int): Response<MutableList<MisionMostrar>>
 

@@ -42,13 +42,7 @@ fun Route.rutasNave() {
         get {
             return@get call.respond(HttpStatusCode.OK, naveDAO.obtenerNaves())
         }
-        get("{matricula?}") {
-            val matricula = call.parameters["matricula"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
 
-            val nave = naveDAO.obtenerNavePorMatricula(matricula) ?: return@get call.respond(HttpStatusCode.NotFound, null)
-
-            call.respond(HttpStatusCode.OK, nave)
-        }
     }
 
     route("/navesPorTipoCargaPasajeros") {
