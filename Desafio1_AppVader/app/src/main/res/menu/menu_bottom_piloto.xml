@@ -9,5 +9,10 @@
         android:icon="@drawable/ic_play"
         android:title=""
         />
+    <item android:id="@+id/nav_fragMisionesRealizadas"
+        android:icon="@drawable/ic_historial"
+        android:title=""
+        />
+
 
 </menu>

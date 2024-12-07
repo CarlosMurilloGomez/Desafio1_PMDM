@@ -58,6 +58,9 @@ class VentanaPiloto : AppCompatActivity() {
                 R.id.nav_fragMisionesPendientes -> {
                     supportActionBar?.title = "MISIONES PENDIENTES"
                 }
+                R.id.nav_fragMisionesRealizadas -> {
+                    supportActionBar?.title = "MISIONES REALIZADAS"
+                }
             }
         }
 

@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ventanas.piloto.FragMisionesPendientes">
+    tools:context=".ventanas.piloto.FragMisionesRealizadas">
 
     <TextView
-        android:id="@+id/lbNoHayMisionesAsignadas"
+        android:id="@+id/lbNoHayMisionesRealizadas"
         android:layout_width="334dp"
         android:layout_height="297dp"
-        android:text="TODAVIA NO TIENES ASAIGNADA NIGUNA MISIÓN"
+        android:text="TODAVIA NO HAS REALIZADO NIGUNA MISIÓN"
         android:textAlignment="center"
         android:textSize="50sp"
         android:visibility="invisible"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.28" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyViewMisionesAsig"
+        android:id="@+id/recyViewMisionesRealizadas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

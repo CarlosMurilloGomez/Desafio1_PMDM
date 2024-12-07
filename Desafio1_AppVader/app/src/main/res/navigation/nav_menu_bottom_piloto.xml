@@ -21,4 +21,11 @@
         android:name="com.example.desafio1_appvader.ventanas.piloto.FragMisionesPendientes"
         android:label="fragment_frag_misiones_pendientes"
         tools:layout="@layout/fragment_frag_misiones_pendientes" />
+    <fragment
+        android:id="@+id/nav_fragMisionesRealizadas"
+        android:name="com.example.desafio1_appvader.ventanas.piloto.FragMisionesRealizadas"
+        android:label="fragment_frag_misiones_realizadas"
+        tools:layout="@layout/fragment_frag_misiones_realizadas" />
+
+
 </navigation>

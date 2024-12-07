@@ -42,6 +42,7 @@ class AdaptadorMisionesPiloto (var misiones: ArrayList<MisionMostrar>, var conte
         val exp = view.findViewById(R.id.tvExpMisionPiloto) as TextView
         val tipo = view.findViewById(R.id.tvTipoMisionPiloto) as TextView
         val nave = view.findViewById(R.id.tvNaveMisionPiloto) as TextView
+        val detallesSimulacion = view.findViewById(R.id.lbSimulacionMisionPiloto) as TextView
 
         fun bind(mision: MisionMostrar, context: Context, pos: Int, adaptadorMisionesPiloto: AdaptadorMisionesPiloto, fragMisionesPendientesViewModel: FragMisionesPendientesViewModel){
             numAsig.text = mision.idAsignacion.toString()
@@ -52,9 +53,11 @@ class AdaptadorMisionesPiloto (var misiones: ArrayList<MisionMostrar>, var conte
 
             if (mision.estado == 2){
                 itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.conseguida))
+                detallesSimulacion.visibility = View.GONE
             }
             else if (mision.estado == 3){
                 itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.fallada))
+                detallesSimulacion.visibility = View.GONE
             }
 
             itemView.setOnClickListener {
@@ -64,19 +67,23 @@ class AdaptadorMisionesPiloto (var misiones: ArrayList<MisionMostrar>, var conte
                     "Combate" -> fragMisionesPendientesViewModel.obtenerCazaPorIdVM(mision.id)
                 }
             }
+            if (mision.estado == 1) {
+                itemView.setOnLongClickListener {
+                    AlertDialog.Builder(context)
+                        .setTitle("Simular mision")
+                        .setMessage("¿Deseas iniciar la simulación de la mision ${mision.nombre}?")
+                        .setPositiveButton(
+                            "Si",
+                            DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
+                                //Navigation.findNavController(it).navigate(R.id.nav_fragSimulacion, bundleOf(Pair("idMision", mision.id)))
+                                //(context as AppCompatActivity).supportActionBar?.title = "SIMULACION"
+                                Toast.makeText(context, "Yendo a la simulacion", Toast.LENGTH_SHORT).show()
+                            })
+                        )
+                        .setNegativeButton("No", ({ dialog: DialogInterface, which: Int -> })).show()
 
-            itemView.setOnLongClickListener {
-                AlertDialog.Builder(context)
-                    .setTitle("Simular mision")
-                    .setMessage("¿Deseas iniciar la simulación de la mision ${mision.nombre}?")
-                    .setPositiveButton("Si", DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
-                        //Navigation.findNavController(it).navigate(R.id.nav_fragSimulacion, bundleOf(Pair("idMision", mision.id)))
-                        //(context as AppCompatActivity).supportActionBar?.title = "SIMULACION"
-                        Toast.makeText(context,"Yendo a la simulacion", Toast.LENGTH_SHORT).show()
-                    }))
-                    .setNegativeButton("No", ({ dialog: DialogInterface, which: Int -> }))
-
-                true
+                    true
+                }
             }
 
 

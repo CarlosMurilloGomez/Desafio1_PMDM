@@ -266,7 +266,7 @@ class MisionDAOImpl:MisionDAO {
 
     override fun obtenerMisionAsignacionesRealizadasPorIdUsuario(idUsuario: Int): List<MisionAsignacion> {
         val asignaciones = mutableListOf<MisionAsignacion>()
-        val sql = "SELECT mision.id, mision.nombre, mision.exp, mision.naveAsig, tipomision.descripcion, misionasignacion.id as asig , misionasignacion.estado" +
+        val sql = "SELECT mision.id, mision.nombre, mision.exp, mision.naveAsig, tipomision.descripcion as tipo, misionasignacion.id as asig , misionasignacion.estado " +
                 "FROM mision JOIN misionasignacion ON mision.id=misionasignacion.idMision JOIN tipomision ON mision.tipo=tipomision.id " +
                 "WHERE misionasignacion.idUsuario=? AND misionasignacion.estado != 1"
         val connection = Database.getConnection()
