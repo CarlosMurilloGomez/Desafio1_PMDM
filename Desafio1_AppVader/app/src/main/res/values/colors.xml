@@ -6,4 +6,5 @@
     <color name="detalles">#486D6A6A</color>
     <color name="conseguida">#4864F01B</color>
     <color name="fallada">#48FF0101</color>
+    <color name="progreso">#38FF01</color>
 </resources>

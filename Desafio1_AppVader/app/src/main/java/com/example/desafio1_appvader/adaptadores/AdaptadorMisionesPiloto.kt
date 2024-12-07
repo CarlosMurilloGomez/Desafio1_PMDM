@@ -75,9 +75,8 @@ class AdaptadorMisionesPiloto (var misiones: ArrayList<MisionMostrar>, var conte
                         .setPositiveButton(
                             "Si",
                             DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
-                                //Navigation.findNavController(it).navigate(R.id.nav_fragSimulacion, bundleOf(Pair("idMision", mision.id)))
-                                //(context as AppCompatActivity).supportActionBar?.title = "SIMULACION"
-                                Toast.makeText(context, "Yendo a la simulacion", Toast.LENGTH_SHORT).show()
+                                Navigation.findNavController(it).navigate(R.id.nav_fragSimulacion, bundleOf(Pair("idAsignacion", mision.idAsignacion)))
+                                (context as AppCompatActivity).supportActionBar?.title = "SIMULACION"
                             })
                         )
                         .setNegativeButton("No", ({ dialog: DialogInterface, which: Int -> })).show()

@@ -26,6 +26,16 @@
         android:name="com.example.desafio1_appvader.ventanas.piloto.FragMisionesRealizadas"
         android:label="fragment_frag_misiones_realizadas"
         tools:layout="@layout/fragment_frag_misiones_realizadas" />
+    <fragment
+        android:id="@+id/nav_fragSimulacion"
+        android:name="com.example.desafio1_appvader.ventanas.piloto.FragSimulacion"
+        android:label="fragment_frag_simulacion"
+        tools:layout="@layout/fragment_frag_simulacion" >
+        <argument
+            android:name="idAsignacion"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 
 
 </navigation>

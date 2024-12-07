@@ -11,6 +11,7 @@ import com.example.desafio1_appvader.modelo.mision.Asignacion
 import com.example.desafio1_appvader.modelo.mision.Mision
 import com.example.desafio1_appvader.modelo.mision.MisionBombardeo
 import com.example.desafio1_appvader.modelo.mision.MisionCaza
+import com.example.desafio1_appvader.modelo.mision.MisionMostrar
 import com.example.desafio1_appvader.modelo.mision.MisionVuelo
 import com.example.desafio1_appvader.modelo.nave.Nave
 import com.example.desafio1_appvader.modelo.nave.TipoCargaPasajeros
@@ -185,6 +186,10 @@ class MainViewModel : ViewModel() {
     private val _mision = MutableLiveData<Mision?>()
     val mision: LiveData<Mision?> get() = _mision
 
+    private val _misionAsignacion = MutableLiveData<MisionMostrar?>()
+    val misionAsignacion: LiveData<MisionMostrar?> get() = _misionAsignacion
+
+
     private val _idMisionInsertada = MutableLiveData<Int?>()
     val idMisionInsertada: LiveData<Int?> get() = _idMisionInsertada
 
@@ -305,11 +310,10 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    fun obtenerAsignacionPorIdVM(id: Int) {
+    fun obtenerMisionAsignacionPorIdVM(id: Int) {
         viewModelScope.launch {
-            val response: Response<Asignacion?> = MisionNetwork.retrofit.obtenerAsignacionPorId(id)
-            _asignacion.value = response.body()
-            _errorCode.value = response.code()
+            val response: Response<MisionMostrar?> = MisionNetwork.retrofit.obtenerMisionAsignacionPorId(id)
+            _misionAsignacion.value = response.body()
         }
     }
 

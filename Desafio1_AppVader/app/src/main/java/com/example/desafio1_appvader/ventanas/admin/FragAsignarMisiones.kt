@@ -54,38 +54,43 @@ class FragAsignarMisiones : Fragment() {
             if (it != null) {
                 datosMision += " -Nombre: ${it.nombre}\n -Experiencia: ${it.exp}\n -Nave: ${it.naveAsig}"
                 when (it.tipo) {
-                    1 -> {
-                        datosMision += "\n -Tipo: Vuelo"
-                        fragAsignarMisionesViewModel.obtenerVueloPorIdVM(it.id)
-                    }
-                    2 -> {
-                        datosMision += "\n -Tipo: Bombardeo"
-                        fragAsignarMisionesViewModel.obtenerBombardeoPorIdVM(it.id)
-                    }
-
-
-                    3 -> {
-                        datosMision += "\n -Tipo: Caza"
-                        fragAsignarMisionesViewModel.obtenerCazaPorIdVM(it.id)
-                    }
+                    1 -> fragAsignarMisionesViewModel.obtenerVueloPorIdVM(it.id)
+                    2 -> fragAsignarMisionesViewModel.obtenerBombardeoPorIdVM(it.id)
+                    3 -> fragAsignarMisionesViewModel.obtenerCazaPorIdVM(it.id)
                 }
             }
         }
         fragAsignarMisionesViewModel.vuelo.observe(viewLifecycleOwner){
             if (it != null){
-                datosMision += "\n -Duracion: ${it.duracion}\n- Carga: ${it.carga}\n- Pasajeros: ${it.pasajeros}"
+                var carga = "Si"
+                var pasajeros = "Si"
+                if (it.carga == 0){
+                    carga = "No"
+                }
+                if (it.pasajeros == 0){
+                    pasajeros = "No"
+                }
+                datosMision += "\n -Tipo: Vuelo\n -Duracion: ${it.duracion}\n- Carga: ${carga}\n- Pasajeros: ${pasajeros}"
                 binding.tvDatosMisionAsigMi.text = datosMision
             }
         }
         fragAsignarMisionesViewModel.bombardeo.observe(viewLifecycleOwner){
             if (it != null){
-                datosMision += "\n -Objetivos: ${it.objetivos}\n -Carga: ${it.carga}\n -Pasajeros: ${it.pasajeros}"
+                var carga = "Si"
+                var pasajeros = "Si"
+                if (it.carga == 0){
+                    carga = "No"
+                }
+                if (it.pasajeros == 0){
+                    pasajeros = "No"
+                }
+                datosMision += "\n -Tipo: Bombardeo\n -Objetivos: ${it.objetivos}\n -Carga: ${carga}\n -Pasajeros: ${pasajeros}"
                 binding.tvDatosMisionAsigMi.text = datosMision
             }
         }
         fragAsignarMisionesViewModel.caza.observe(viewLifecycleOwner) {
             if (it != null) {
-                datosMision += "\n -Objetivos: ${it.objetivos}"
+                datosMision += "\n -Tipo: Combate de caza\n -Objetivos: ${it.objetivos}"
                 binding.tvDatosMisionAsigMi.text = datosMision
             }
         }

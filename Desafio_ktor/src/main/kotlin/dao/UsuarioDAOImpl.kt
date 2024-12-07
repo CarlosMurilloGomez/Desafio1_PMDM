@@ -193,7 +193,7 @@ class UsuarioDAOImpl:UsuarioDAO {
     }
 
     override fun obtenerRolPorId(id: Int): Cadena? {
-        val sql = "SELECT LOWER(rol.descripcion) AS nombreRol FROM rol JOIN usuario ON rol.id=usuario.rol WHERE usuario.id=?"
+        val sql = "SELECT rol.descripcion AS nombreRol FROM rol JOIN usuario ON rol.id=usuario.rol WHERE usuario.id=?"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -209,7 +209,7 @@ class UsuarioDAOImpl:UsuarioDAO {
     }
 
     override fun obtenerNivelPorId(id: Int): Cadena? {
-        val sql = "SELECT LOWER(descripcion) AS nivel FROM experiencia WHERE limiteBajo<=(SELECT experiencia FROM usuario WHERE id = ?) AND limiteAlto>=(SELECT experiencia FROM usuario WHERE id = ?);"
+        val sql = "SELECT descripcion AS nivel FROM experiencia WHERE limiteBajo<=(SELECT experiencia FROM usuario WHERE id = ?) AND limiteAlto>=(SELECT experiencia FROM usuario WHERE id = ?);"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)

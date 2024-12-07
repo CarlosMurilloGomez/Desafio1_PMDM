@@ -63,8 +63,8 @@ interface MisionAPI {
     @GET("misionAsignacionesRealizadasPorUsuario/{id}")
     suspend fun obtenerMisionAsignacionesRealizadasPorUsuario(@Path("id") idUsuario:Int): Response<MutableList<MisionMostrar>>
 
-    @GET("asignacion/{id}")
-    suspend fun obtenerAsignacionPorId(@Path("id") id:Int): Response<Asignacion?>
+    @GET("misionAsignacion/{id}")
+    suspend fun obtenerMisionAsignacionPorId(@Path("id") id:Int): Response<MisionMostrar?>
 
     @PUT("actualizarEstado/{id}")
     suspend fun actualizarEstado(@Path("id") id:Int, @Body estado: Int): Response<Boolean>

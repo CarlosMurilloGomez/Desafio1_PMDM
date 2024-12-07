@@ -58,7 +58,7 @@ fun Route.rutasUsuario(){
             val experiencia = call.receive<Int>()
             val usuario = usuarioDAO.obtenerUsuarioPorId(id.toInt()) ?: return@put call.respond(HttpStatusCode.NotFound, false)
             if (!usuarioDAO.actualizarExperiencia(experiencia, id.toInt())) {
-                return@put call.respond(HttpStatusCode.BadRequest, false)
+                return@put call.respond(HttpStatusCode.Conflict, false)
             }
             call.respond(HttpStatusCode.Accepted, true)
         }
