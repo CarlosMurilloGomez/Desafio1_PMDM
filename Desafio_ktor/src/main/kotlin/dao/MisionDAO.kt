@@ -19,6 +19,8 @@ interface MisionDAO {
 
     fun asignarMision(asignacion: Asignacion): Boolean
     fun obtenerAsignacionesPorIdUsuario(idUsuario:Int): List<Asignacion>
+    fun obtenerMisionAsignacionesPorIdUsuario(idUsuario:Int): List<MisionAsignacion>
+    fun obtenerMisionAsignacionesRealizadasPorIdUsuario(idUsuario: Int): List<MisionAsignacion>
     fun obtenerAsignacionPorId(idAsig:Int): Asignacion?
     fun actualizarEstado(estado:Int, idAsignacion:Int): Boolean
 }

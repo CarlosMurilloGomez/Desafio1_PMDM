@@ -1,42 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayoutPiloto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ventanas.login.MainActivity">
+    tools:context=".ventanas.piloto.VentanaPiloto">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:orientation="vertical">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolBarLogin"
+            android:id="@+id/toolbarPiloto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="570dp">
 
             <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/frag_cont_login"
+                android:id="@+id/frag_cont_piloto"
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:defaultNavHost="true"
-                app:navGraph="@navigation/nav_login" />
+                app:navGraph="@navigation/nav_menu_bottom_piloto" />
         </FrameLayout>
 
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavPiloto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:menu="@menu/menu_bottom_piloto" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

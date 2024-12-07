@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_menu_bottom_piloto.xml"
+    app:startDestination="@id/nav_fragRanking">
+
+    <fragment
+        android:id="@+id/nav_fragPerfil"
+        android:name="com.example.desafio1_appvader.ventanas.FragPerfil"
+        android:label="fragment_frag_perfil"
+        tools:layout="@layout/fragment_frag_perfil" />
+
+    <fragment
+        android:id="@+id/nav_fragRanking"
+        android:name="com.example.desafio1_appvader.ventanas.FragRanking"
+        android:label="fragment_frag_ranking"
+        tools:layout="@layout/fragment_frag_ranking" />
+    <fragment
+        android:id="@+id/nav_fragMisionesPendientes"
+        android:name="com.example.desafio1_appvader.ventanas.piloto.FragMisionesPendientes"
+        android:label="fragment_frag_misiones_pendientes"
+        tools:layout="@layout/fragment_frag_misiones_pendientes" />
+</navigation>

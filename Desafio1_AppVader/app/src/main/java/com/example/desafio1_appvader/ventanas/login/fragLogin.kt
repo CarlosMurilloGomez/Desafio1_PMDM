@@ -14,6 +14,7 @@ import com.example.desafio1_appvader.ventanas.admin.VentanaAdmin
 import com.example.desafio1_appvader.api.MainViewModel
 import com.example.desafio1_appvader.databinding.FragmentFragLoginBinding
 import com.example.desafio1_appvader.modelo.usuario.UsuarioLogIn
+import com.example.desafio1_appvader.ventanas.piloto.VentanaPiloto
 
 class fragLogin : Fragment() {
     private var _binding: FragmentFragLoginBinding? = null
@@ -58,7 +59,9 @@ class fragLogin : Fragment() {
                     startActivity(intent)
                     limpiarCampos()
                 }else if (it.rol == 2){
-                    //Ir a la activity de piloto
+                    val intent = Intent(requireContext(), VentanaPiloto::class.java)
+                    intent.putExtra("idUsuario", it.id)
+                    startActivity(intent)
                     limpiarCampos()
                 }
                 mainViewModel.restablecerUsuario()

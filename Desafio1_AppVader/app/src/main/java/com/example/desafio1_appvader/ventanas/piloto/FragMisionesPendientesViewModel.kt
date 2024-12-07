@@ -1,4 +1,4 @@
-package com.example.desafio1_appvader.ventanas.admin
+package com.example.desafio1_appvader.ventanas.piloto
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,25 +6,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.desafio1_appvader.api.MisionNetwork
 import com.example.desafio1_appvader.modelo.Tipo
+import com.example.desafio1_appvader.modelo.mision.Asignacion
 import com.example.desafio1_appvader.modelo.mision.Mision
 import com.example.desafio1_appvader.modelo.mision.MisionBombardeo
 import com.example.desafio1_appvader.modelo.mision.MisionCaza
+import com.example.desafio1_appvader.modelo.mision.MisionMostrar
 import com.example.desafio1_appvader.modelo.mision.MisionVuelo
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class FragBajaMisionesViewModel : ViewModel() {
-    private val _errorCode = MutableLiveData<Int?>()
-    val errorCode: LiveData<Int?> get() = _errorCode
-
-    fun restablecerError(){
-        _errorCode.value = null
-    }
-    private val _misiones = MutableLiveData<List<Mision>>()
-    val misiones: LiveData<List<Mision>> get() = _misiones
-
-    private val _tipos = MutableLiveData<List<Tipo>>()
-    val tipos: LiveData<List<Tipo>> get() = _tipos
+class FragMisionesPendientesViewModel : ViewModel() {
+    private val _misiones = MutableLiveData<List<MisionMostrar>>()
+    val misiones: LiveData<List<MisionMostrar>> get() = _misiones
 
     private val _vuelo = MutableLiveData<MisionVuelo?>()
     val vuelo: LiveData<MisionVuelo?> get() = _vuelo
@@ -35,25 +28,10 @@ class FragBajaMisionesViewModel : ViewModel() {
     private val _caza = MutableLiveData<MisionCaza?>()
     val caza: LiveData<MisionCaza?> get() = _caza
 
-    fun obtenerTiposMisionVM() {
+    fun obtenerMisionAsignacionesPorUsuarioVM(idUsuario: Int) {
         viewModelScope.launch {
-            val response: Response<MutableList<Tipo>> = MisionNetwork.retrofit.obtenerTiposMision()
-            _tipos.value = response.body()
-        }
-    }
-
-    fun obtenerMisionesVM() {
-        viewModelScope.launch {
-            val response: Response<MutableList<Mision>> = MisionNetwork.retrofit.obtenerMisiones()
+            val response: Response<MutableList<MisionMostrar>> = MisionNetwork.retrofit.obtenerMisionAsignacionesPorUsuario(idUsuario)
             _misiones.value = response.body()
-        }
-    }
-
-    fun eliminarMisionVM(id: Int) {
-        viewModelScope.launch {
-            val response: Response<Boolean> = MisionNetwork.retrofit.eliminarMision(id)
-            _errorCode.value = response.code()
-            obtenerMisionesVM()
         }
     }
 

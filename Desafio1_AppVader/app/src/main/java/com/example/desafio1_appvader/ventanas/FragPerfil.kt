@@ -122,6 +122,9 @@ class FragPerfil : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cargarDatos()
+        if (mainViewModel.usuarioLogeado.value!!.rol == 1){
+            binding.btnEliminarPerfil.visibility = View.GONE
+        }
 
 
         binding.btnAbrirCamaraPerfil.setOnClickListener {
