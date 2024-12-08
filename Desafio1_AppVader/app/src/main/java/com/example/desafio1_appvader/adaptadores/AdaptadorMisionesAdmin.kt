@@ -65,21 +65,19 @@ class AdaptadorMisionesAdmin (var misiones: ArrayList<MisionMostrar>, var contex
 
             eliminar.setOnClickListener {
                 AlertDialog.Builder(context)
-                    .setTitle("Eliminar mision")
-                    .setMessage("¿Deseas eliminar la mision ${mision.nombre}?")
-                    .setPositiveButton("Si", DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
+                    .setTitle(context.getString(R.string.eliminarMision))
+                    .setMessage(context.getString(R.string.eliminarMisionPregunta)+" ${mision.nombre}?")
+                    .setPositiveButton(context.getString(R.string.si), DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
                         fragBajaMisionesViewModel.eliminarMisionVM(mision.id)
                     }))
-                    .setNegativeButton("No", ({ dialog: DialogInterface, which: Int ->
-                        Toast.makeText(context,"Eliminacion cancelada", Toast.LENGTH_SHORT).show()
+                    .setNegativeButton(context.getString(R.string.no), ({ dialog: DialogInterface, which: Int ->
+                        Toast.makeText(context,context.getString(R.string.eliminacionCancelada), Toast.LENGTH_SHORT).show()
                     }))
                     .show()
             }
 
             asignar.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.nav_fragAsignarMisiones, bundleOf(Pair("idMision", mision.id)))
-                (context as AppCompatActivity).supportActionBar?.title = "ASIGNAR MISION"
-
             }
 
 

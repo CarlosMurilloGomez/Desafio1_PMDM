@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/nav_fragRanking"
-        android:title="RANKING"
+        android:title="@string/tituloRanking"
         />
     <item android:id="@+id/nav_fragBajaPiloto"
-        android:title="PILOTOS"
+        android:title="@string/tituloBajaPiloto"
         />
     <item android:id="@+id/nav_fragBajaNave"
-        android:title="NAVES"
+        android:title="@string/tituloBajaNave"
         />
     <item android:id="@+id/nav_fragBajaMisiones"
-        android:title="MISIONES"
+        android:title="@string/tituloBajaMisiones"
         />
-
-
 </menu>

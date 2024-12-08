@@ -47,17 +47,22 @@ class FragBajaNave : Fragment() {
 
         var tipos = ArrayList<Tipo>()
         fragBajaNaveViewModel.tipos.observe(viewLifecycleOwner){
-            tipos = it as ArrayList<Tipo>
+            for (tipo in it){
+                when (tipo.id) {
+                    1 -> tipos.add(Tipo(1, resources.getString(R.string.tipoCaza)))
+                    2 -> tipos.add(Tipo(2, resources.getString(R.string.tipoBombardero)))
+                    3 -> tipos.add(Tipo(3, resources.getString(R.string.tipoNaveTransporte)))
+                }
+            }
             fragBajaNaveViewModel.obtenerNavesVM()
 
         }
         fragBajaNaveViewModel.errorCode.observe(viewLifecycleOwner){error ->
             if (error!=null) {
                 when (error) {
-                    400 -> Toast.makeText(requireContext(), "Error al introducir los datos", Toast.LENGTH_SHORT).show()
-                    404 -> Toast.makeText(requireContext(), "No existe la nave", Toast.LENGTH_SHORT).show()
-                    409 -> Toast.makeText(requireContext(), "Error al eliminar", Toast.LENGTH_SHORT).show()
-                    202 -> Toast.makeText(requireContext(),"Nave Eliminada", Toast.LENGTH_SHORT).show()
+                    404 -> Toast.makeText(requireContext(), getString(R.string.errNave), Toast.LENGTH_SHORT).show()
+                    409 -> Toast.makeText(requireContext(), getString(R.string.errEliminar), Toast.LENGTH_SHORT).show()
+                    202 -> Toast.makeText(requireContext(),getString(R.string.msjNaveEliminada), Toast.LENGTH_SHORT).show()
                 }
                 fragBajaNaveViewModel.restablecerError()
             }
@@ -67,14 +72,14 @@ class FragBajaNave : Fragment() {
             for (nave in it) {
                 var naveMostrar = NaveMostrar(nave.matricula, nave.foto, "", "", "")
                 if (nave.carga == 0){
-                    naveMostrar.carga = "No"
+                    naveMostrar.carga = resources.getString(R.string.no)
                 }else{
-                    naveMostrar.carga = "Si"
+                    naveMostrar.carga = resources.getString(R.string.si)
                 }
                 if (nave.pasajeros == 0){
-                    naveMostrar.pasajeros = "No"
+                    naveMostrar.pasajeros = resources.getString(R.string.no)
                 }else{
-                    naveMostrar.pasajeros = "Si"
+                    naveMostrar.pasajeros = resources.getString(R.string.si)
                 }
                 for (tipo in tipos){
                     if (tipo.id == nave.tipo){

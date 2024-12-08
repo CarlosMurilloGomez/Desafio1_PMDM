@@ -54,13 +54,13 @@ class AdaptadorNaves (var naves: ArrayList<NaveMostrar>, var context: Context, v
 
             eliminar.setOnClickListener {
                 AlertDialog.Builder(context)
-                    .setTitle("Eliminar nave")
-                    .setMessage("¿Deseas eliminar la nave ${nave.matricula}?")
-                    .setPositiveButton("Si", DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
+                    .setTitle(context.getString(R.string.eliminarNave))
+                    .setMessage(context.getString(R.string.eliminarNavePregunta)+" ${nave.matricula}?")
+                    .setPositiveButton(context.getString(R.string.si), DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
                         fragBajaNaveViewModel.eliminarNaveVM(nave.matricula)
                     }))
-                    .setNegativeButton("No", ({ dialog: DialogInterface, which: Int ->
-                        Toast.makeText(context,"Eliminacion cancelada", Toast.LENGTH_SHORT).show()
+                    .setNegativeButton(context.getString(R.string.no), ({ dialog: DialogInterface, which: Int ->
+                        Toast.makeText(context,context.getString(R.string.eliminacionCancelada), Toast.LENGTH_SHORT).show()
                     }))
                     .show()
             }

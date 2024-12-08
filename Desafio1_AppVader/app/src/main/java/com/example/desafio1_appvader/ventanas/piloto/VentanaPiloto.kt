@@ -61,17 +61,21 @@ class VentanaPiloto : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.nav_fragRanking -> {
-                    supportActionBar?.title = "RANKING"
+                    supportActionBar?.title = resources.getString(R.string.tituloRanking)
                     idFragVolver = R.id.nav_fragRanking
                 }
                 R.id.nav_fragMisionesPendientes -> {
-                    supportActionBar?.title = "MISIONES PENDIENTES"
+                    supportActionBar?.title = resources.getString(R.string.tituloMisionesPendientes)
                     idFragVolver = R.id.nav_fragMisionesPendientes
                 }
                 R.id.nav_fragMisionesRealizadas -> {
-                    supportActionBar?.title = "MISIONES REALIZADAS"
+                    supportActionBar?.title = resources.getString(R.string.tituloMisionesRealizadas)
                     idFragVolver = R.id.nav_fragMisionesRealizadas
                 }
+                R.id.nav_fragSimulacion -> {
+                    supportActionBar?.title = resources.getString(R.string.tituloSimulacion)
+                }
+
             }
         }
         navView.setOnItemSelectedListener { item ->
@@ -106,11 +110,11 @@ class VentanaPiloto : AppCompatActivity() {
             }
             R.id.nav_fragPerfil -> {
                 navController.navigate(R.id.nav_fragPerfil)
-                supportActionBar?.title = "PERFIL"
+                supportActionBar?.title = resources.getString(R.string.tituloPerfil)
                 true
             }
             R.id.nav_cerrarSesion -> {
-                Toast.makeText(this, "Cerrando Sesión", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, resources.getString(R.string.msjCerrarSesion), Toast.LENGTH_SHORT).show()
                 finish()
                 true
             }

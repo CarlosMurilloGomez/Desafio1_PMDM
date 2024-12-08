@@ -49,7 +49,13 @@ class FragAltaMisiones : Fragment() {
 
         var tipos = ArrayList<Tipo>()
         fragAltaMisionesViewModel.tipos.observe(viewLifecycleOwner){
-            tipos = it as ArrayList<Tipo>
+            for (tipo in it){
+                when (tipo.id) {
+                    1 -> tipos.add(Tipo(1, getString(R.string.tipoVuelo)))
+                    2 -> tipos.add(Tipo(2, getString(R.string.tipoBombardeo)))
+                    3 -> tipos.add(Tipo(3, getString(R.string.tipoCombate)))
+                }
+            }
             val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, tipos)
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.spTipoAltaMi.adapter = adapter
@@ -100,7 +106,6 @@ class FragAltaMisiones : Fragment() {
         var naves = ArrayList<String>()
         fragAltaMisionesViewModel.naves.observe(viewLifecycleOwner){
             if (it != null){
-                Log.e("Carlos", it.toString())
                 naves.clear()
                 for (nave in it){
                     naves.add(nave.matricula)
@@ -113,8 +118,8 @@ class FragAltaMisiones : Fragment() {
         fragAltaMisionesViewModel.errorCode.observe(viewLifecycleOwner){error->
             if (error != null){
                 when(error){
-                    201 -> Toast.makeText(requireContext(), "Mision registrada correctamente", Toast.LENGTH_SHORT).show()
-                    409 -> Toast.makeText(requireContext(), "Error al registrar", Toast.LENGTH_SHORT).show()
+                    201 -> Toast.makeText(requireContext(), getString(R.string.msjMisionRegistrada), Toast.LENGTH_SHORT).show()
+                    409 -> Toast.makeText(requireContext(), getString(R.string.errRegistrar), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -168,7 +173,7 @@ class FragAltaMisiones : Fragment() {
                 (binding.spTipoAltaMi.selectedItem as Tipo).id == 1 && binding.etDuracionAltaMi.text.isNullOrEmpty() ||
                 ((binding.spTipoAltaMi.selectedItem as Tipo).id == 2 && binding.etObjetivosAltaMi.text.isNullOrEmpty()) ||
                 (binding.spTipoAltaMi.selectedItem as Tipo).id == 3 && binding.etObjetivosAltaMi.text.isNullOrEmpty()){
-                Toast.makeText(requireContext(), "Rellena todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.errRellenaCampos), Toast.LENGTH_SHORT).show()
             }else {
                 var exp = calcularExperiencia((binding.spTipoAltaMi.selectedItem as Tipo).id)
                 fragAltaMisionesViewModel.registrarMisionVM(Mision(0, binding.etNombreAltaMi.text.toString(), exp, (binding.spNaveAltaMi.selectedItem as String), (binding.spTipoAltaMi.selectedItem as Tipo).id))

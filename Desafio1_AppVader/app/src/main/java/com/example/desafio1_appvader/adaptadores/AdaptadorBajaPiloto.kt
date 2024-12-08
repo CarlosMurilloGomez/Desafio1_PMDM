@@ -48,13 +48,13 @@ class AdaptadorBajaPiloto (var usuarios: ArrayList<Usuario>, var context: Contex
 
             eliminar.setOnClickListener {
                 AlertDialog.Builder(context)
-                    .setTitle("Eliminar usuario")
-                    .setMessage("¿Deseas eliminar a ${user.nombre}?")
-                    .setPositiveButton("Si", DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
+                    .setTitle(context.getString(R.string.eliminarUsuario))
+                    .setMessage(context.getString(R.string.eliminarUsuarioPregunta)+" ${user.nombre}?")
+                    .setPositiveButton(context.getString(R.string.si), DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
                         fragBajaPilotoViewModel.eliminarUsuarioVM(user.id)
                     }))
-                    .setNegativeButton("No", ({ dialog: DialogInterface, which: Int ->
-                        Toast.makeText(context,"Eliminacion cancelada", Toast.LENGTH_SHORT).show()
+                    .setNegativeButton(context.getString(R.string.no), ({ dialog: DialogInterface, which: Int ->
+                        Toast.makeText(context,context.getString(R.string.eliminacionCancelada), Toast.LENGTH_SHORT).show()
                     }))
                     .show()
             }

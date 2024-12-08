@@ -41,9 +41,9 @@ class fragLogin : Fragment() {
         mainViewModel.errorCode.observe(viewLifecycleOwner){error ->
             if (error!=null) {
                 when (error) {
-                    400 -> Toast.makeText(requireContext(), "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
-                    404 -> Toast.makeText(requireContext(), "No existe el usuario", Toast.LENGTH_SHORT).show()
-                    200 -> Toast.makeText(requireContext(),"Sesion Iniciada",Toast.LENGTH_SHORT).show()
+                    400 -> Toast.makeText(requireContext(), getString(R.string.errPassword2), Toast.LENGTH_SHORT).show()
+                    404 -> Toast.makeText(requireContext(), getString(R.string.errUsuario2), Toast.LENGTH_SHORT).show()
+                    200 -> Toast.makeText(requireContext(),getString(R.string.msjSesionIniciada),Toast.LENGTH_SHORT).show()
                 }
                 mainViewModel.restablecerError()
             }
@@ -82,7 +82,7 @@ class fragLogin : Fragment() {
 
         binding.btnIniciarSesion.setOnClickListener {
             if (binding.etUsuarioLogin.text.isNullOrBlank() || binding.etPasswordLogin.text.isNullOrBlank()){
-                Toast.makeText(requireContext(), "Rellena todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), resources.getString(R.string.errRellenaCampos), Toast.LENGTH_SHORT).show()
             }else {
                 val usuario = binding.etUsuarioLogin.text.toString()
                 val password = binding.etPasswordLogin.text.toString()

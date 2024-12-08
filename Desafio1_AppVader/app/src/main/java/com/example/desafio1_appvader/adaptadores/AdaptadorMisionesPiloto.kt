@@ -70,13 +70,12 @@ class AdaptadorMisionesPiloto (var misiones: ArrayList<MisionMostrar>, var conte
             if (mision.estado == 1) {
                 itemView.setOnLongClickListener {
                     AlertDialog.Builder(context)
-                        .setTitle("Simular mision")
-                        .setMessage("¿Deseas iniciar la simulación de la mision ${mision.nombre}?")
+                        .setTitle(context.getString(R.string.simularMision))
+                        .setMessage(context.getString(R.string.simularMisionPregunta)+" ${mision.nombre}?")
                         .setPositiveButton(
-                            "Si",
+                            context.getString(R.string.si),
                             DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
                                 Navigation.findNavController(it).navigate(R.id.nav_fragSimulacion, bundleOf(Pair("idAsignacion", mision.idAsignacion)))
-                                (context as AppCompatActivity).supportActionBar?.title = "SIMULACION"
                             })
                         )
                         .setNegativeButton("No", ({ dialog: DialogInterface, which: Int -> })).show()
@@ -84,9 +83,6 @@ class AdaptadorMisionesPiloto (var misiones: ArrayList<MisionMostrar>, var conte
                     true
                 }
             }
-
-
-
         }
     }
 }

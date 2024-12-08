@@ -36,9 +36,9 @@ class FragAltaPiloto : Fragment() {
         fragAltaPilotoViewModel.errorCode.observe(viewLifecycleOwner){error->
             if (error != null){
                 when(error){
-                    400 -> Toast.makeText(requireContext(), "El usuario ya existe", Toast.LENGTH_SHORT).show()
-                    201 -> Toast.makeText(requireContext(), "Usuario registrado correctamente", Toast.LENGTH_SHORT).show()
-                    409 -> Toast.makeText(requireContext(), "Error al registrar", Toast.LENGTH_SHORT).show()
+                    400 -> Toast.makeText(requireContext(), getString(R.string.errUsuario), Toast.LENGTH_SHORT).show()
+                    201 -> Toast.makeText(requireContext(), getString(R.string.msjUsuarioRegistrado), Toast.LENGTH_SHORT).show()
+                    409 -> Toast.makeText(requireContext(), getString(R.string.errRegistrar), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -64,7 +64,7 @@ class FragAltaPiloto : Fragment() {
 
         binding.btnRegistrarAltaUs.setOnClickListener {
             if (binding.etUsuarioAltaUs.text.isNullOrEmpty() || binding.etEdadAltaUs.text.isNullOrEmpty() || binding.etPasswordAltaUs.text.isNullOrEmpty() || binding.etExperienciaAltaUs.text.isNullOrEmpty()){
-                Toast.makeText(requireContext(), "Rellena todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.errRellenaCampos), Toast.LENGTH_SHORT).show()
             }else {
                 fragAltaPilotoViewModel.registrarUsuarioVM(Usuario(0, binding.etUsuarioAltaUs.text.toString(),  binding.etPasswordAltaUs.text.toString(), 0, "", binding.etEdadAltaUs.text.toString().toInt(), binding.etExperienciaAltaUs.text.toString().toInt(), 2))
             }

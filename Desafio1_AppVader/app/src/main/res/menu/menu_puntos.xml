@@ -4,12 +4,12 @@
     <item
         android:id="@+id/nav_fragPerfil"
 
-        android:title="Perfil"
+        android:title="@string/tituloPerfil"
         app:showAsAction="never"
         />
     <item
         android:id="@+id/nav_cerrarSesion"
-        android:title="Cerrar Sesion"
+        android:title="@string/tituloCerrarSesion"
         app:showAsAction="never"
         />
 
