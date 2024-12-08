@@ -2,7 +2,6 @@ package com.example.desafio1_appvader.parametros
 
 object Parametros {
     val url = "http://10.0.2.2"
-    //val url = "http://192.168.1.140"
     val puerto = 8090
 
     //Cloudinary

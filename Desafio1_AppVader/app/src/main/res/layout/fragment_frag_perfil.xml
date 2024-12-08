@@ -4,7 +4,138 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_perfil"
     tools:context=".ventanas.FragPerfil">
+
+    <Button
+        android:id="@+id/btnAbrirCamaraPerfil"
+        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cámara"
+        android:visibility="invisible"
+        app:icon="@drawable/ic_camara"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.281" />
+
+    <Button
+        android:id="@+id/btnEliminarPerfil"
+        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eliminar Cuenta"
+        app:icon="@drawable/ic_eliminar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.982" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="271dp"
+        android:layout_height="58dp"
+        android:hint="Edad"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.884">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEdadPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
+            android:enabled="false"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="271dp"
+        android:layout_height="58dp"
+        android:hint="Rol"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.763">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etRolPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
+            android:enabled="false" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="271dp"
+        android:layout_height="58dp"
+        android:hint="Nivel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.641">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etNivelPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
+            android:enabled="false" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnCancelarPerfil"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancelar"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.895"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.532" />
+
+    <Button
+        android:id="@+id/btnEditarPerfil"
+        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar"
+        app:icon="@drawable/ic_editar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.532" />
+
+    <Button
+        android:id="@+id/btnAceptarPerfil"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aceptar"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.532" />
 
     <ImageView
         android:id="@+id/ivPerfilPerfil"
@@ -15,7 +146,7 @@
         app:layout_constraintHorizontal_bias="0.263"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.282" />
+        app:layout_constraintVertical_bias="0.323" />
 
     <Button
         android:id="@+id/btnAbrirGaleriaPerfil"
@@ -30,7 +161,7 @@
         app:layout_constraintHorizontal_bias="0.796"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.338" />
+        app:layout_constraintVertical_bias="0.411" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -47,6 +178,8 @@
             android:id="@+id/etUsuarioPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
             android:enabled="false" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -62,140 +195,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.127">
+        app:layout_constraintVertical_bias="0.147">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPaswordPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
             android:enabled="false"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="271dp"
-        android:layout_height="58dp"
-        android:hint="Nivel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.585">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etNivelPerfil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:enabled="false" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="271dp"
-        android:layout_height="58dp"
-        android:hint="Edad"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.827">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEdadPerfil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:inputType="number" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="271dp"
-        android:layout_height="58dp"
-        android:hint="Rol"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.707">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etRolPerfil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:enabled="false" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/btnAbrirCamaraPerfil"
-        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cámara"
-        android:visibility="invisible"
-        app:icon="@drawable/ic_camara"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.807"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.245" />
-
-    <Button
-        android:id="@+id/btnCancelarPerfil"
-        style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancelar"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.895"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.478" />
-
-    <Button
-        android:id="@+id/btnEditarPerfil"
-        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Editar"
-        app:icon="@drawable/ic_editar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.478" />
-
-    <Button
-        android:id="@+id/btnAceptarPerfil"
-        style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Aceptar"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.124"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.478" />
-
-    <Button
-        android:id="@+id/btnEliminarPerfil"
-        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Eliminar Cuenta"
-        app:icon="@drawable/ic_eliminar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.926" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

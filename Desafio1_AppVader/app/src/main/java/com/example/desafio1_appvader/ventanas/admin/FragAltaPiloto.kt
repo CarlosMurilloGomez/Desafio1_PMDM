@@ -46,7 +46,6 @@ class FragAltaPiloto : Fragment() {
         fragAltaPilotoViewModel.resRegistro.observe(viewLifecycleOwner){
             if (it!=null && it==true) {
                 Navigation.findNavController(requireView()).navigate(R.id.nav_fragBajaPiloto)
-                (requireActivity() as AppCompatActivity).supportActionBar?.title = "LISTA DE PILOTOS"
                 fragAltaPilotoViewModel.restablecerResRegistro()
             }
         }
@@ -72,7 +71,6 @@ class FragAltaPiloto : Fragment() {
         }
         binding.btnCancelarRegistroUsuario.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.nav_fragBajaPiloto)
-            (requireActivity() as AppCompatActivity).supportActionBar?.title = "LISTA DE PILOTOS"
         }
 
     }

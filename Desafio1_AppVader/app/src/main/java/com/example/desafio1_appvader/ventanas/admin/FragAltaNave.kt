@@ -117,7 +117,6 @@ class FragAltaNave : Fragment() {
         fragAltaNaveViewModel.resRegistro.observe(viewLifecycleOwner){
             if (it!=null && it==true) {
                 Navigation.findNavController(requireView()).navigate(R.id.nav_fragBajaNave)
-                (requireActivity() as AppCompatActivity).supportActionBar?.title = "LISTA DE NAVES"
                 fragAltaNaveViewModel.restablecerResRegistro()
             }
         }
@@ -158,7 +157,6 @@ class FragAltaNave : Fragment() {
         }
         binding.btnCancelarAltaNa.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.nav_fragBajaNave)
-            (requireActivity() as AppCompatActivity).supportActionBar?.title = "LISTA DE NAVES"
         }
 
     }

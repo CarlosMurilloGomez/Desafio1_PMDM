@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_naves"
     tools:context=".ventanas.admin.FragAltaNave">
 
     <ImageView
@@ -89,20 +90,22 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etMatriculaAltaNa"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner
         android:id="@+id/spTipoAltaNa"
-        android:layout_width="270dp"
-        android:layout_height="30dp"
+        android:layout_width="239dp"
+        android:layout_height="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.412"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.225" />
+        app:layout_constraintVertical_bias="0.236" />
 
     <CheckBox
         android:id="@+id/chBoxCargaAltaNa"

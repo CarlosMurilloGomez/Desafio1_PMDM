@@ -22,9 +22,6 @@ interface NaveAPI {
     @GET("naves")
     suspend fun obtenerNaves(): Response<MutableList<Nave>>
 
-    @GET("naves/{matricula}")
-    suspend fun obtenerNavePorMatricula(@Path("matricula") matricula:String): Response<Nave?>
-
     @POST("navesPorTipoCargaPasajeros")
     suspend fun obtenerNavesPorTipoCargaPasajeros(@Body datos:TipoCargaPasajeros): Response<MutableList<Nave>>
 

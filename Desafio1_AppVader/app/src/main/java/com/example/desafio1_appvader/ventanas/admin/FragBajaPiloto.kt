@@ -80,7 +80,6 @@ class FragBajaPiloto : Fragment() {
 
         binding.btnRegistrarUsuario.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.nav_fragAltaPiloto)
-            (requireActivity() as AppCompatActivity).supportActionBar?.title = "REGISTRAR USUARIO"
         }
 
     }

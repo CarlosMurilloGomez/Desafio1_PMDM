@@ -107,7 +107,6 @@ class FragBajaNave : Fragment() {
 
         binding.btnRegistrarNave.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.nav_fragAltaNave)
-            (requireActivity() as AppCompatActivity).supportActionBar?.title = "REGISTRAR NAVE"
         }
 
     }

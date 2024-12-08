@@ -1,8 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Desafio1_AppVader" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="colorPrimary">@color/darth_black</item>
+        <!-- Color de fondo secundario -->
+        <item name="colorPrimaryVariant">@color/darth_grey</item>
+        <!-- Color de acento (botones, resaltados) -->
+        <item name="colorSecondary">@color/darth_red</item>
+        <!-- Color del texto principal -->
+        <item name="android:textColorPrimary">@color/darth_white</item>
+        <!-- Color del texto secundario -->
+        <item name="android:textColorSecondary">@color/darth_grey_light</item>
+
+
     </style>
 
     <style name="Theme.Desafio1_AppVader" parent="Base.Theme.Desafio1_AppVader" />

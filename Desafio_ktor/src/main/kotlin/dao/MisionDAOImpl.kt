@@ -215,9 +215,11 @@ class MisionDAOImpl:MisionDAO {
         return false
     }
 
-    override fun obtenerAsignacionesPorIdUsuario(idUsuario: Int): List<Asignacion> {
-        val asignaciones = mutableListOf<Asignacion>()
-        val sql = "SELECT * FROM misionasignacion WHERE idUsuario=?"
+    override fun obtenerMisionAsignacionesPorIdUsuario(idUsuario: Int): List<MisionAsignacion> {
+        val asignaciones = mutableListOf<MisionAsignacion>()
+        val sql = "SELECT mision.id, mision.nombre, mision.exp, mision.naveAsig, tipomision.descripcion as tipo, misionasignacion.id as asig , misionasignacion.estado " +
+                "FROM mision JOIN misionasignacion ON mision.id=misionasignacion.idMision JOIN tipomision ON mision.tipo=tipomision.id " +
+                "WHERE misionasignacion.idUsuario=? AND misionasignacion.estado = 1"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -225,20 +227,52 @@ class MisionDAOImpl:MisionDAO {
             val resultSet = statement.executeQuery()
 
             while (resultSet.next()) {
-                val asignacion = Asignacion(
+                val mision = MisionAsignacion(
                     id = resultSet.getInt("id"),
-                    idMision = resultSet.getInt("idMision"),
-                    idUsuario = resultSet.getInt("idUsuario"),
-                    estado = resultSet.getInt("estado")
+                    nombre = resultSet.getString("nombre"),
+                    exp = resultSet.getInt("exp"),
+                    naveAsig = resultSet.getString("naveAsig"),
+                    tipo = resultSet.getString("tipo"),
+                    idAsignacion = resultSet.getInt("asig"),
+                    estado= resultSet.getInt("estado")
                 )
-                asignaciones.add(asignacion)
+                asignaciones.add(mision)
             }
         }
         return asignaciones
     }
 
-    override fun obtenerAsignacionPorId(idAsig: Int): Asignacion? {
-        val sql = "SELECT * FROM misionasignacion WHERE id=?"
+    override fun obtenerMisionAsignacionesRealizadasPorIdUsuario(idUsuario: Int): List<MisionAsignacion> {
+        val asignaciones = mutableListOf<MisionAsignacion>()
+        val sql = "SELECT mision.id, mision.nombre, mision.exp, mision.naveAsig, tipomision.descripcion as tipo, misionasignacion.id as asig , misionasignacion.estado " +
+                "FROM mision JOIN misionasignacion ON mision.id=misionasignacion.idMision JOIN tipomision ON mision.tipo=tipomision.id " +
+                "WHERE misionasignacion.idUsuario=? AND misionasignacion.estado != 1"
+        val connection = Database.getConnection()
+        connection?.use {
+            val statement = it.prepareStatement(sql)
+            statement.setInt(1, idUsuario)
+            val resultSet = statement.executeQuery()
+
+            while (resultSet.next()) {
+                val mision = MisionAsignacion(
+                    id = resultSet.getInt("id"),
+                    nombre = resultSet.getString("nombre"),
+                    exp = resultSet.getInt("exp"),
+                    naveAsig = resultSet.getString("naveAsig"),
+                    tipo = resultSet.getString("tipo"),
+                    idAsignacion = resultSet.getInt("asig"),
+                    estado= resultSet.getInt("estado")
+                )
+                asignaciones.add(mision)
+            }
+        }
+        return asignaciones
+    }
+
+    override fun obtenerMisionAsignacionPorId(idAsig: Int): MisionAsignacion? {
+        val sql = "SELECT mision.id, mision.nombre, mision.exp, mision.naveAsig, tipomision.descripcion as tipo, misionasignacion.id as asig , misionasignacion.estado " +
+                "FROM mision JOIN misionasignacion ON mision.id=misionasignacion.idMision JOIN tipomision ON mision.tipo=tipomision.id " +
+                "WHERE misionasignacion.id=?"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -246,13 +280,16 @@ class MisionDAOImpl:MisionDAO {
             val resultSet = statement.executeQuery()
 
             while (resultSet.next()) {
-                val asignacion = Asignacion(
+                val mision = MisionAsignacion(
                     id = resultSet.getInt("id"),
-                    idMision = resultSet.getInt("idMision"),
-                    idUsuario = resultSet.getInt("idUsuario"),
-                    estado = resultSet.getInt("estado")
+                    nombre = resultSet.getString("nombre"),
+                    exp = resultSet.getInt("exp"),
+                    naveAsig = resultSet.getString("naveAsig"),
+                    tipo = resultSet.getString("tipo"),
+                    idAsignacion = resultSet.getInt("asig"),
+                    estado= resultSet.getInt("estado")
                 )
-                return asignacion
+                return mision
             }
         }
         return null

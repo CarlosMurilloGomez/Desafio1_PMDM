@@ -48,7 +48,6 @@ class FragAltaMisiones : Fragment() {
         val root: View = binding.root
 
         var tipos = ArrayList<Tipo>()
-        fragAltaMisionesViewModel.obtenerTiposMisionVM()
         fragAltaMisionesViewModel.tipos.observe(viewLifecycleOwner){
             tipos = it as ArrayList<Tipo>
             val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, tipos)
@@ -139,7 +138,6 @@ class FragAltaMisiones : Fragment() {
         fragAltaMisionesViewModel.resRegistro.observe(viewLifecycleOwner){
             if (it!=null && it==true) {
                 Navigation.findNavController(requireView()).navigate(R.id.nav_fragBajaMisiones)
-                (requireActivity() as AppCompatActivity).supportActionBar?.title = "LISTA DE MISIONES"
                 fragAltaMisionesViewModel.restablecerResRegistro()
             }
         }
@@ -154,6 +152,9 @@ class FragAltaMisiones : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        fragAltaMisionesViewModel.obtenerTiposMisionVM()
+
 
         binding.chBoxCargaAltaMi.setOnCheckedChangeListener{ _,_ ->
             actualizarNaves()
@@ -177,7 +178,6 @@ class FragAltaMisiones : Fragment() {
 
         binding.btnCancelarAltaMi.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.nav_fragBajaMisiones)
-            (requireActivity() as AppCompatActivity).supportActionBar?.title = "LISTA DE MISIONES"
         }
     }
 

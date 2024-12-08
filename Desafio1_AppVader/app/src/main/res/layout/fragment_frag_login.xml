@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ventanas.login.fragLogin" >
+    android:background="@drawable/fondo_darth_vader"
+    tools:context=".ventanas.login.fragLogin">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="271dp"
@@ -19,7 +20,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etUsuarioLogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -39,6 +42,8 @@
             android:id="@+id/etPasswordLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>

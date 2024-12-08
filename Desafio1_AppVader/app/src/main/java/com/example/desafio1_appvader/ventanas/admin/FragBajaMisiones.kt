@@ -58,7 +58,6 @@ class FragBajaMisiones : Fragment() {
         fragBajaMisionesViewModel.errorCode.observe(viewLifecycleOwner){error ->
             if (error!=null) {
                 when (error) {
-                    400 -> Toast.makeText(requireContext(), "Error al introducir los datos", Toast.LENGTH_SHORT).show()
                     404 -> Toast.makeText(requireContext(), "No existe la mision", Toast.LENGTH_SHORT).show()
                     409 -> Toast.makeText(requireContext(), "Error al eliminar", Toast.LENGTH_SHORT).show()
                     202 -> Toast.makeText(requireContext(),"Mision Eliminada", Toast.LENGTH_SHORT).show()
@@ -69,7 +68,7 @@ class FragBajaMisiones : Fragment() {
         fragBajaMisionesViewModel.misiones.observe(viewLifecycleOwner) {
             datosRepresentar.clear()
             for (mision in it) {
-                var misionMostrar = MisionMostrar(mision.id, mision.nombre, mision.exp, mision.naveAsig, "")
+                var misionMostrar = MisionMostrar(mision.id, mision.nombre, mision.exp, mision.naveAsig, "", 0, 0)
                 for (tipo in tipos){
                     if (tipo.id == mision.tipo){
                         misionMostrar.tipo = tipo.tipo
@@ -104,6 +103,7 @@ class FragBajaMisiones : Fragment() {
                         dialog.dismiss()
                     }))
                     .show()
+                fragBajaMisionesViewModel.restablecerVuelo()
             }
         }
         fragBajaMisionesViewModel.bombardeo.observe(viewLifecycleOwner){
@@ -123,6 +123,7 @@ class FragBajaMisiones : Fragment() {
                         dialog.dismiss()
                     }))
                     .show()
+                fragBajaMisionesViewModel.restablecerBombardeo()
             }
         }
         fragBajaMisionesViewModel.caza.observe(viewLifecycleOwner){
@@ -134,6 +135,7 @@ class FragBajaMisiones : Fragment() {
                         dialog.dismiss()
                     }))
                     .show()
+                fragBajaMisionesViewModel.restablecerCaza()
             }
         }
 
@@ -151,7 +153,6 @@ class FragBajaMisiones : Fragment() {
 
         binding.btnRegistrarMision.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.nav_fragAltaMisiones)
-            (requireActivity() as AppCompatActivity).supportActionBar?.title = "REGISTRAR MISION"
         }
 
     }

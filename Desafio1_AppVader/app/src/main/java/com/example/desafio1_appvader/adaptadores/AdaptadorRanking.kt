@@ -44,18 +44,28 @@ class AdaptadorRanking (var usuarios: ArrayList<Usuario>, var context: Context, 
         val edad = view.findViewById(R.id.tvEdadBajaUs) as TextView
         val exp = view.findViewById(R.id.tvExpBajaUs) as TextView
         val foto = view.findViewById(R.id.ivBajaUs) as ImageView
+        val detalles = view.findViewById(R.id.lbDetallesRanking) as TextView
         val eliminar = view.findViewById(R.id.btnEliminarUsuario) as Button
 
         fun bind(user: Usuario, context: Context, pos: Int, adaptadorRanking: AdaptadorRanking, fragRankingViewModel: FragRankingViewModel, mainViewModel: MainViewModel){
+            detalles.visibility = View.VISIBLE
+            eliminar.visibility = View.INVISIBLE
+
             nombreUsuario.text = user.nombre
             edad.text = user.edad.toString()
             exp.text = user.experiencia.toString()
             Glide.with(requireNotNull(context)).load(user.foto).into(foto)
             posicion.text = (pos+1).toString()+"º"
-            eliminar.visibility = View.INVISIBLE
 
+            while (mainViewModel.usuarioLogeado.value == null){
+                Thread.sleep(100)
+            }
             if (user.id == mainViewModel.usuarioLogeado.value!!.id){
                 itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.ranking))
+            }
+
+            itemView.setOnClickListener {
+                fragRankingViewModel.obtenerEstadisticasPorIdVM(user.id)
             }
 
 

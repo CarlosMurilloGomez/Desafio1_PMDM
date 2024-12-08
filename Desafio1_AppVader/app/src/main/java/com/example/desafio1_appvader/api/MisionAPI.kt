@@ -5,6 +5,7 @@ import com.example.desafio1_appvader.modelo.mision.Asignacion
 import com.example.desafio1_appvader.modelo.mision.Mision
 import com.example.desafio1_appvader.modelo.mision.MisionBombardeo
 import com.example.desafio1_appvader.modelo.mision.MisionCaza
+import com.example.desafio1_appvader.modelo.mision.MisionMostrar
 import com.example.desafio1_appvader.modelo.mision.MisionVuelo
 import retrofit2.Response
 import retrofit2.http.Body
@@ -53,11 +54,14 @@ interface MisionAPI {
     @POST("asignarMision")
     suspend fun asignarMision(@Body asignacion: Asignacion): Response<Boolean>
 
-    @GET("asignacionesPorUsuario/{id}")
-    suspend fun obtenerAsignacionesPorUsuario(@Path("id") idUsuario:Int): Response<MutableList<Asignacion>>
+    @GET("misionAsignacionesPorUsuario/{id}")
+    suspend fun obtenerMisionAsignacionesPorUsuario(@Path("id") idUsuario:Int): Response<MutableList<MisionMostrar>>
 
-    @GET("asignacion/{id}")
-    suspend fun obtenerAsignacionPorId(@Path("id") id:Int): Response<Asignacion?>
+    @GET("misionAsignacionesRealizadasPorUsuario/{id}")
+    suspend fun obtenerMisionAsignacionesRealizadasPorUsuario(@Path("id") idUsuario:Int): Response<MutableList<MisionMostrar>>
+
+    @GET("misionAsignacion/{id}")
+    suspend fun obtenerMisionAsignacionPorId(@Path("id") id:Int): Response<MisionMostrar?>
 
     @PUT("actualizarEstado/{id}")
     suspend fun actualizarEstado(@Path("id") id:Int, @Body estado: Int): Response<Boolean>
