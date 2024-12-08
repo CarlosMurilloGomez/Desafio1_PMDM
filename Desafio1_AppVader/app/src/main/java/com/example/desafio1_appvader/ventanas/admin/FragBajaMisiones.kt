@@ -153,7 +153,6 @@ class FragBajaMisiones : Fragment() {
 
         binding.btnRegistrarMision.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.nav_fragAltaMisiones)
-            (requireActivity() as AppCompatActivity).supportActionBar?.title = "REGISTRAR MISION"
         }
 
     }

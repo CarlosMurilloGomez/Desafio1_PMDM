@@ -57,6 +57,9 @@ class AdaptadorRanking (var usuarios: ArrayList<Usuario>, var context: Context, 
             Glide.with(requireNotNull(context)).load(user.foto).into(foto)
             posicion.text = (pos+1).toString()+"º"
 
+            while (mainViewModel.usuarioLogeado.value == null){
+                Thread.sleep(100)
+            }
             if (user.id == mainViewModel.usuarioLogeado.value!!.id){
                 itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.ranking))
             }

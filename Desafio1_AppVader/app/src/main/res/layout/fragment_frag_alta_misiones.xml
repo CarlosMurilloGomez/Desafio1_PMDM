@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ventanas.admin.FragAltaMisiones" >
+    android:background="@drawable/fondo_misiones"
+    tools:context=".ventanas.admin.FragAltaMisiones">
 
     <TextView
         android:id="@+id/lbNaveAltaMi"
@@ -74,7 +75,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etDuracionAltaMi"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,7 +95,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etObjetivosAltaMi"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,7 +161,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etNombreAltaMi"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add" />
 
     </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -124,7 +124,6 @@ class FragAsignarMisiones : Fragment() {
         fragAsignarMisionesViewModel.resAsignacion.observe(viewLifecycleOwner){
             if (it!=null && it==true) {
                 Navigation.findNavController(requireView()).navigate(R.id.nav_fragBajaMisiones)
-                (requireActivity() as AppCompatActivity).supportActionBar?.title = "LISTA DE MISIONES"
                 fragAsignarMisionesViewModel.restablecerResAsignacion()
             }
         }
@@ -160,7 +159,6 @@ class FragAsignarMisiones : Fragment() {
         }
         binding.btnCancelarAsigMi.setOnClickListener {
             Navigation.findNavController(requireView()).navigate(R.id.nav_fragBajaMisiones)
-            (requireActivity() as AppCompatActivity).supportActionBar?.title = "LISTA DE MISIONES"
         }
     }
 }

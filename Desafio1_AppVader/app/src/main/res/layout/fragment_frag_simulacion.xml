@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_misiones2"
     tools:context=".ventanas.piloto.FragSimulacion">
 
     <TextView
@@ -52,23 +53,30 @@
         android:id="@+id/tvDatosMisionSimulacion"
         android:layout_width="300dp"
         android:layout_height="48dp"
+        android:background="@drawable/selected_thumbnail_border"
+        android:backgroundTint="@color/fondo_edit_text"
+        android:backgroundTintMode="src_in"
         android:fadeScrollbars="false"
         android:scrollbars="vertical"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintHorizontal_bias="0.396"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintVertical_bias="0.07" />
 
     <TextView
         android:id="@+id/tvSimulacion"
         android:layout_width="380dp"
         android:layout_height="321dp"
         android:background="@drawable/selected_thumbnail_border"
+        android:backgroundTint="@color/fondo_edit_text"
+        android:backgroundTintMode="multiply"
         android:fadeScrollbars="false"
+        android:foregroundTintMode="add"
         android:scrollbars="vertical"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,10 +115,13 @@
         android:id="@+id/tvNivelUsuarioSimulacion"
         android:layout_width="133dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/selected_thumbnail_border"
+        android:backgroundTint="@color/fondo_edit_text"
+        android:backgroundTintMode="src_in"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintHorizontal_bias="0.158"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.19" />

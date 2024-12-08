@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_perfil"
     tools:context=".ventanas.FragPerfil">
 
     <Button
@@ -48,6 +49,8 @@
             android:id="@+id/etEdadPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
             android:enabled="false"
             android:inputType="number" />
 
@@ -67,6 +70,8 @@
             android:id="@+id/etRolPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
             android:enabled="false" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -85,6 +90,8 @@
             android:id="@+id/etNivelPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
             android:enabled="false" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -171,6 +178,8 @@
             android:id="@+id/etUsuarioPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
             android:enabled="false" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -192,6 +201,8 @@
             android:id="@+id/etPaswordPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
             android:enabled="false"
             android:inputType="textPassword" />
 

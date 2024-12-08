@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ventanas.FragRanking" >
+    android:background="@drawable/fondo_ranking"
+    tools:context=".ventanas.FragRanking">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyViewRanking"
@@ -21,6 +22,8 @@
         android:id="@+id/lbNoHayUsuariosRanking"
         android:layout_width="333dp"
         android:layout_height="274dp"
+        android:backgroundTint="@color/fondo_edit_text"
+        android:backgroundTintMode="add"
         android:text="TODAVÍA NO HAY PILOTOS EN LA BASE DE DATOS"
         android:textAlignment="center"
         android:textSize="50sp"

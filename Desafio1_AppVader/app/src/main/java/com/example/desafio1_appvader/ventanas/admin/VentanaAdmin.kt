@@ -28,6 +28,7 @@ class VentanaAdmin : AppCompatActivity() {
     private lateinit var navController: NavController
     lateinit var binding: ActivityVentanaAdminBinding
     private val mainViewModel: MainViewModel by viewModels()
+    var idFragVolver = R.id.nav_fragRanking
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,42 +44,59 @@ class VentanaAdmin : AppCompatActivity() {
         navController = navHostFragment.navController
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_fragRanking),
+            setOf(R.id.nav_fragRanking, R.id.nav_fragBajaPiloto, R.id.nav_fragBajaNave, R.id.nav_fragBajaMisiones),
             drawerLayout
         )
 
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         val navView: NavigationView = binding.navigationView
-        navView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
+        navController.addOnDestinationChangedListener{ _, destination, _ ->
+            when (destination.id) {
                 R.id.nav_fragRanking -> {
-                    navController.navigate(R.id.nav_fragRanking)
                     supportActionBar?.title = "RANKING"
+                    idFragVolver = R.id.nav_fragRanking
                 }
                 R.id.nav_fragBajaPiloto -> {
-                    navController.navigate(R.id.nav_fragBajaPiloto)
                     supportActionBar?.title = "LISTA DE PILOTOS"
+                    idFragVolver = R.id.nav_fragBajaPiloto
                 }
                 R.id.nav_fragBajaNave -> {
-                    navController.navigate(R.id.nav_fragBajaNave)
                     supportActionBar?.title = "LISTA DE NAVES"
+                    idFragVolver = R.id.nav_fragBajaNave
                 }
                 R.id.nav_fragBajaMisiones -> {
-                    navController.navigate(R.id.nav_fragBajaMisiones)
                     supportActionBar?.title = "LISTA DE MISIONES"
-                }
+                    idFragVolver = R.id.nav_fragBajaMisiones
 
+                }
+                R.id.nav_fragAltaPiloto -> {
+                    supportActionBar?.title = "REGISTRAR PILOTO"
+                    idFragVolver = R.id.nav_fragAltaPiloto
+                }
+                R.id.nav_fragAltaNave -> {
+                    supportActionBar?.title = "REGISTRAR NAVE"
+                    idFragVolver = R.id.nav_fragAltaNave
+                }
+                R.id.nav_fragAltaMisiones -> {
+                    supportActionBar?.title = "REGISTRAR MISION"
+                    idFragVolver = R.id.nav_fragAltaMisiones
+                }
+                R.id.nav_fragAsignarMisiones -> {
+                    supportActionBar?.title = "ASIGNAR MISION"
+                }
+            }
+        }
+        navView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_fragRanking -> navController.navigate(R.id.nav_fragRanking)
+                R.id.nav_fragBajaPiloto -> navController.navigate(R.id.nav_fragBajaPiloto)
+                R.id.nav_fragBajaNave -> navController.navigate(R.id.nav_fragBajaNave)
+                R.id.nav_fragBajaMisiones -> navController.navigate(R.id.nav_fragBajaMisiones)
             }
             drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
-
-        supportActionBar?.title = "BIENVENIDO"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        //supportActionBar?.setHomeAsUpIndicator(R.mipmap.ic_launcher_imperio_round)
-
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -92,12 +110,17 @@ class VentanaAdmin : AppCompatActivity() {
         return when (item.itemId) {
             android.R.id.home -> {
                 val navHostFragment = supportFragmentManager.findFragmentById(R.id.frag_cont_admin) as NavHostFragment
-                val currentFragment = navHostFragment.childFragmentManager.primaryNavigationFragment
-                if (currentFragment is FragRanking) {
+                val fragmentoActual = navHostFragment.childFragmentManager.primaryNavigationFragment
+                if ((fragmentoActual is FragRanking) || (fragmentoActual is FragBajaPiloto) || (fragmentoActual is FragBajaNave) || (fragmentoActual is FragBajaMisiones)) {
                     binding.drawerLayout.openDrawer(GravityCompat.START)
-                } else {
-                    navController.navigate(R.id.nav_fragRanking)
-                    supportActionBar?.title = "RANKING"
+                }else if (fragmentoActual is FragAltaPiloto) {
+                    navController.navigate(R.id.nav_fragBajaPiloto)
+                }else if (fragmentoActual is FragAltaNave) {
+                    navController.navigate(R.id.nav_fragBajaNave)
+                }else if (fragmentoActual is FragAltaMisiones) {
+                    navController.navigate(R.id.nav_fragBajaMisiones)
+                }else {
+                    navController.navigate(idFragVolver)
                 }
                 true
             }

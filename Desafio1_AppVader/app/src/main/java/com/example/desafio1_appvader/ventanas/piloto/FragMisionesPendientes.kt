@@ -129,6 +129,9 @@ class FragMisionesPendientes : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
+        while (mainViewModel.usuarioLogeado.value == null) {
+            Thread.sleep(100)
+        }
         fragMisionesPendientesViewModel.obtenerMisionAsignacionesPorUsuarioVM(mainViewModel.usuarioLogeado.value!!.id)
     }
     private fun setupRecyclerView() {

@@ -116,6 +116,9 @@ class FragMisionesRealizadas : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
+        while (mainViewModel.usuarioLogeado.value == null) {
+            Thread.sleep(100)
+        }
         fragMisionesRealizadasViewModel.obtenerMisionAsignacionesRealizadasPorUsuarioVM(mainViewModel.usuarioLogeado.value!!.id)
     }
     private fun setupRecyclerView() {

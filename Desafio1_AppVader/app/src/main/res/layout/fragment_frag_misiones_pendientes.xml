@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_misiones2"
     tools:context=".ventanas.piloto.FragMisionesPendientes">
 
     <TextView
         android:id="@+id/lbNoHayMisionesAsignadas"
         android:layout_width="334dp"
         android:layout_height="297dp"
+        android:backgroundTint="@color/fondo_edit_text"
+        android:backgroundTintMode="add"
         android:text="TODAVÍA NO TIENES ASIGNADA NIGUNA MISIÓN"
         android:textAlignment="center"
         android:textSize="50sp"

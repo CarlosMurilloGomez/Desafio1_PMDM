@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_misiones"
     tools:context=".ventanas.admin.FragBajaMisiones">
 
     <TextView
         android:id="@+id/lbNoHayMisionesBajaMi"
         android:layout_width="343dp"
         android:layout_height="269dp"
+        android:backgroundTint="@color/fondo_edit_text"
+        android:backgroundTintMode="add"
         android:text="TODAVÍA NO HAY MISIONES EN LA BASE DE DATOS"
         android:textAlignment="center"
         android:textSize="50sp"

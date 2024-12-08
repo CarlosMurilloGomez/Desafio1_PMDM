@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ventanas.admin.FragAltaPiloto" >
+    android:background="@drawable/fondo_stormtrooper"
+    tools:context=".ventanas.admin.FragAltaPiloto">
 
     <Button
         android:id="@+id/btnCancelarRegistroUsuario"
@@ -34,7 +35,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etUsuarioAltaUs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,6 +56,8 @@
             android:id="@+id/etEdadAltaUs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
             android:inputType="number" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -73,6 +78,8 @@
             android:id="@+id/etPasswordAltaUs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -92,6 +99,8 @@
             android:id="@+id/etExperienciaAltaUs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
             android:inputType="number" />
 
     </com.google.android.material.textfield.TextInputLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_darth_vader"
     tools:context=".ventanas.login.fragActivarCuenta">
 
     <ImageView
@@ -46,6 +47,8 @@
             android:id="@+id/etUsuarioActivar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
             android:enabled="false" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -66,6 +69,8 @@
             android:id="@+id/etPaswordActivar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -98,6 +103,8 @@
             android:id="@+id/etConfPaswordActivar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
