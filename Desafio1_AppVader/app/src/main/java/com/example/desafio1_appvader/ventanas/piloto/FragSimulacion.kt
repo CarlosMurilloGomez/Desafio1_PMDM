@@ -53,7 +53,11 @@ class FragSimulacion : Fragment() {
 
         fragSimulacionViewModel.nivel.observe(viewLifecycleOwner){
             if (it != null) {
-                binding.tvNivelUsuarioSimulacion.text = it
+                when (it){
+                    "Novato" -> binding.tvNivelUsuarioSimulacion.text = resources.getString(R.string.novato)
+                    "Intermedio" -> binding.tvNivelUsuarioSimulacion.text = resources.getString(R.string.intermedio)
+                    "Experto" -> binding.tvNivelUsuarioSimulacion.text = resources.getString(R.string.experto)
+                }
                 nivel = it
                 fragSimulacionViewModel.obtenerMisionAsignacionPorIdVM(idAsignacion!!)
             }
@@ -62,7 +66,7 @@ class FragSimulacion : Fragment() {
         fragSimulacionViewModel.mision.observe(viewLifecycleOwner){
             if (it != null) {
                 mision = it
-                datosMision += " -Nombre: ${it.nombre}\n -Experiencia: ${it.exp}\n -Nave: ${it.naveAsig}"
+                datosMision += " -"+resources.getString(R.string.nombre)+": ${it.nombre}\n -"+resources.getString(R.string.exp)+": ${it.exp}\n -"+resources.getString(R.string.nave)+": ${it.naveAsig}"
                 when (it.tipo) {
                     "Vuelo" -> fragSimulacionViewModel.obtenerVueloPorIdVM(it.id)
                     "Bombardeo" -> fragSimulacionViewModel.obtenerBombardeoPorIdVM(it.id)
@@ -72,15 +76,15 @@ class FragSimulacion : Fragment() {
         }
         fragSimulacionViewModel.vuelo.observe(viewLifecycleOwner){
             if (it != null){
-                var carga = "Si"
-                var pasajeros = "Si"
+                var carga = resources.getString(R.string.si)
+                var pasajeros = resources.getString(R.string.si)
                 if (it.carga == 0){
-                    carga = "No"
+                    carga = resources.getString(R.string.no)
                 }
                 if (it.pasajeros == 0){
-                    pasajeros = "No"
+                    pasajeros = resources.getString(R.string.no)
                 }
-                datosMision += "\n -Tipo: Vuelo\n -Duracion: ${it.duracion}\n- Carga: ${carga}\n- Pasajeros: ${pasajeros}"
+                datosMision += "\n -"+resources.getString(R.string.tipo)+": "+resources.getString(R.string.tipoVuelo)+"\n -"+resources.getString(R.string.duracion)+": ${it.duracion}\n- "+resources.getString(R.string.carga)+": ${carga}\n- "+resources.getString(R.string.pasajeros)+": ${pasajeros}"
                 binding.tvDatosMisionSimulacion.text = datosMision
                 CoroutineScope(Dispatchers.Main).launch {
                     fragSimulacionViewModel.terminarSimulacionVM(simulacionVuelo(nivel, it.duracion))
@@ -89,15 +93,15 @@ class FragSimulacion : Fragment() {
         }
         fragSimulacionViewModel.bombardeo.observe(viewLifecycleOwner){
             if (it != null){
-                var carga = "Si"
-                var pasajeros = "Si"
+                var carga = resources.getString(R.string.si)
+                var pasajeros = resources.getString(R.string.si)
                 if (it.carga == 0){
-                    carga = "No"
+                    carga = resources.getString(R.string.no)
                 }
                 if (it.pasajeros == 0){
-                    pasajeros = "No"
+                    pasajeros = resources.getString(R.string.no)
                 }
-                datosMision += "\n -Tipo: Bombardeo\n -Objetivos: ${it.objetivos}\n -Carga: ${carga}\n -Pasajeros: ${pasajeros}"
+                datosMision += "\n -"+resources.getString(R.string.tipo)+": "+resources.getString(R.string.tipoBombardeo)+"\n -"+resources.getString(R.string.objetivos)+": ${it.objetivos}\n -"+resources.getString(R.string.carga)+": ${carga}\n -"+resources.getString(R.string.pasajeros)+": ${pasajeros}"
                 binding.tvDatosMisionSimulacion.text = datosMision
 
                 CoroutineScope(Dispatchers.Main).launch {
@@ -107,7 +111,7 @@ class FragSimulacion : Fragment() {
         }
         fragSimulacionViewModel.caza.observe(viewLifecycleOwner) {
             if (it != null) {
-                datosMision += "\n -Tipo: Combate de caza\n -Objetivos: ${it.objetivos}"
+                datosMision += "\n -"+resources.getString(R.string.tipo)+": "+resources.getString(R.string.tipoCombate)+"\n -"+resources.getString(R.string.objetivos)+": ${it.objetivos}"
                 binding.tvDatosMisionSimulacion.text = datosMision
 
                 CoroutineScope(Dispatchers.Main).launch {
@@ -129,8 +133,8 @@ class FragSimulacion : Fragment() {
         fragSimulacionViewModel.errorCode.observe(viewLifecycleOwner){error->
             if (error != null){
                 when(error){
-                    400 -> Toast.makeText(requireContext(), "Error al actualizar el estado de la mision", Toast.LENGTH_SHORT).show()
-                    409 -> Toast.makeText(requireContext(), "Error al añadir la experiencia al piloto", Toast.LENGTH_SHORT).show()
+                    400 -> Toast.makeText(requireContext(), getString(R.string.errActualizarEstado), Toast.LENGTH_SHORT).show()
+                    409 -> Toast.makeText(requireContext(), getString(R.string.errAddExperiencia), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -151,7 +155,6 @@ class FragSimulacion : Fragment() {
 
         binding.btnVolverSimulacion.setOnClickListener {
             Navigation.findNavController(requireView()).navigate(R.id.nav_fragMisionesPendientes)
-            (requireActivity() as AppCompatActivity).supportActionBar?.title = "MISIONES PENDIENTES"
         }
     }
 
@@ -160,7 +163,7 @@ class FragSimulacion : Fragment() {
         var haGanado = false
         var posibilidades:Int
 
-        binding.tvSimulacion.text = " *** Iniciando simulacion... ***"
+        binding.tvSimulacion.text = " *** "+resources.getString(R.string.inicioSim)+"... ***"
         delay(2000)
         while (true){
             delay(1000)
@@ -169,19 +172,19 @@ class FragSimulacion : Fragment() {
             bajarScrollBar()
 
             if (min%10 == 0) {
-                binding.tvSimulacion.append("\n - Se acerca una tormenta solar")
+                binding.tvSimulacion.append("\n - "+resources.getString(R.string.tormentaSolar))
                 bajarScrollBar()
                 delay(2000)
                 posibilidades = (0..100).random()
                 if ((posibilidades <= 10 && nivel == "Experto")||
                     (posibilidades <= 30 && nivel == "Intermedio")||
                     (posibilidades <= 50 && nivel == "Novato")) {
-                    binding.tvSimulacion.append("\n - LA TORMENTA ES MAS DESTRUCTIVA DE LO QUE CREIAS")
-                    binding.tvSimulacion.append("\n *** HAS MUERTO, MISION FALLIDA ***")
+                    binding.tvSimulacion.append("\n - "+resources.getString(R.string.tormentaSolarMal))
+                    binding.tvSimulacion.append("\n *** "+resources.getString(R.string.hasMuerto)+" ***")
                     bajarScrollBar()
                     break
                 } else {
-                    binding.tvSimulacion.append("\n - Consigues superar la tormenta solar")
+                    binding.tvSimulacion.append("\n - "+resources.getString(R.string.tormentaSolarBien))
                     bajarScrollBar()
                 }
             }
@@ -190,19 +193,19 @@ class FragSimulacion : Fragment() {
             if (min%20 == 0){
                 posibilidades = (0..100).random()
                 if (posibilidades <= 30){
-                    binding.tvSimulacion.append("\n - Un equipo de rebeldes te a visto y se disponen a atacar")
+                    binding.tvSimulacion.append("\n - "+resources.getString(R.string.ataqueVuelo))
                     bajarScrollBar()
                     delay(2000)
                     posibilidades = (0..100).random()
                     if ((posibilidades <= 20 && nivel == "Experto")||
                         (posibilidades <= 40 && nivel == "Intermedio")||
                         (posibilidades <= 60 && nivel == "Novato")){
-                        binding.tvSimulacion.append("\n - NO HAS PODIDO ESQUIVAR TODOS LOS PROYECTILES ENEMIGOS")
-                        binding.tvSimulacion.append("\n *** HAS MUERTO, MISION FALLIDA ***")
+                        binding.tvSimulacion.append("\n - "+resources.getString(R.string.ataqueVueloMal))
+                        binding.tvSimulacion.append("\n *** "+resources.getString(R.string.hasMuerto)+" ***")
                         bajarScrollBar()
                         break
                     }else{
-                        binding.tvSimulacion.append("\n - Consigues derrotar a los enemigos")
+                        binding.tvSimulacion.append("\n - "+resources.getString(R.string.ataqueVueloBien))
                         bajarScrollBar()
                     }
 
@@ -210,8 +213,8 @@ class FragSimulacion : Fragment() {
             }
             binding.pbarProgresoSimulacion.progress = (min.toDouble()/duracion.toDouble()*100.0).toInt()
             if (min == duracion){
-                binding.tvSimulacion.append("\n - TODAS LAS MANIOBRAS DE VUELO REALIZADAS")
-                binding.tvSimulacion.append("\n *** MISION COMPLETADA CON EXITO ***")
+                binding.tvSimulacion.append("\n - "+resources.getString(R.string.vueloCompletado))
+                binding.tvSimulacion.append("\n *** "+resources.getString(R.string.misionCompletada)+" ***")
                 bajarScrollBar()
                 haGanado = true
                 break
@@ -226,7 +229,7 @@ class FragSimulacion : Fragment() {
         var posibilidades:Int
         var objetivosDestruidos = 0
 
-        binding.tvSimulacion.text = " *** Iniciando simulacion... ***"
+        binding.tvSimulacion.text = " *** "+resources.getString(R.string.inicioSim)+"... ***"
         delay(2000)
         while (true){
             delay(1000)
@@ -236,9 +239,9 @@ class FragSimulacion : Fragment() {
 
             if (min%5 == 0) {
                 if (tipo == "Combate"){
-                    binding.tvSimulacion.append("\n - Se acerca un caza enemigo")
+                    binding.tvSimulacion.append("\n - "+resources.getString(R.string.ataqueCombate))
                 }else{
-                    binding.tvSimulacion.append("\n - Ves una base rebelde")
+                    binding.tvSimulacion.append("\n - "+resources.getString(R.string.ataqueBombardeo))
                 }
                 bajarScrollBar()
                 delay(2000)
@@ -246,15 +249,15 @@ class FragSimulacion : Fragment() {
                 if ((posibilidades <= 20 && nivel == "Experto") ||
                     (posibilidades <= 50 && nivel == "Intermedio") ||
                     (posibilidades <= 70 && nivel == "Novato")) {
-                    binding.tvSimulacion.append("\n - LA HABILIDAD DE LOS ENEMIGOS TE SUPERA Y TE ACABAN DERRIBADO")
-                    binding.tvSimulacion.append("\n *** HAS MUERTO, MISION FALLIDA ***")
+                    binding.tvSimulacion.append("\n - "+resources.getString(R.string.ataqueObjetivosMal))
+                    binding.tvSimulacion.append("\n *** "+resources.getString(R.string.hasMuerto)+" ***")
                     bajarScrollBar()
                     break
                 } else {
                     if (tipo == "Combate"){
-                        binding.tvSimulacion.append("\n - Destruyes al caza enemigo")
+                        binding.tvSimulacion.append("\n - "+resources.getString(R.string.ataqueCombateBien))
                     }else{
-                        binding.tvSimulacion.append("\n - Consigues bombardear la base")
+                        binding.tvSimulacion.append("\n - "+resources.getString(R.string.ataqueBombardeoBien))
                     }
                     bajarScrollBar()
                     objetivosDestruidos++
@@ -263,8 +266,8 @@ class FragSimulacion : Fragment() {
 
             binding.pbarProgresoSimulacion.progress = (objetivosDestruidos.toDouble()/objetivos.toDouble()*100.0).toInt()
             if (objetivosDestruidos == objetivos){
-                binding.tvSimulacion.append("\n - TODOS LOS OBJETIVOS DESTRUIDOS")
-                binding.tvSimulacion.append("\n *** MISION COMPLETADA CON EXITO ***")
+                binding.tvSimulacion.append("\n - "+resources.getString(R.string.objetivosCompletado))
+                binding.tvSimulacion.append("\n *** "+resources.getString(R.string.misionCompletada)+" ***")
                 bajarScrollBar()
                 haGanado = true
                 break

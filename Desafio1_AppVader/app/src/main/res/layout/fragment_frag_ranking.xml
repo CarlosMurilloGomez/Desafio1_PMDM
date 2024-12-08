@@ -24,7 +24,7 @@
         android:layout_height="274dp"
         android:backgroundTint="@color/fondo_edit_text"
         android:backgroundTintMode="add"
-        android:text="TODAVÍA NO HAY PILOTOS EN LA BASE DE DATOS"
+        android:text="@string/noHayPilotos"
         android:textAlignment="center"
         android:textSize="50sp"
         android:visibility="invisible"

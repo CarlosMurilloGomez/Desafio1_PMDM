@@ -43,16 +43,22 @@ class FragAsignarMisiones : Fragment() {
         val root: View = binding.root
         val idMision = arguments?.getInt("idMision")
         var datosMision = ""
+
         var tipos = ArrayList<Tipo>()
-        fragAsignarMisionesViewModel.obtenerTiposMisionVM()
         fragAsignarMisionesViewModel.tipos.observe(viewLifecycleOwner){
-            tipos = it as ArrayList<Tipo>
+            for (tipo in it){
+                when (tipo.id) {
+                    1 -> tipos.add(Tipo(1, getString(R.string.tipoVuelo)))
+                    2 -> tipos.add(Tipo(2, getString(R.string.tipoBombardeo)))
+                    3 -> tipos.add(Tipo(3, getString(R.string.tipoCombate)))
+                }
+            }
             fragAsignarMisionesViewModel.obtenerMisionPorIdVM(idMision!!)
         }
 
         fragAsignarMisionesViewModel.mision.observe(viewLifecycleOwner){
             if (it != null) {
-                datosMision += " -Nombre: ${it.nombre}\n -Experiencia: ${it.exp}\n -Nave: ${it.naveAsig}"
+                datosMision += " -"+getString(R.string.nombre)+": ${it.nombre}\n -"+getString(R.string.exp)+": ${it.exp}\n -"+getString(R.string.nave)+": ${it.naveAsig}"
                 when (it.tipo) {
                     1 -> fragAsignarMisionesViewModel.obtenerVueloPorIdVM(it.id)
                     2 -> fragAsignarMisionesViewModel.obtenerBombardeoPorIdVM(it.id)
@@ -62,35 +68,35 @@ class FragAsignarMisiones : Fragment() {
         }
         fragAsignarMisionesViewModel.vuelo.observe(viewLifecycleOwner){
             if (it != null){
-                var carga = "Si"
-                var pasajeros = "Si"
+                var carga = getString(R.string.si)
+                var pasajeros = getString(R.string.si)
                 if (it.carga == 0){
-                    carga = "No"
+                    carga = getString(R.string.no)
                 }
                 if (it.pasajeros == 0){
-                    pasajeros = "No"
+                    pasajeros = getString(R.string.no)
                 }
-                datosMision += "\n -Tipo: Vuelo\n -Duracion: ${it.duracion}\n- Carga: ${carga}\n- Pasajeros: ${pasajeros}"
+                datosMision += "\n -"+getString(R.string.tipo)+": "+getString(R.string.tipoVuelo)+"\n -"+getString(R.string.duracion)+": ${it.duracion}\n- "+getString(R.string.carga)+": ${carga}\n- "+getString(R.string.pasajeros)+": ${pasajeros}"
                 binding.tvDatosMisionAsigMi.text = datosMision
             }
         }
         fragAsignarMisionesViewModel.bombardeo.observe(viewLifecycleOwner){
             if (it != null){
-                var carga = "Si"
-                var pasajeros = "Si"
+                var carga = getString(R.string.si)
+                var pasajeros = getString(R.string.si)
                 if (it.carga == 0){
-                    carga = "No"
+                    carga = getString(R.string.no)
                 }
                 if (it.pasajeros == 0){
-                    pasajeros = "No"
+                    pasajeros = getString(R.string.no)
                 }
-                datosMision += "\n -Tipo: Bombardeo\n -Objetivos: ${it.objetivos}\n -Carga: ${carga}\n -Pasajeros: ${pasajeros}"
+                datosMision += "\n -"+getString(R.string.tipo)+": "+getString(R.string.tipoBombardeo)+"\n -"+getString(R.string.objetivos)+": ${it.objetivos}\n -"+getString(R.string.carga)+": ${carga}\n -"+getString(R.string.pasajeros)+": ${pasajeros}"
                 binding.tvDatosMisionAsigMi.text = datosMision
             }
         }
         fragAsignarMisionesViewModel.caza.observe(viewLifecycleOwner) {
             if (it != null) {
-                datosMision += "\n -Tipo: Combate de caza\n -Objetivos: ${it.objetivos}"
+                datosMision += "\n -"+getString(R.string.tipo)+": "+getString(R.string.tipoCombate)+"\n -"+getString(R.string.objetivos)+": ${it.objetivos}"
                 binding.tvDatosMisionAsigMi.text = datosMision
             }
         }
@@ -116,7 +122,7 @@ class FragAsignarMisiones : Fragment() {
         }
         fragAsignarMisionesViewModel.piloto.observe(viewLifecycleOwner){
             if (it != null){
-                binding.tvDatosPilotoAsigMi.text = "\n -Nombre: ${it.nombre}\n -Edad: ${it.edad}\n -Experiencia: ${it.experiencia}"
+                binding.tvDatosPilotoAsigMi.text = "\n -"+getString(R.string.nombre)+": ${it.nombre}\n -"+getString(R.string.edad)+": ${it.edad}\n -"+getString(R.string.exp)+": ${it.experiencia}"
                 Glide.with(requireContext()).load(it.foto).into(binding.ivFotoPilotoAsigMi)
             }
 
@@ -131,8 +137,8 @@ class FragAsignarMisiones : Fragment() {
         fragAsignarMisionesViewModel.errorCode.observe(viewLifecycleOwner){error->
             if (error != null){
                 when(error){
-                    201 -> Toast.makeText(requireContext(), "Mision asignada correctamente", Toast.LENGTH_SHORT).show()
-                    409 -> Toast.makeText(requireContext(), "Error al asignar", Toast.LENGTH_SHORT).show()
+                    201 -> Toast.makeText(requireContext(), getString(R.string.msjMisionAsignada), Toast.LENGTH_SHORT).show()
+                    409 -> Toast.makeText(requireContext(), getString(R.string.errAsignar), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -150,9 +156,11 @@ class FragAsignarMisiones : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val idMision = arguments?.getInt("idMision")
 
+        fragAsignarMisionesViewModel.obtenerTiposMisionVM()
+
         binding.btnAsignarAsigMi.setOnClickListener {
             if (binding.spElegirPilotoAsigMi.selectedItem == null){
-                Toast.makeText(requireContext(), "Selecciona un piloto", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.errSeleccPiloto), Toast.LENGTH_SHORT).show()
             }else {
                 fragAsignarMisionesViewModel.asignarMisionVM(Asignacion(0, idMision!!, fragAsignarMisionesViewModel.piloto.value!!.id, 0))
             }

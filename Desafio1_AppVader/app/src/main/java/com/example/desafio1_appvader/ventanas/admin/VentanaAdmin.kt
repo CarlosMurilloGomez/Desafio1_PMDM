@@ -54,36 +54,36 @@ class VentanaAdmin : AppCompatActivity() {
         navController.addOnDestinationChangedListener{ _, destination, _ ->
             when (destination.id) {
                 R.id.nav_fragRanking -> {
-                    supportActionBar?.title = "RANKING"
+                    supportActionBar?.title = resources.getString(R.string.tituloRanking)
                     idFragVolver = R.id.nav_fragRanking
                 }
                 R.id.nav_fragBajaPiloto -> {
-                    supportActionBar?.title = "LISTA DE PILOTOS"
+                    supportActionBar?.title = resources.getString(R.string.tituloBajaPiloto)
                     idFragVolver = R.id.nav_fragBajaPiloto
                 }
                 R.id.nav_fragBajaNave -> {
-                    supportActionBar?.title = "LISTA DE NAVES"
+                    supportActionBar?.title = resources.getString(R.string.tituloBajaNave)
                     idFragVolver = R.id.nav_fragBajaNave
                 }
                 R.id.nav_fragBajaMisiones -> {
-                    supportActionBar?.title = "LISTA DE MISIONES"
+                    supportActionBar?.title = resources.getString(R.string.tituloBajaMisiones)
                     idFragVolver = R.id.nav_fragBajaMisiones
 
                 }
                 R.id.nav_fragAltaPiloto -> {
-                    supportActionBar?.title = "REGISTRAR PILOTO"
+                    supportActionBar?.title = resources.getString(R.string.tituloAltaPiloto)
                     idFragVolver = R.id.nav_fragAltaPiloto
                 }
                 R.id.nav_fragAltaNave -> {
-                    supportActionBar?.title = "REGISTRAR NAVE"
+                    supportActionBar?.title = resources.getString(R.string.tituloAltaNave)
                     idFragVolver = R.id.nav_fragAltaNave
                 }
                 R.id.nav_fragAltaMisiones -> {
-                    supportActionBar?.title = "REGISTRAR MISION"
+                    supportActionBar?.title = resources.getString(R.string.tituloAltaMisiones)
                     idFragVolver = R.id.nav_fragAltaMisiones
                 }
                 R.id.nav_fragAsignarMisiones -> {
-                    supportActionBar?.title = "ASIGNAR MISION"
+                    supportActionBar?.title = resources.getString(R.string.tituloAsignarMisiones)
                 }
             }
         }
@@ -126,11 +126,11 @@ class VentanaAdmin : AppCompatActivity() {
             }
             R.id.nav_fragPerfil -> {
                 navController.navigate(R.id.nav_fragPerfil)
-                supportActionBar?.title = "PERFIL"
+                supportActionBar?.title = resources.getString(R.string.tituloPerfil)
                 true
             }
             R.id.nav_cerrarSesion -> {
-                Toast.makeText(this, "Cerrando Sesión", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, resources.getString(R.string.msjCerrarSesion), Toast.LENGTH_SHORT).show()
                 finish()
                 true
             }

@@ -79,8 +79,8 @@ class fragActivarCuenta : Fragment() {
         fragActivarCuentaViewModel.errorCode.observe(viewLifecycleOwner){ error ->
             if (error != null) {
                 when (error) {
-                    400 -> Toast.makeText(requireContext(), "Error al activar la cuenta", Toast.LENGTH_SHORT).show()
-                    202 -> Toast.makeText(requireContext(),"Perfil actualizado con exito", Toast.LENGTH_SHORT).show()
+                    400 -> Toast.makeText(requireContext(), getString(R.string.errActivar), Toast.LENGTH_SHORT).show()
+                    202 -> Toast.makeText(requireContext(),getString(R.string.msjPerfilActualizado), Toast.LENGTH_SHORT).show()
                 }
                 fragActivarCuentaViewModel.restablecerError()
             }
@@ -119,9 +119,9 @@ class fragActivarCuenta : Fragment() {
         }
         binding.btnActivarActivar.setOnClickListener {
             if (binding.etUsuarioActivar.text.isNullOrBlank() || binding.etPaswordActivar.text.isNullOrBlank() || binding.etConfPaswordActivar.text.isNullOrBlank() ){
-                Toast.makeText(requireContext(), "Rellena todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), resources.getString(R.string.errRellenaCampos), Toast.LENGTH_SHORT).show()
             }else if(binding.etPaswordActivar.text.toString() != binding.etConfPaswordActivar.text.toString()){
-                Toast.makeText(requireContext(), "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), resources.getString(R.string.errPassword), Toast.LENGTH_SHORT).show()
             }else if (binding.ivPerfilActivar.drawable == null) {
                 fragActivarCuentaViewModel.modificarPerfilUsuarioVM(UsuarioPerfil(mainViewModel.usuarioLogeado.value!!.id, binding.etPaswordActivar.text.toString(), mainViewModel.usuarioLogeado.value!!.foto))
             }else{

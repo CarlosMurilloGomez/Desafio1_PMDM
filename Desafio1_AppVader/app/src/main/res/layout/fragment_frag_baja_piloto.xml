@@ -39,7 +39,7 @@
         style="@style/Widget.Material3.Button.Icon"
         android:layout_width="206dp"
         android:layout_height="63dp"
-        android:text="Registrar"
+        android:text="@string/registrar"
         android:textSize="25sp"
         app:icon="@drawable/ic_registrar"
         app:iconSize="30dp"

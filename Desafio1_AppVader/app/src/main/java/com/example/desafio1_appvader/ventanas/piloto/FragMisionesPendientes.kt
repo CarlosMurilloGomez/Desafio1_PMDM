@@ -66,17 +66,17 @@ class FragMisionesPendientes : Fragment() {
 
         fragMisionesPendientesViewModel.vuelo.observe(viewLifecycleOwner){
             if (it != null){
-                var carga = "Si"
-                var pasajeros = "Si"
+                var carga = resources.getString(R.string.si)
+                var pasajeros = resources.getString(R.string.si)
                 if (it.carga == 0){
-                    carga = "No"
+                    carga = resources.getString(R.string.no)
                 }
                 if (it.pasajeros == 0){
-                    pasajeros = "No"
+                    pasajeros = resources.getString(R.string.no)
                 }
                 AlertDialog.Builder(context)
-                    .setTitle("Vuelo con id: ${it.idMision}")
-                    .setMessage(" -Carga: $carga\n\n -Pasajeros: $pasajeros\n\n -Duracion: ${it.duracion}min")
+                    .setTitle(resources.getString(R.string.tipoVuelo)+" "+resources.getString(R.string.con)+" id: ${it.idMision}")
+                    .setMessage(" -"+resources.getString(R.string.carga)+": $carga\n\n -"+resources.getString(R.string.pasajeros)+": $pasajeros\n\n -"+resources.getString(R.string.duracion)+": ${it.duracion}min")
                     .setPositiveButton("Ok", DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
                         dialog.dismiss()
                     }))
@@ -87,17 +87,17 @@ class FragMisionesPendientes : Fragment() {
         }
         fragMisionesPendientesViewModel.bombardeo.observe(viewLifecycleOwner){
             if (it != null){
-                var carga = "Si"
-                var pasajeros = "Si"
+                var carga = resources.getString(R.string.si)
+                var pasajeros = resources.getString(R.string.si)
                 if (it.carga == 0){
-                    carga = "No"
+                    carga = resources.getString(R.string.no)
                 }
                 if (it.pasajeros == 0){
-                    pasajeros = "No"
+                    pasajeros = resources.getString(R.string.no)
                 }
                 AlertDialog.Builder(context)
-                    .setTitle("Bombardeo con id: ${it.idMision}")
-                    .setMessage(" -Carga: $carga\n\n -Pasajeros: $pasajeros\n\n -Objetivos: ${it.objetivos}")
+                    .setTitle(resources.getString(R.string.tipoBombardeo)+" "+resources.getString(R.string.con)+" id: ${it.idMision}")
+                    .setMessage(" -"+resources.getString(R.string.carga)+": $carga\n\n -"+resources.getString(R.string.pasajeros)+": $pasajeros\n\n -"+resources.getString(R.string.objetivos)+": ${it.objetivos}")
                     .setPositiveButton("Ok", DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
                         dialog.dismiss()
                     }))
@@ -108,8 +108,8 @@ class FragMisionesPendientes : Fragment() {
         fragMisionesPendientesViewModel.caza.observe(viewLifecycleOwner){
             if (it != null){
                 AlertDialog.Builder(context)
-                    .setTitle("Combate de caza con id: ${it.idMision}")
-                    .setMessage(" -Objetivos: ${it.objetivos}")
+                    .setTitle(resources.getString(R.string.tipoCombate)+" "+resources.getString(R.string.con)+" id: ${it.idMision}")
+                    .setMessage(" -"+resources.getString(R.string.objetivos)+": ${it.objetivos}")
                     .setPositiveButton("Ok", DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
                         dialog.dismiss()
                     }))

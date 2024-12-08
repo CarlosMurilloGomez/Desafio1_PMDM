@@ -45,10 +45,9 @@ class FragBajaPiloto : Fragment() {
         fragBajaPilotoViewModel.errorCode.observe(viewLifecycleOwner){error ->
             if (error!=null) {
                 when (error) {
-                    400 -> Toast.makeText(requireContext(), "Error al introducir los datos", Toast.LENGTH_SHORT).show()
-                    404 -> Toast.makeText(requireContext(), "No existe el usuario", Toast.LENGTH_SHORT).show()
-                    409 -> Toast.makeText(requireContext(), "Error al eliminar", Toast.LENGTH_SHORT).show()
-                    202 -> Toast.makeText(requireContext(),"Usuario Eliminado",Toast.LENGTH_SHORT).show()
+                    404 -> Toast.makeText(requireContext(), getString(R.string.errUsuario2), Toast.LENGTH_SHORT).show()
+                    409 -> Toast.makeText(requireContext(), getString(R.string.errEliminar), Toast.LENGTH_SHORT).show()
+                    202 -> Toast.makeText(requireContext(),getString(R.string.msjUsuarioEliminado),Toast.LENGTH_SHORT).show()
                 }
                 fragBajaPilotoViewModel.restablecerError()
             }

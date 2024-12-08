@@ -13,7 +13,7 @@
         android:layout_height="297dp"
         android:backgroundTint="@color/fondo_edit_text"
         android:backgroundTintMode="add"
-        android:text="TODAVÍA NO TIENES ASIGNADA NIGUNA MISIÓN"
+        android:text="@string/noHayMisionesAsignadas"
         android:textAlignment="center"
         android:textSize="50sp"
         android:visibility="invisible"

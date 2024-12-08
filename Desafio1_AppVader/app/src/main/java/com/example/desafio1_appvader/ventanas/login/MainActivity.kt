@@ -31,11 +31,11 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.nav_fragLogin -> {
-                    binding.toolBarLogin.title = "INICIAR SESIÓN"
+                    binding.toolBarLogin.title = resources.getString(R.string.tituloLogin)
 
                 }
                 R.id.nav_fragActivarCuenta -> {
-                    binding.toolBarLogin.title = "ACTIVAR CUENTA"
+                    binding.toolBarLogin.title = resources.getString(R.string.tituloActivarCuenta)
                 }
             }
         }

@@ -62,8 +62,8 @@ class FragRanking : Fragment() {
         fragRankingViewModel.estadisticas.observe(viewLifecycleOwner){
             if (it != null) {
                 AlertDialog.Builder(context)
-                    .setTitle("Usuario con id: ${it.idUsuario}")
-                    .setMessage(" -Nivel: ${it.nivel}\n\n -Misiones pendientes: ${it.misionesPendientes}\n\n -Misiones completadas: ${it.misionesCompletadas}\n\n -Misiones fallidas: ${it.misionesFallidas}")
+                    .setTitle(resources.getString(R.string.usuario)+" "+resources.getString(R.string.con)+" id: ${it.idUsuario}")
+                    .setMessage(" -"+resources.getString(R.string.nivel)+": ${it.nivel}\n\n -"+resources.getString(R.string.misionesPendientes)+": ${it.misionesPendientes}\n\n -"+resources.getString(R.string.misionesCompletadas)+": ${it.misionesCompletadas}\n\n -"+resources.getString(R.string.misionesFallidas)+": ${it.misionesFallidas}")
                     .setPositiveButton("Ok", DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
                         dialog.dismiss()
                     }))

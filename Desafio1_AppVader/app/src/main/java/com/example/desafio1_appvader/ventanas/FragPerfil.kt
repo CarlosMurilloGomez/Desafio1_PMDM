@@ -19,6 +19,7 @@ import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.activity.result.launch
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
+import com.example.desafio1_appvader.R
 import com.example.desafio1_appvader.api.MainViewModel
 import com.example.desafio1_appvader.databinding.FragmentFragPerfilBinding
 import com.example.desafio1_appvader.modelo.usuario.UsuarioPerfil
@@ -70,13 +71,20 @@ class FragPerfil : Fragment() {
 
         fragPerfilViewModel.rol.observe(viewLifecycleOwner){ cadena ->
             if (cadena != null) {
-                binding.etRolPerfil.setText(cadena)
+                when (cadena){
+                    "Piloto" -> binding.etRolPerfil.setText(resources.getString(R.string.piloto))
+                    "Administrador" -> binding.etRolPerfil.setText(resources.getString(R.string.administrador))
+                }
                 fragPerfilViewModel.restablecerRol()
             }
         }
         fragPerfilViewModel.nivel.observe(viewLifecycleOwner){ cadena ->
             if (cadena != null) {
-                binding.etNivelPerfil.setText(cadena)
+                when (cadena){
+                    "Novato" -> binding.etNivelPerfil.setText(resources.getString(R.string.novato))
+                    "Intermedio" -> binding.etNivelPerfil.setText(resources.getString(R.string.intermedio))
+                    "Experto" -> binding.etNivelPerfil.setText(resources.getString(R.string.experto))
+                }
                 fragPerfilViewModel.restablecerNivel()
             }
         }
@@ -90,9 +98,9 @@ class FragPerfil : Fragment() {
         fragPerfilViewModel.errorCode.observe(viewLifecycleOwner){ error ->
             if (error != null) {
                 when (error) {
-                    409 -> Toast.makeText(requireContext(),"El nombre de usuario ya existe",Toast.LENGTH_SHORT).show()
-                    400 -> Toast.makeText(requireContext(), "Error al alcualizar los datos", Toast.LENGTH_SHORT).show()
-                    202 -> Toast.makeText(requireContext(),"Datos actualizados", Toast.LENGTH_SHORT).show()
+                    409 -> Toast.makeText(requireContext(),getString(R.string.errUsuario),Toast.LENGTH_SHORT).show()
+                    400 -> Toast.makeText(requireContext(), getString(R.string.errActualizarPerfil), Toast.LENGTH_SHORT).show()
+                    202 -> Toast.makeText(requireContext(),getString(R.string.msjPerfilActualizado), Toast.LENGTH_SHORT).show()
                 }
                 fragPerfilViewModel.restablecerError()
             }
@@ -135,7 +143,7 @@ class FragPerfil : Fragment() {
         }
         binding.btnAceptarPerfil.setOnClickListener {
             if (binding.etPaswordPerfil.text.isNullOrBlank()|| binding.ivPerfilPerfil.drawable == null ){
-                Toast.makeText(requireContext(), "Rellena todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), resources.getString(R.string.errRellenaCampos), Toast.LENGTH_SHORT).show()
             }else {
                 val bitmap2 = (binding.ivPerfilPerfil.drawable as BitmapDrawable).bitmap
                 val file = File(requireContext().cacheDir, "temp_image.jpg")
@@ -166,14 +174,17 @@ class FragPerfil : Fragment() {
         }
         binding.btnEliminarPerfil.setOnClickListener {
             AlertDialog.Builder(context)
-                .setTitle("No puedes escapar")
-                .setMessage("¿De veras pensabas que ibas a desertar del imperio tan facilmente?")
-                .setNeutralButton("Señor, si señor", DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int -> })).show()
+                .setTitle(resources.getString(R.string.noPuedesEscapar))
+                .setMessage(resources.getString(R.string.desertar))
+                .setNeutralButton(resources.getString(R.string.siSenior), DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int -> })).show()
         }
 
     }
 
     private fun cargarDatos(){
+        if (mainViewModel.usuarioLogeado.value == null){
+            Thread.sleep(100)
+        }
         var usuario = mainViewModel.usuarioLogeado.value!!
         binding.etUsuarioPerfil.setText(usuario.nombre)
         binding.etEdadPerfil.setText(usuario.edad.toString())

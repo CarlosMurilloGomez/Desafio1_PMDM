@@ -52,15 +52,21 @@ class FragBajaMisiones : Fragment() {
 
         var tipos = ArrayList<Tipo>()
         fragBajaMisionesViewModel.tipos.observe(viewLifecycleOwner){
-            tipos = it as ArrayList<Tipo>
+            for (tipo in it){
+                when (tipo.id) {
+                    1 -> tipos.add(Tipo(1, resources.getString(R.string.tipoVuelo)))
+                    2 -> tipos.add(Tipo(2, resources.getString(R.string.tipoBombardeo)))
+                    3 -> tipos.add(Tipo(3, resources.getString(R.string.tipoCombate)))
+                }
+            }
             fragBajaMisionesViewModel.obtenerMisionesVM()
         }
         fragBajaMisionesViewModel.errorCode.observe(viewLifecycleOwner){error ->
             if (error!=null) {
                 when (error) {
-                    404 -> Toast.makeText(requireContext(), "No existe la mision", Toast.LENGTH_SHORT).show()
-                    409 -> Toast.makeText(requireContext(), "Error al eliminar", Toast.LENGTH_SHORT).show()
-                    202 -> Toast.makeText(requireContext(),"Mision Eliminada", Toast.LENGTH_SHORT).show()
+                    404 -> Toast.makeText(requireContext(), getString(R.string.errMision), Toast.LENGTH_SHORT).show()
+                    409 -> Toast.makeText(requireContext(), getString(R.string.errEliminar), Toast.LENGTH_SHORT).show()
+                    202 -> Toast.makeText(requireContext(),getString(R.string.msjMisionEliminada), Toast.LENGTH_SHORT).show()
                 }
                 fragBajaMisionesViewModel.restablecerError()
             }
@@ -88,17 +94,17 @@ class FragBajaMisiones : Fragment() {
 
         fragBajaMisionesViewModel.vuelo.observe(viewLifecycleOwner){
             if (it != null){
-                var carga = "Si"
-                var pasajeros = "Si"
+                var carga = resources.getString(R.string.si)
+                var pasajeros = resources.getString(R.string.si)
                 if (it.carga == 0){
-                    carga = "No"
+                    carga = resources.getString(R.string.no)
                 }
                 if (it.pasajeros == 0){
-                    pasajeros = "No"
+                    pasajeros = resources.getString(R.string.no)
                 }
                 AlertDialog.Builder(context)
-                    .setTitle("Vuelo con id: ${it.idMision}")
-                    .setMessage(" -Carga: $carga\n\n -Pasajeros: $pasajeros\n\n -Duracion: ${it.duracion}min")
+                    .setTitle(resources.getString(R.string.tipoVuelo)+" "+resources.getString(R.string.con)+" id: ${it.idMision}")
+                    .setMessage(" -"+resources.getString(R.string.carga)+": $carga\n\n -"+resources.getString(R.string.pasajeros)+": $pasajeros\n\n -"+resources.getString(R.string.duracion)+": ${it.duracion}min")
                     .setPositiveButton("Ok", DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
                         dialog.dismiss()
                     }))
@@ -108,17 +114,17 @@ class FragBajaMisiones : Fragment() {
         }
         fragBajaMisionesViewModel.bombardeo.observe(viewLifecycleOwner){
             if (it != null){
-                var carga = "Si"
-                var pasajeros = "Si"
+                var carga = resources.getString(R.string.si)
+                var pasajeros = resources.getString(R.string.si)
                 if (it.carga == 0){
-                    carga = "No"
+                    carga = resources.getString(R.string.no)
                 }
                 if (it.pasajeros == 0){
-                    pasajeros = "No"
+                    pasajeros = resources.getString(R.string.no)
                 }
                 AlertDialog.Builder(context)
-                    .setTitle("Bombardeo con id: ${it.idMision}")
-                    .setMessage(" -Carga: $carga\n\n -Pasajeros: $pasajeros\n\n -Objetivos: ${it.objetivos}")
+                    .setTitle(resources.getString(R.string.tipoBombardeo)+" "+resources.getString(R.string.con)+" id: ${it.idMision}")
+                    .setMessage(" -"+resources.getString(R.string.carga)+": $carga\n\n -"+resources.getString(R.string.pasajeros)+": $pasajeros\n\n -"+resources.getString(R.string.objetivos)+": ${it.objetivos}")
                     .setPositiveButton("Ok", DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
                         dialog.dismiss()
                     }))
@@ -129,8 +135,8 @@ class FragBajaMisiones : Fragment() {
         fragBajaMisionesViewModel.caza.observe(viewLifecycleOwner){
             if (it != null){
                 AlertDialog.Builder(context)
-                    .setTitle("Combate de caza con id: ${it.idMision}")
-                    .setMessage(" -Objetivos: ${it.objetivos}")
+                    .setTitle(resources.getString(R.string.tipoCombate)+" "+resources.getString(R.string.con)+" id: ${it.idMision}")
+                    .setMessage(" -"+resources.getString(R.string.objetivos)+": ${it.objetivos}")
                     .setPositiveButton("Ok", DialogInterface.OnClickListener(function = { dialog: DialogInterface, which: Int ->
                         dialog.dismiss()
                     }))

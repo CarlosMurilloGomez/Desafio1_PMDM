@@ -74,7 +74,13 @@ class FragAltaNave : Fragment() {
         var tipos = ArrayList<Tipo>()
         fragAltaNaveViewModel.obtenerTiposNavesVM()
         fragAltaNaveViewModel.tipos.observe(viewLifecycleOwner){
-            tipos = it as ArrayList<Tipo>
+            for (tipo in it){
+                when (tipo.id) {
+                    1 -> tipos.add(Tipo(1, getString(R.string.tipoCaza)))
+                    2 -> tipos.add(Tipo(2, getString(R.string.tipoBombardero)))
+                    3 -> tipos.add(Tipo(3, getString(R.string.tipoNaveTransporte)))
+                }
+            }
             val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, tipos)
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.spTipoAltaNa.adapter = adapter
@@ -102,9 +108,9 @@ class FragAltaNave : Fragment() {
         fragAltaNaveViewModel.errorCode.observe(viewLifecycleOwner){error->
             if (error != null){
                 when(error){
-                    400 -> Toast.makeText(requireContext(), "La matricula ya existe", Toast.LENGTH_SHORT).show()
-                    201 -> Toast.makeText(requireContext(), "Nave registrada correctamente", Toast.LENGTH_SHORT).show()
-                    409 -> Toast.makeText(requireContext(), "Error al registrar", Toast.LENGTH_SHORT).show()
+                    400 -> Toast.makeText(requireContext(), getString(R.string.errMatricula), Toast.LENGTH_SHORT).show()
+                    201 -> Toast.makeText(requireContext(), getString(R.string.msjNaveRegistrada), Toast.LENGTH_SHORT).show()
+                    409 -> Toast.makeText(requireContext(), getString(R.string.errRegistrar), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -139,7 +145,7 @@ class FragAltaNave : Fragment() {
         }
         binding.btnRegistrarAltaNa.setOnClickListener {
             if (binding.etMatriculaAltaNa.text.isNullOrEmpty()){
-                Toast.makeText(requireContext(), "Rellena todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.errRellenaCampos), Toast.LENGTH_SHORT).show()
             }else {
                 if (binding.ivFotoAltaNa.drawable == null){
                     registrarNave("")
