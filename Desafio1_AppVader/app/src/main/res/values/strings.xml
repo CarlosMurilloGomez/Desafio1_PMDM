@@ -81,7 +81,7 @@
     <string name="activar">Activar</string>
     <string name="cancelar">Cancelar</string>
     <string name="confirmarPassword">Confirmar contraseña</string>
-    <string name="numObjetivos">Nº Objetivos</string>
+    <string name="numObjetivos">Nº Objetivos:</string>
     <string name="registrar">Registrar</string>
     <string name="matricula">Matrícula</string>
     <string name="passwordProvisional">Contraseña provisional</string>
@@ -142,4 +142,5 @@
     <string name="errAddExperiencia">Error al añadir la experiencia al usuario</string>
     <string name="errActualizarPerfil">Error al actualizar los datos del perfil</string>
     <string name="filtrar">Filtrar</string>
+    <string name="noHayNavesCondiciones">(No existen naves que cumplan esas condiciones)</string>
 </resources>

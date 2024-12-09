@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
@@ -65,33 +66,36 @@ class FragAltaMisiones : Fragment() {
                 val selectedItem = parent.getItemAtPosition(position)
                 when ((selectedItem as Tipo).id) {
                     1 -> {
-                        binding.chBoxCargaAltaMi.visibility = View.VISIBLE
-                        binding.chBoxPasajerosAltaMi.visibility = View.VISIBLE
+                        binding.swCargaAltaMi.visibility = View.VISIBLE
+                        binding.swPasajerosAltaMi.visibility = View.VISIBLE
                         binding.etDuracionAltaMi.visibility = View.VISIBLE
                         binding.textInputLayout2.visibility = View.VISIBLE
 
-                        binding.etObjetivosAltaMi.visibility = View.GONE
-                        binding.textInputLayout3.visibility = View.GONE
-                        binding.etObjetivosAltaMi.setText("")
+                        binding.lbNumObjetivosAltaMi.visibility = View.GONE
+                        binding.sbNumObjetivosAltaMi.visibility = View.GONE
+                        binding.tvNumObjetivosAltaMi.visibility = View.GONE
+                        binding.tvNumObjetivosAltaMi.text = "0"
                     }
                     2 -> {
-                        binding.chBoxCargaAltaMi.visibility = View.VISIBLE
-                        binding.chBoxPasajerosAltaMi.visibility = View.VISIBLE
-                        binding.etObjetivosAltaMi.visibility = View.VISIBLE
-                        binding.textInputLayout3.visibility = View.VISIBLE
+                        binding.swCargaAltaMi.visibility = View.VISIBLE
+                        binding.swPasajerosAltaMi.visibility = View.VISIBLE
+                        binding.lbNumObjetivosAltaMi.visibility = View.VISIBLE
+                        binding.sbNumObjetivosAltaMi.visibility = View.VISIBLE
+                        binding.tvNumObjetivosAltaMi.visibility = View.VISIBLE
 
                         binding.etDuracionAltaMi.visibility = View.GONE
                         binding.textInputLayout2.visibility = View.GONE
                         binding.etDuracionAltaMi.setText("")
                     }
                     3 -> {
-                        binding.etObjetivosAltaMi.visibility = View.VISIBLE
-                        binding.textInputLayout3.visibility = View.VISIBLE
+                        binding.lbNumObjetivosAltaMi.visibility = View.VISIBLE
+                        binding.sbNumObjetivosAltaMi.visibility = View.VISIBLE
+                        binding.tvNumObjetivosAltaMi.visibility = View.VISIBLE
 
-                        binding.chBoxCargaAltaMi.visibility = View.GONE
-                        binding.chBoxCargaAltaMi.isChecked = false
-                        binding.chBoxPasajerosAltaMi.visibility = View.GONE
-                        binding.chBoxPasajerosAltaMi.isChecked = false
+                        binding.swCargaAltaMi.visibility = View.GONE
+                        binding.swCargaAltaMi.isChecked = false
+                        binding.swPasajerosAltaMi.visibility = View.GONE
+                        binding.swPasajerosAltaMi.isChecked = false
                         binding.etDuracionAltaMi.visibility = View.GONE
                         binding.textInputLayout2.visibility = View.GONE
                         binding.etDuracionAltaMi.setText("")
@@ -106,6 +110,11 @@ class FragAltaMisiones : Fragment() {
         var naves = ArrayList<String>()
         fragAltaMisionesViewModel.naves.observe(viewLifecycleOwner){
             if (it != null){
+                if (it == emptyList<String>()){
+                    binding.lbNoHayNavesAltaMi.visibility = View.VISIBLE
+                }else{
+                    binding.lbNoHayNavesAltaMi.visibility = View.GONE
+                }
                 naves.clear()
                 for (nave in it){
                     naves.add(nave.matricula)
@@ -127,16 +136,16 @@ class FragAltaMisiones : Fragment() {
             if (id != null){
                 var carga = 0
                 var pasajeros = 0
-                if (binding.chBoxCargaAltaMi.isChecked){
+                if (binding.swCargaAltaMi.isChecked){
                     carga= 1
                 }
-                if (binding.chBoxPasajerosAltaMi.isChecked){
+                if (binding.swPasajerosAltaMi.isChecked){
                     pasajeros = 1
                 }
                 when ((binding.spTipoAltaMi.selectedItem as Tipo).id) {
                     1 -> fragAltaMisionesViewModel.registrarVueloVM(MisionVuelo(id, binding.etDuracionAltaMi.text.toString().toInt(), carga, pasajeros))
-                    2 -> fragAltaMisionesViewModel.registrarBombardeoVM(MisionBombardeo(id, binding.etObjetivosAltaMi.text.toString().toInt(), carga, pasajeros))
-                    3 -> fragAltaMisionesViewModel.registrarCazaVM(MisionCaza(id, binding.etObjetivosAltaMi.text.toString().toInt()))
+                    2 -> fragAltaMisionesViewModel.registrarBombardeoVM(MisionBombardeo(id, binding.tvNumObjetivosAltaMi.text.toString().toInt(), carga, pasajeros))
+                    3 -> fragAltaMisionesViewModel.registrarCazaVM(MisionCaza(id, binding.tvNumObjetivosAltaMi.text.toString().toInt()))
                 }
             }
         }
@@ -160,19 +169,28 @@ class FragAltaMisiones : Fragment() {
 
         fragAltaMisionesViewModel.obtenerTiposMisionVM()
 
+        binding.swCargaAltaMi.setOnCheckedChangeListener { _, _ ->
+            actualizarNaves()
+        }
 
-        binding.chBoxCargaAltaMi.setOnCheckedChangeListener{ _,_ ->
+        binding.swPasajerosAltaMi.setOnCheckedChangeListener{ _,_ ->
             actualizarNaves()
         }
-        binding.chBoxPasajerosAltaMi.setOnCheckedChangeListener{ _,_ ->
-            actualizarNaves()
-        }
+
+        binding.sbNumObjetivosAltaMi.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                binding.tvNumObjetivosAltaMi.text = "$progress"
+            }
+            override fun onStartTrackingTouch(p0: SeekBar?) {}
+            override fun onStopTrackingTouch(p0: SeekBar?) {}
+
+        })
 
         binding.btnRegistrarAltaMi.setOnClickListener {
             if (binding.etNombreAltaMi.text.isNullOrEmpty() || binding.spNaveAltaMi.selectedItem == null ||
                 (binding.spTipoAltaMi.selectedItem as Tipo).id == 1 && binding.etDuracionAltaMi.text.isNullOrEmpty() ||
-                ((binding.spTipoAltaMi.selectedItem as Tipo).id == 2 && binding.etObjetivosAltaMi.text.isNullOrEmpty()) ||
-                (binding.spTipoAltaMi.selectedItem as Tipo).id == 3 && binding.etObjetivosAltaMi.text.isNullOrEmpty()){
+                ((binding.spTipoAltaMi.selectedItem as Tipo).id == 2 && binding.tvNumObjetivosAltaMi.text.toString().toInt() == 0) ||
+                (binding.spTipoAltaMi.selectedItem as Tipo).id == 3 && binding.tvNumObjetivosAltaMi.text.toString().toInt() == 0){
                 Toast.makeText(requireContext(), getString(R.string.errRellenaCampos), Toast.LENGTH_SHORT).show()
             }else {
                 var exp = calcularExperiencia((binding.spTipoAltaMi.selectedItem as Tipo).id)
@@ -190,22 +208,22 @@ class FragAltaMisiones : Fragment() {
         var exp = 0
         if (tipo == 1) {
             exp += 10
-            if (binding.chBoxCargaAltaMi.isChecked) {
+            if (binding.swCargaAltaMi.isChecked) {
                 exp += 5
             }
-            if (binding.chBoxPasajerosAltaMi.isChecked) {
+            if (binding.swPasajerosAltaMi.isChecked) {
                 exp += 10
             }
         }else if (tipo == 2){
-            exp += (5 * binding.etObjetivosAltaMi.text.toString().toInt())
-            if (binding.chBoxCargaAltaMi.isChecked) {
+            exp += (5 * binding.tvNumObjetivosAltaMi.text.toString().toInt())
+            if (binding.swCargaAltaMi.isChecked) {
                 exp += 5
             }
-            if (binding.chBoxPasajerosAltaMi.isChecked) {
+            if (binding.swPasajerosAltaMi.isChecked) {
                 exp += 10
             }
         }else if (tipo == 3){
-            exp += (10 * binding.etObjetivosAltaMi.text.toString().toInt())
+            exp += (10 * binding.tvNumObjetivosAltaMi.text.toString().toInt())
         }
         return exp
     }
@@ -213,10 +231,10 @@ class FragAltaMisiones : Fragment() {
     fun actualizarNaves(){
         var carga = 0
         var pasajeros = 0
-        if (binding.chBoxCargaAltaMi.isChecked){
+        if (binding.swCargaAltaMi.isChecked){
             carga= 1
         }
-        if (binding.chBoxPasajerosAltaMi.isChecked){
+        if (binding.swPasajerosAltaMi.isChecked){
             pasajeros = 1
         }
         var tipo = 0
