@@ -91,7 +91,7 @@ class FragPerfil : Fragment() {
 
         fragPerfilViewModel.urlfoto.observe(viewLifecycleOwner){ urlFoto ->
             if (urlFoto != null){
-                fragPerfilViewModel.modificarPerfilUsuarioVM(UsuarioPerfil(mainViewModel.usuarioLogeado.value!!.id, binding.etPaswordPerfil.text.toString(), urlFoto.replace("http://", "https://")))
+                fragPerfilViewModel.modificarPerfilUsuarioVM(UsuarioPerfil(mainViewModel.usuarioLogeado.value!!.id, binding.etPaswordPerfil.text.toString().trim(), urlFoto.replace("http://", "https://")))
                 fragPerfilViewModel.restablecerUrlFoto()
             }
         }
@@ -144,6 +144,8 @@ class FragPerfil : Fragment() {
         binding.btnAceptarPerfil.setOnClickListener {
             if (binding.etPaswordPerfil.text.isNullOrBlank()|| binding.ivPerfilPerfil.drawable == null ){
                 Toast.makeText(requireContext(), resources.getString(R.string.errRellenaCampos), Toast.LENGTH_SHORT).show()
+            }else if(binding.etPaswordPerfil.text.toString().contains(" ")) {
+                Toast.makeText(requireContext(), resources.getString(R.string.errEspacion), Toast.LENGTH_SHORT).show()
             }else {
                 val bitmap2 = (binding.ivPerfilPerfil.drawable as BitmapDrawable).bitmap
                 val file = File(requireContext().cacheDir, "temp_image.jpg")

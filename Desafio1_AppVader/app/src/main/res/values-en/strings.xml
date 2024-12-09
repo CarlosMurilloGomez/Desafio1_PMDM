@@ -144,4 +144,5 @@
     <string name="errActualizarPerfil">Error updating profile information</string>
     <string name="filtrar">Filter</string>
     <string name="noHayNavesCondiciones">(There are no ships that meet these conditions)</string>
+    <string name="errEspacion">Neither the username nor the password can contain spaces</string>
 </resources>

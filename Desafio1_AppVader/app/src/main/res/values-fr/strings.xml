@@ -144,4 +144,5 @@
     <string name="errActualizarPerfil">Erreur lors de la mise à jour du profil</string>
     <string name="filtrar">Filtre</string>
     <string name="noHayNavesCondiciones">(Aucun navire ne remplit ces conditions)</string>
+    <string name="errEspacion">Ni le nom d\'utilisateur ni le mot de passe ne peuvent contenir d\'espaces</string>
 </resources>
