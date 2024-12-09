@@ -65,7 +65,10 @@ class FragAltaPiloto : Fragment() {
         binding.btnRegistrarAltaUs.setOnClickListener {
             if (binding.etUsuarioAltaUs.text.isNullOrEmpty() || binding.etEdadAltaUs.text.isNullOrEmpty() || binding.etPasswordAltaUs.text.isNullOrEmpty() || binding.etExperienciaAltaUs.text.isNullOrEmpty()){
                 Toast.makeText(requireContext(), getString(R.string.errRellenaCampos), Toast.LENGTH_SHORT).show()
-            }else {
+            }else if(binding.etUsuarioAltaUs.text.toString().trim().contains(" ") || binding.etPasswordAltaUs.text.toString().trim().contains(" ")){
+                Toast.makeText(requireContext(), getString(R.string.errEspacion), Toast.LENGTH_SHORT).show()
+            }
+            else{
                 fragAltaPilotoViewModel.registrarUsuarioVM(Usuario(0, binding.etUsuarioAltaUs.text.toString(),  binding.etPasswordAltaUs.text.toString(), 0, "", binding.etEdadAltaUs.text.toString().toInt(), binding.etExperienciaAltaUs.text.toString().toInt(), 2))
             }
         }

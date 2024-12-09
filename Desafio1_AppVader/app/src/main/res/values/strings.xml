@@ -143,4 +143,5 @@
     <string name="errActualizarPerfil">Error al actualizar los datos del perfil</string>
     <string name="filtrar">Filtrar</string>
     <string name="noHayNavesCondiciones">(No existen naves que cumplan esas condiciones)</string>
+    <string name="errEspacion">Ni el usuario ni la contraseña pueden contener espacios</string>
 </resources>

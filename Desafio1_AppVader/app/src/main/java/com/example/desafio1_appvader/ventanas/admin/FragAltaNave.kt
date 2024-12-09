@@ -185,7 +185,7 @@ class FragAltaNave : Fragment() {
             }
         }
 
-        fragAltaNaveViewModel.registrarNaveVM(Nave(binding.etMatriculaAltaNa.text.toString(), foto, (binding.spTipoAltaNa.selectedItem as Tipo).id, carga, pasajeros))
+        fragAltaNaveViewModel.registrarNaveVM(Nave(binding.etMatriculaAltaNa.text.toString().trim(), foto, (binding.spTipoAltaNa.selectedItem as Tipo).id, carga, pasajeros))
 
 
 

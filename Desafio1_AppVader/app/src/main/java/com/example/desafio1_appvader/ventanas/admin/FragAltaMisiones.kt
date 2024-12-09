@@ -194,7 +194,7 @@ class FragAltaMisiones : Fragment() {
                 Toast.makeText(requireContext(), getString(R.string.errRellenaCampos), Toast.LENGTH_SHORT).show()
             }else {
                 var exp = calcularExperiencia((binding.spTipoAltaMi.selectedItem as Tipo).id)
-                fragAltaMisionesViewModel.registrarMisionVM(Mision(0, binding.etNombreAltaMi.text.toString(), exp, (binding.spNaveAltaMi.selectedItem as String), (binding.spTipoAltaMi.selectedItem as Tipo).id))
+                fragAltaMisionesViewModel.registrarMisionVM(Mision(0, binding.etNombreAltaMi.text.toString().trim(), exp, (binding.spNaveAltaMi.selectedItem as String), (binding.spTipoAltaMi.selectedItem as Tipo).id))
             }
         }
 
