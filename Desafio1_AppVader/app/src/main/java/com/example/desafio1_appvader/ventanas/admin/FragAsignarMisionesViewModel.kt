@@ -106,4 +106,11 @@ class FragAsignarMisionesViewModel : ViewModel() {
             _errorCode.value = response.code()
         }
     }
+
+    fun filtrarUsuariosPorNombre(nombre: String) {
+        viewModelScope.launch {
+            val response: Response<MutableList<Usuario>> = UsuarioNetwork.retrofit.filtrarUsuariosPorNombre(nombre)
+            _pilotos.value = response.body()
+        }
+    }
 }

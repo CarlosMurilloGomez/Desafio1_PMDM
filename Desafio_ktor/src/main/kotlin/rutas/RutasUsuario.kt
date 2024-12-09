@@ -139,4 +139,12 @@ fun Route.rutasUsuario(){
 
         }
     }
+    route("usuariosPorNombre"){
+        get("{nombre?}"){
+            val nombre = call.parameters["nombre"] ?: return@get call.respond(HttpStatusCode.BadRequest, emptyList<Usuario>())
+
+            return@get call.respond(HttpStatusCode.OK, usuarioDAO.filtrarUsuariosPorNombre(nombre))
+
+        }
+    }
 }

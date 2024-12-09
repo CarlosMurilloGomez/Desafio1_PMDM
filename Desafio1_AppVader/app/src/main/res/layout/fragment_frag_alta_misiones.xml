@@ -8,6 +8,83 @@
     tools:context=".ventanas.admin.FragAltaMisiones">
 
     <TextView
+        android:id="@+id/lbNoHayNavesAltaMi"
+        android:layout_width="230dp"
+        android:layout_height="48dp"
+        android:text="@string/noHayNavesCondiciones"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.386"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.677" />
+
+    <TextView
+        android:id="@+id/lbNumObjetivosAltaMi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/numObjetivos"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.228"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.514" />
+
+    <TextView
+        android:id="@+id/tvNumObjetivosAltaMi"
+        android:layout_width="32dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:text="0"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55" />
+
+    <SeekBar
+        android:id="@+id/sbNumObjetivosAltaMi"
+        android:layout_width="256dp"
+        android:layout_height="25dp"
+        android:max="50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.549" />
+
+    <Switch
+        android:id="@+id/swPasajerosAltaMi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pasajeros"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.764"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.312" />
+
+    <Switch
+        android:id="@+id/swCargaAltaMi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/carga"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.214"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.312" />
+
+    <TextView
         android:id="@+id/lbNaveAltaMi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,53 +154,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/fondo_edit_text"
-            android:backgroundTintMode="add" />
+            android:backgroundTintMode="add"
+            android:inputType="number" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout3"
-        android:layout_width="271dp"
-        android:layout_height="58dp"
-        android:hint="@string/numObjetivos"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etObjetivosAltaMi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/fondo_edit_text"
-            android:backgroundTintMode="add" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <CheckBox
-        android:id="@+id/chBoxCargaAltaMi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/carga"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.205"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32" />
-
-    <CheckBox
-        android:id="@+id/chBoxPasajerosAltaMi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pasajeros"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.78"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32" />
 
     <Spinner
         android:id="@+id/spTipoAltaMi"
@@ -166,4 +200,5 @@
             android:backgroundTintMode="add" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -82,7 +82,7 @@
     <string name="activar">Activate</string>
     <string name="cancelar">Cancel</string>
     <string name="confirmarPassword">Confirm password</string>
-    <string name="numObjetivos">No. of objectives</string>
+    <string name="numObjetivos">No. of objectives:</string>
     <string name="registrar">Register</string>
     <string name="matricula">Registration</string>
     <string name="passwordProvisional">Temporary password</string>
@@ -142,4 +142,7 @@
     <string name="errActualizarEstado">Error updating mission status</string>
     <string name="errAddExperiencia">Error adding experience to the user</string>
     <string name="errActualizarPerfil">Error updating profile information</string>
+    <string name="filtrar">Filter</string>
+    <string name="noHayNavesCondiciones">(There are no ships that meet these conditions)</string>
+    <string name="errEspacion">Neither the username nor the password can contain spaces</string>
 </resources>

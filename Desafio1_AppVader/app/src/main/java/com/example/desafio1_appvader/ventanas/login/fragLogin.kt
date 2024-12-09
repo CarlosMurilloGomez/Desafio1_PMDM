@@ -84,8 +84,8 @@ class fragLogin : Fragment() {
             if (binding.etUsuarioLogin.text.isNullOrBlank() || binding.etPasswordLogin.text.isNullOrBlank()){
                 Toast.makeText(requireContext(), resources.getString(R.string.errRellenaCampos), Toast.LENGTH_SHORT).show()
             }else {
-                val usuario = binding.etUsuarioLogin.text.toString()
-                val password = binding.etPasswordLogin.text.toString()
+                val usuario = binding.etUsuarioLogin.text.toString().trim()
+                val password = binding.etPasswordLogin.text.toString().trim()
                 mainViewModel.loginVM(UsuarioLogIn(usuario, password))
             }
         }

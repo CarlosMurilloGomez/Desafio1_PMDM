@@ -118,12 +118,14 @@ class fragActivarCuenta : Fragment() {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
         binding.btnActivarActivar.setOnClickListener {
-            if (binding.etUsuarioActivar.text.isNullOrBlank() || binding.etPaswordActivar.text.isNullOrBlank() || binding.etConfPaswordActivar.text.isNullOrBlank() ){
-                Toast.makeText(requireContext(), resources.getString(R.string.errRellenaCampos), Toast.LENGTH_SHORT).show()
+            if (binding.etUsuarioActivar.text.isNullOrBlank() || binding.etPaswordActivar.text.isNullOrBlank() || binding.etConfPaswordActivar.text.isNullOrBlank() ) {
+                Toast.makeText(requireContext(),resources.getString(R.string.errRellenaCampos), Toast.LENGTH_SHORT).show()
+            }else if(binding.etPaswordActivar.text.toString().contains(" ") || binding.etConfPaswordActivar.text.toString().contains(" ")){
+                Toast.makeText(requireContext(), resources.getString(R.string.errEspacion), Toast.LENGTH_SHORT).show()
             }else if(binding.etPaswordActivar.text.toString() != binding.etConfPaswordActivar.text.toString()){
                 Toast.makeText(requireContext(), resources.getString(R.string.errPassword), Toast.LENGTH_SHORT).show()
             }else if (binding.ivPerfilActivar.drawable == null) {
-                fragActivarCuentaViewModel.modificarPerfilUsuarioVM(UsuarioPerfil(mainViewModel.usuarioLogeado.value!!.id, binding.etPaswordActivar.text.toString(), mainViewModel.usuarioLogeado.value!!.foto))
+                fragActivarCuentaViewModel.modificarPerfilUsuarioVM(UsuarioPerfil(mainViewModel.usuarioLogeado.value!!.id, binding.etPaswordActivar.text.toString().trim(), mainViewModel.usuarioLogeado.value!!.foto))
             }else{
                 val bitmap2 = (binding.ivPerfilActivar.drawable as BitmapDrawable).bitmap
                 val file = File(requireContext().cacheDir, "temp_image.jpg")

@@ -82,7 +82,7 @@
     <string name="activar">Activer</string>
     <string name="cancelar">Annuler</string>
     <string name="confirmarPassword">Confirmer mot de passe</string>
-    <string name="numObjetivos">Nombre d\'objectifs</string>
+    <string name="numObjetivos">Nombre d\'objectifs:</string>
     <string name="registrar">Enregistrer</string>
     <string name="matricula">Immatriculation</string>
     <string name="passwordProvisional">Mot de passe temporaire</string>
@@ -142,4 +142,7 @@
     <string name="errActualizarEstado">Erreur lors de la mise à jour du statut de la mission</string>
     <string name="errAddExperiencia">Erreur lors de l\'ajout de l\'expérience à l\'utilisateur</string>
     <string name="errActualizarPerfil">Erreur lors de la mise à jour du profil</string>
+    <string name="filtrar">Filtre</string>
+    <string name="noHayNavesCondiciones">(Aucun navire ne remplit ces conditions)</string>
+    <string name="errEspacion">Ni le nom d\'utilisateur ni le mot de passe ne peuvent contenir d\'espaces</string>
 </resources>

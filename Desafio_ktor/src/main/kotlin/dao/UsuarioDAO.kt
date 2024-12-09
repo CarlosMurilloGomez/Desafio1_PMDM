@@ -16,4 +16,5 @@ interface UsuarioDAO {
     fun obtenerRolPorId(id: Int): Cadena?
     fun obtenerNivelPorId(id: Int): Cadena?
     fun obtenerEstadisticasPorId(id: Int): Estadisticas?
+    fun filtrarUsuariosPorNombre(nombre: String): List<Usuario>
 }
