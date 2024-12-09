@@ -1,13 +1,10 @@
 package dao
 
-import modelo.Nivel
-import modelo.Rol
-import modelo.Usuario
-import modelo.UsuarioPerfil
+import modelo.*
 
 class UsuarioDAOImpl:UsuarioDAO {
     override fun insertar(usuario: Usuario): Boolean {
-        val sql = "INSERT INTO usuario (nombre, password, activo, foto, edad, experiencia, rol) VALUES(?, ?, 0, NULL, ?, ?, ?)"
+        val sql = "INSERT INTO usuario (nombre, password, activo, foto, edad, experiencia, rol) VALUES(?, ?, 0, 'https://res.cloudinary.com/dxqrclhjs/image/upload/v1731946150/stormtrooperFotoPerfil_qv3hnw.jpg', ?, ?, ?)"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -23,14 +20,13 @@ class UsuarioDAOImpl:UsuarioDAO {
     }
 
     override fun actualizarPerfil(perfil: UsuarioPerfil): Boolean {
-        val sql = "UPDATE usuario SET nombre=?, password=?, foto=? WHERE id=?"
+        val sql = "UPDATE usuario SET password=?, foto=? WHERE id=?"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
-            statement.setString(1, perfil.nombre)
-            statement.setString(2, perfil.password)
-            statement.setString(3, perfil.foto)
-            statement.setInt(4, perfil.id)
+            statement.setString(1, perfil.password)
+            statement.setString(2, perfil.foto)
+            statement.setInt(3, perfil.id)
 
             return statement.executeUpdate() > 0
         }
@@ -74,30 +70,6 @@ class UsuarioDAOImpl:UsuarioDAO {
         return false
     }
 
-    override fun obtenerUsuarios(): List<Usuario> {
-        val usuarios = mutableListOf<Usuario>()
-        val sql = "SELECT * FROM usuario"
-        val connection = Database.getConnection()
-        connection?.use {
-            val statement = it.prepareStatement(sql)
-            val resultSet = statement.executeQuery()
-
-            while (resultSet.next()) {
-                val usuario = Usuario(
-                    id = resultSet.getInt("id"),
-                    nombre = resultSet.getString("nombre"),
-                    password = resultSet.getString("password"),
-                    activo = resultSet.getInt("activo"),
-                    foto = resultSet.getString("foto"),
-                    edad = resultSet.getInt("edad"),
-                    experiencia = resultSet.getInt("experiencia"),
-                    rol = resultSet.getInt("rol")
-                )
-                usuarios.add(usuario)
-            }
-        }
-        return usuarios
-    }
 
     override fun obtenerPilotos(): List<Usuario> {
         val usuarios = mutableListOf<Usuario>()
@@ -196,8 +168,8 @@ class UsuarioDAOImpl:UsuarioDAO {
         return null
     }
 
-    override fun obtenerRolPorId(id: Int): Rol? {
-        val sql = "SELECT LOWER(rol.descripcion) AS nombreRol FROM rol JOIN usuario ON rol.id=usuario.rol WHERE usuario.id=?"
+    override fun obtenerRolPorId(id: Int): Cadena? {
+        val sql = "SELECT rol.descripcion AS nombreRol FROM rol JOIN usuario ON rol.id=usuario.rol WHERE usuario.id=?"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -205,15 +177,15 @@ class UsuarioDAOImpl:UsuarioDAO {
             val resultSet = statement.executeQuery()
 
             if (resultSet.next()) {
-                return Rol(resultSet.getString("nombreRol"))
+                return Cadena(resultSet.getString("nombreRol"))
 
             }
         }
         return null
     }
 
-    override fun obtenerNivelPorId(id: Int): Nivel? {
-        val sql = "SELECT LOWER(descripcion) AS nivel FROM experiencia WHERE limiteBajo<=(SELECT experiencia FROM usuario WHERE id = ?) AND limiteAlto>=(SELECT experiencia FROM usuario WHERE id = ?);"
+    override fun obtenerNivelPorId(id: Int): Cadena? {
+        val sql = "SELECT descripcion AS nivel FROM experiencia WHERE limiteBajo<=(SELECT experiencia FROM usuario WHERE id = ?) AND limiteAlto>=(SELECT experiencia FROM usuario WHERE id = ?);"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
@@ -222,9 +194,65 @@ class UsuarioDAOImpl:UsuarioDAO {
             val resultSet = statement.executeQuery()
 
             if (resultSet.next()) {
-                return Nivel(resultSet.getString("nivel"))
+                return Cadena(resultSet.getString("nivel"))
             }
         }
         return null
+    }
+
+    override fun obtenerEstadisticasPorId(id: Int): Estadisticas? {
+        val sql = "SELECT COALESCE(COUNT(CASE WHEN estado = 1 THEN 1 END), 0) AS misionesPendientes, " +
+                "COALESCE(COUNT(CASE WHEN estado = 2 THEN 1 END), 0) AS misionesCompletadas, " +
+                "COALESCE(COUNT(CASE WHEN estado = 3 THEN 1 END), 0) AS misionesFallidas " +
+                "FROM misionasignacion WHERE idUsuario = ? GROUP BY idUsuario;"
+        val connection = Database.getConnection()
+        connection?.use {
+            val statement = it.prepareStatement(sql)
+            statement.setInt(1, id)
+            val resultSet = statement.executeQuery()
+
+            if (resultSet.next()) {
+                return Estadisticas(
+                    idUsuario = id,
+                    nivel = "",
+                    misionesPendientes = resultSet.getInt("misionesPendientes"),
+                    misionesCompletadas = resultSet.getInt("misionesCompletadas"),
+                    misionesFallidas = resultSet.getInt("misionesFallidas")
+                )
+            }
+        }
+        return Estadisticas(
+            idUsuario = id,
+            nivel = "",
+            misionesPendientes = 0,
+            misionesCompletadas = 0,
+            misionesFallidas = 0
+        )
+    }
+
+    override fun filtrarUsuariosPorNombre(nombre: String): List<Usuario> {
+        val usuarios = mutableListOf<Usuario>()
+        val sql = "SELECT * FROM usuario WHERE LOWER(nombre) LIKE LOWER(?) ORDER BY nombre"
+        val connection = Database.getConnection()
+        connection?.use {
+            val statement = it.prepareStatement(sql)
+            statement.setString(1, nombre)
+            val resultSet = statement.executeQuery()
+
+            while (resultSet.next()) {
+                val usuario = Usuario(
+                    id = resultSet.getInt("id"),
+                    nombre = resultSet.getString("nombre"),
+                    password = resultSet.getString("password"),
+                    activo = resultSet.getInt("activo"),
+                    foto = resultSet.getString("foto"),
+                    edad = resultSet.getInt("edad"),
+                    experiencia = resultSet.getInt("experiencia"),
+                    rol = resultSet.getInt("rol")
+                )
+                usuarios.add(usuario)
+            }
+        }
+        return usuarios
     }
 }

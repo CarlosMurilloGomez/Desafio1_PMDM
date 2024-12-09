@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/fondo_edit_text">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="146dp">
+
+        <TextView
+            android:id="@+id/tvNombreBajaMi"
+            android:layout_width="261dp"
+            android:layout_height="32dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.043" />
+
+        <TextView
+            android:id="@+id/tvExpBajaMi"
+            android:layout_width="40dp"
+            android:layout_height="21dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.167"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.352" />
+
+        <TextView
+            android:id="@+id/lbNaveBajaMi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/navePuntos"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.683"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.346" />
+
+        <TextView
+            android:id="@+id/tvNaveBajaMi"
+            android:layout_width="75dp"
+            android:layout_height="21dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.88"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.352" />
+
+        <TextView
+            android:id="@+id/tvTipoBajaMi"
+            android:layout_width="80dp"
+            android:layout_height="21dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.352" />
+
+        <TextView
+            android:id="@+id/lbTipoBajaMi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tipoPuntos"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.315"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.346" />
+
+        <TextView
+            android:id="@+id/lbExpBajaMi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/expPuntos"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.075"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.346" />
+
+        <TextView
+            android:id="@+id/lbDetallesBajaMi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detallesMision"
+            android:textColor="@color/detalles"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.96" />
+
+        <Button
+            android:id="@+id/btnEliminarMision"
+            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/eliminar"
+            app:icon="@drawable/ic_eliminar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.714" />
+
+        <Button
+            android:id="@+id/btnAsignarMision"
+            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/asignar"
+            app:icon="@drawable/ic_asignar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.243"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.714" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="409dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

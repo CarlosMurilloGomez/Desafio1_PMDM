@@ -3,22 +3,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_menu_ham_admin"
-    app:startDestination="@id/nav_fragAltaPiloto">
+    app:startDestination="@id/nav_fragRanking">
     <fragment
         android:id="@+id/nav_fragPerfil"
-        android:name="com.example.desafio1_appvader.FragPerfil"
+        android:name="com.example.desafio1_appvader.ventanas.FragPerfil"
         android:label="fragment_frag_perfil"
         tools:layout="@layout/fragment_frag_perfil" />
     <fragment
         android:id="@+id/nav_fragAltaPiloto"
-        android:name="com.example.desafio1_appvader.FragAltaPiloto"
+        android:name="com.example.desafio1_appvader.ventanas.admin.FragAltaPiloto"
         android:label="fragment_frag_alta_piloto"
         tools:layout="@layout/fragment_frag_alta_piloto" />
-
-
     <fragment
         android:id="@+id/nav_fragBajaPiloto"
-        android:name="com.example.desafio1_appvader.FragBajaPiloto"
+        android:name="com.example.desafio1_appvader.ventanas.admin.FragBajaPiloto"
         android:label="fragment_frag_baja_piloto"
         tools:layout="@layout/fragment_frag_baja_piloto" />
+    <fragment
+        android:id="@+id/nav_fragRanking"
+        android:name="com.example.desafio1_appvader.ventanas.FragRanking"
+        android:label="fragment_frag_ranking"
+        tools:layout="@layout/fragment_frag_ranking" />
+    <fragment
+        android:id="@+id/nav_fragBajaNave"
+        android:name="com.example.desafio1_appvader.ventanas.admin.FragBajaNave"
+        android:label="fragment_frag_baja_nave"
+        tools:layout="@layout/fragment_frag_baja_nave" />
+    <fragment
+        android:id="@+id/nav_fragAltaNave"
+        android:name="com.example.desafio1_appvader.ventanas.admin.FragAltaNave"
+        android:label="fragment_frag_alta_nave"
+        tools:layout="@layout/fragment_frag_alta_nave" />
+    <fragment
+        android:id="@+id/nav_fragBajaMisiones"
+        android:name="com.example.desafio1_appvader.ventanas.admin.FragBajaMisiones"
+        android:label="fragment_frag_baja_misiones"
+        tools:layout="@layout/fragment_frag_baja_misiones" />
+    <fragment
+        android:id="@+id/nav_fragAltaMisiones"
+        android:name="com.example.desafio1_appvader.ventanas.admin.FragAltaMisiones"
+        android:label="fragment_frag_alta_misiones"
+        tools:layout="@layout/fragment_frag_alta_misiones" />
+    <fragment
+        android:id="@+id/nav_fragAsignarMisiones"
+        android:name="com.example.desafio1_appvader.ventanas.admin.FragAsignarMisiones"
+        android:label="fragment_frag_asignar_misiones"
+        tools:layout="@layout/fragment_frag_asignar_misiones" >
+        <argument
+            android:name="idMision"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+
+
+
+
 </navigation>

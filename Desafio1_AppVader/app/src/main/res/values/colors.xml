@@ -2,4 +2,18 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="ranking">#51C8BF1B</color>
+    <color name="detalles">#486D6A6A</color>
+    <color name="conseguida">#8F64F01B</color>
+    <color name="fallada">#8BFF0000</color>
+    <color name="progreso">#38FF01</color>
+    <color name="fondo_edit_text">#95FFFFFF</color>
+
+    <color name="darth_black">#000000</color>
+    <color name="darth_grey">#333333</color>
+    <color name="darth_red">#FF0000</color>
+    <color name="darth_white">#595757</color>
+    <color name="darth_grey_light">#888888</color>
+    <color name="darth_red_dark">#8B0000</color>
+
 </resources>

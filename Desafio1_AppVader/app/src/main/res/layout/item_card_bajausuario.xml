@@ -3,70 +3,98 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/fondo_edit_text">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="134dp">
 
         <TextView
+            android:id="@+id/lbDetallesRanking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detallesPiloto"
+            android:textColor="@color/detalles"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.894"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.86" />
+
+        <TextView
             android:id="@+id/lbEdadBajaUs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edad:"
+            android:text="@string/edadPuntos"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.348"
+            app:layout_constraintHorizontal_bias="0.372"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.504" />
+            app:layout_constraintVertical_bias="0.382" />
 
         <TextView
             android:id="@+id/lbExpBajaUs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Experiencia:"
+            android:text="@string/expPuntos"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.391"
+            app:layout_constraintHorizontal_bias="0.387"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.791" />
+            app:layout_constraintVertical_bias="0.591" />
 
         <TextView
             android:id="@+id/tvUsuarioBajaUs"
             android:layout_width="195dp"
-            android:layout_height="32dp"
+            android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.768"
+            app:layout_constraintHorizontal_bias="0.925"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.156" />
+            app:layout_constraintVertical_bias="0.112" />
+
+        <TextView
+            android:id="@+id/tvPosicionRanking"
+            android:layout_width="46dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.372"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.112" />
 
         <TextView
             android:id="@+id/tvExpBajaUs"
-            android:layout_width="51dp"
+            android:layout_width="45dp"
             android:layout_height="21dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.586"
+            app:layout_constraintHorizontal_bias="0.513"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.805" />
+            app:layout_constraintVertical_bias="0.601" />
 
         <TextView
             android:id="@+id/tvEdadBajaUs"
             android:layout_width="61dp"
-            android:layout_height="23dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.574"
+            app:layout_constraintHorizontal_bias="0.537"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.522" />
+            app:layout_constraintVertical_bias="0.382" />
 
         <ImageView
             android:id="@+id/ivBajaUs"
@@ -84,14 +112,14 @@
             style="@style/Widget.Material3.Button.ElevatedButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Eliminar"
+            android:text="@string/eliminar"
             app:icon="@drawable/ic_eliminar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.945"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.744" />
+            app:layout_constraintVertical_bias="0.511" />
 
         <View
             android:id="@+id/divider"

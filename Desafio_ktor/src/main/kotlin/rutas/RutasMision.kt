@@ -14,13 +14,12 @@ fun Route.rutasMision() {
     route("/registrarMision") {
         post {
             val misionBody = call.receive<Mision>()
-            val mision = misionDAO.obtenerMisionPorId(misionBody.id)
-            if (mision != null) return@post call.respond(HttpStatusCode.BadRequest, false)
-
-            if (!misionDAO.insertarMision(misionBody)) {
-                return@post call.respond(HttpStatusCode.Conflict, false)
+            val idMisionInsertada = misionDAO.insertarMision(misionBody)
+            if (idMisionInsertada == null) {
+                return@post call.respond(HttpStatusCode.BadRequest, false)
             }
-            call.respond(HttpStatusCode.Created, true)
+            call.respond(HttpStatusCode.OK, idMisionInsertada)
+
         }
     }
     route("/registrarVuelo") {
@@ -86,7 +85,11 @@ fun Route.rutasMision() {
             call.respond(HttpStatusCode.OK, mision)
         }
     }
-
+    route("/tiposMision") {
+        get {
+            return@get call.respond(HttpStatusCode.OK, misionDAO.obtenerTiposMision())
+        }
+    }
     route("/vuelo") {
         get("{id?}") {
             val id = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
@@ -129,18 +132,25 @@ fun Route.rutasMision() {
         }
     }
 
-    route("/asigancionesPorUsuario") {
+    route("/misionAsignacionesPorUsuario") {
         get("{id?}") {
             val id = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
 
-            return@get call.respond(HttpStatusCode.OK, misionDAO.obtenerAsignacionesPorIdUsuario(id.toInt()))
+            return@get call.respond(HttpStatusCode.OK, misionDAO.obtenerMisionAsignacionesPorIdUsuario(id.toInt()))
         }
     }
-    route("/asignacion") {
+    route("/misionAsignacionesRealizadasPorUsuario") {
         get("{id?}") {
             val id = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
 
-            val asignacion = misionDAO.obtenerAsignacionPorId(id.toInt()) ?: return@get call.respond(HttpStatusCode.NotFound, null)
+            return@get call.respond(HttpStatusCode.OK, misionDAO.obtenerMisionAsignacionesRealizadasPorIdUsuario(id.toInt()))
+        }
+    }
+    route("/misionAsignacion") {
+        get("{id?}") {
+            val id = call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest, null)
+
+            val asignacion = misionDAO.obtenerMisionAsignacionPorId(id.toInt()) ?: return@get call.respond(HttpStatusCode.NotFound, null)
 
             call.respond(HttpStatusCode.OK, asignacion)
         }
@@ -149,7 +159,7 @@ fun Route.rutasMision() {
         put("{id?}") {
             val id = call.parameters["id"] ?: return@put call.respond(HttpStatusCode.BadRequest, false)
             val estado = call.receive<Int>()
-            val asignacion = misionDAO.obtenerAsignacionPorId(id.toInt()) ?: return@put call.respond(HttpStatusCode.NotFound, false)
+            val asignacion = misionDAO.obtenerMisionAsignacionPorId(id.toInt()) ?: return@put call.respond(HttpStatusCode.NotFound, false)
             if (!misionDAO.actualizarEstado(estado, id.toInt())) {
                 return@put call.respond(HttpStatusCode.BadRequest, false)
             }

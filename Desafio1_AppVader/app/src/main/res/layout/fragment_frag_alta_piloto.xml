@@ -4,13 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragAltaPiloto" >
+    android:background="@drawable/fondo_stormtrooper"
+    tools:context=".ventanas.admin.FragAltaPiloto">
+
+    <Button
+        android:id="@+id/btnCancelarRegistroUsuario"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancelar"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.771"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.592" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="271dp"
         android:layout_height="58dp"
-        android:hint="Usuario"
+        android:hint="@string/usuario"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +35,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etUsuarioAltaUs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -28,7 +45,7 @@
         android:id="@+id/textInputLayout2"
         android:layout_width="271dp"
         android:layout_height="58dp"
-        android:hint="Edad"
+        android:hint="@string/edad"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +55,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEdadAltaUs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
+            android:inputType="number" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -46,7 +66,7 @@
         android:id="@+id/textInputLayout4"
         android:layout_width="271dp"
         android:layout_height="58dp"
-        android:hint="Contraseña provisional"
+        android:hint="@string/passwordProvisional"
         app:endIconMode="password_toggle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,6 +78,8 @@
             android:id="@+id/etPasswordAltaUs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -76,7 +98,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etExperienciaAltaUs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/fondo_edit_text"
+            android:backgroundTintMode="add"
+            android:inputType="number" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,12 +110,12 @@
         style="@style/Widget.Material3.Button.ElevatedButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrar"
+        android:text="@string/registrar"
         app:icon="@drawable/ic_editar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.243"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.591" />
+        app:layout_constraintVertical_bias="0.592" />
 </androidx.constraintlayout.widget.ConstraintLayout>

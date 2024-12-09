@@ -1,6 +1,9 @@
 package dao
 
+import modelo.Cadena
 import modelo.Nave
+import modelo.Tipo
+import modelo.TipoCargaPasajeros
 
 class NaveDAOImpl:NaveDAO {
     override fun insertar(nave: Nave): Boolean {
@@ -53,13 +56,15 @@ class NaveDAOImpl:NaveDAO {
         return naves
     }
 
-    override fun obtenerNavesPorTipo(tipo: String): List<Nave> {
+    override fun obtenerNavesPorTipoCargaPasajeros(datos: TipoCargaPasajeros): List<Nave> {
         val naves = mutableListOf<Nave>()
-        val sql = "SELECT nave.* FROM nave JOIN tiponave ON tiponave.id=nave.tipo WHERE LOWER(tiponave.descripcion) LIKE LOWER(?)"
+        val sql = "SELECT nave.* FROM nave WHERE nave.tipo=? AND nave.carga=? AND nave.pasajeros=?"
         val connection = Database.getConnection()
         connection?.use {
             val statement = it.prepareStatement(sql)
-            statement.setString(1, tipo)
+            statement.setInt(1, datos.tipo)
+            statement.setInt(2, datos.carga)
+            statement.setInt(3, datos.pasajeros)
             val resultSet = statement.executeQuery()
 
             while (resultSet.next()) {
@@ -97,4 +102,23 @@ class NaveDAOImpl:NaveDAO {
         }
         return null
     }
+
+    override fun obtenerTiposNaves(): List<Tipo> {
+        val tipos = mutableListOf<Tipo>()
+        val sql = "SELECT * FROM tiponave"
+        val connection = Database.getConnection()
+        connection?.use {
+            val statement = it.prepareStatement(sql)
+            val resultSet = statement.executeQuery()
+
+            while (resultSet.next()) {
+                val tipo = Tipo(resultSet.getInt("id"), resultSet.getString("descripcion"))
+
+                tipos.add(tipo)
+            }
+        }
+        return tipos
+    }
+
+
 }
