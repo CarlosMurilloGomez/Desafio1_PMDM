@@ -142,4 +142,5 @@
     <string name="errActualizarEstado">Erreur lors de la mise à jour du statut de la mission</string>
     <string name="errAddExperiencia">Erreur lors de l\'ajout de l\'expérience à l\'utilisateur</string>
     <string name="errActualizarPerfil">Erreur lors de la mise à jour du profil</string>
+    <string name="filtrar">Filtre</string>
 </resources>

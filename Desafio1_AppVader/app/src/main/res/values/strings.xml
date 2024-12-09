@@ -141,4 +141,5 @@
     <string name="errActualizarEstado">Error al actualizar el estado de la misión</string>
     <string name="errAddExperiencia">Error al añadir la experiencia al usuario</string>
     <string name="errActualizarPerfil">Error al actualizar los datos del perfil</string>
+    <string name="filtrar">Filtrar</string>
 </resources>

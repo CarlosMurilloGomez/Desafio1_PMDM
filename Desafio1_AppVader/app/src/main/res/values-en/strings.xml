@@ -142,4 +142,5 @@
     <string name="errActualizarEstado">Error updating mission status</string>
     <string name="errAddExperiencia">Error adding experience to the user</string>
     <string name="errActualizarPerfil">Error updating profile information</string>
+    <string name="filtrar">Filter</string>
 </resources>

@@ -57,6 +57,9 @@ interface UsuarioAPI {
     @GET("estadisticas/{id}")
     suspend fun obtenerEstadisticasPorId(@Path("id") idUsuario:Int): Response<Estadisticas?>
 
+    @GET("usuariosPorNombre/{nombre}")
+    suspend fun filtrarUsuariosPorNombre(@Path("nombre") nombre:String): Response<MutableList<Usuario>>
+
 
 
 

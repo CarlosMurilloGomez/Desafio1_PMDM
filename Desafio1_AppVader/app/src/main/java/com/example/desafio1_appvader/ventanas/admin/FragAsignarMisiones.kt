@@ -102,8 +102,11 @@ class FragAsignarMisiones : Fragment() {
         }
 
         var pilotos = ArrayList<Tipo>()
-        fragAsignarMisionesViewModel.obtenerPilotosVM()
         fragAsignarMisionesViewModel.pilotos.observe(viewLifecycleOwner){
+            if (it == emptyList<Usuario>()){
+                binding.tvDatosPilotoAsigMi.text = getString(R.string.pilotoNoSeleccionado)
+            }
+            pilotos.clear()
             for (piloto in it){
                 pilotos.add(Tipo(piloto.id, piloto.nombre))
             }
@@ -157,6 +160,15 @@ class FragAsignarMisiones : Fragment() {
         val idMision = arguments?.getInt("idMision")
 
         fragAsignarMisionesViewModel.obtenerTiposMisionVM()
+        fragAsignarMisionesViewModel.obtenerPilotosVM()
+
+        binding.btnFiltrarAsigMi.setOnClickListener {
+            if (binding.etNombreAsigMi.text.toString().isEmpty()){
+                fragAsignarMisionesViewModel.obtenerPilotosVM()
+            }else {
+                fragAsignarMisionesViewModel.filtrarUsuariosPorNombre(binding.etNombreAsigMi.text.toString().trim()+"%")
+            }
+        }
 
         binding.btnAsignarAsigMi.setOnClickListener {
             if (binding.spElegirPilotoAsigMi.selectedItem == null){

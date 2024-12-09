@@ -229,4 +229,30 @@ class UsuarioDAOImpl:UsuarioDAO {
             misionesFallidas = 0
         )
     }
+
+    override fun filtrarUsuariosPorNombre(nombre: String): List<Usuario> {
+        val usuarios = mutableListOf<Usuario>()
+        val sql = "SELECT * FROM usuario WHERE LOWER(nombre) LIKE LOWER(?) ORDER BY nombre"
+        val connection = Database.getConnection()
+        connection?.use {
+            val statement = it.prepareStatement(sql)
+            statement.setString(1, nombre)
+            val resultSet = statement.executeQuery()
+
+            while (resultSet.next()) {
+                val usuario = Usuario(
+                    id = resultSet.getInt("id"),
+                    nombre = resultSet.getString("nombre"),
+                    password = resultSet.getString("password"),
+                    activo = resultSet.getInt("activo"),
+                    foto = resultSet.getString("foto"),
+                    edad = resultSet.getInt("edad"),
+                    experiencia = resultSet.getInt("experiencia"),
+                    rol = resultSet.getInt("rol")
+                )
+                usuarios.add(usuario)
+            }
+        }
+        return usuarios
+    }
 }
